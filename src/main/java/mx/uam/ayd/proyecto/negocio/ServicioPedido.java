@@ -50,6 +50,8 @@ public class ServicioPedido {
 	@Autowired 
 	private PedidoVehiculoRepository pedidovehiculoRepository;
 	
+	List<Vehiculo> listaPedido = new ArrayList<>();
+	
 		
 	/** CONTRATO
 	 * ***Recupera Pedidos***
@@ -168,6 +170,16 @@ public class ServicioPedido {
 		
 		Optional<Pedido> pedidoRecuperado = pedidoRepository.findById(id);
 		return pedidoRecuperado;
+	}
+
+
+	public List<Vehiculo> agregarAPedido(List<Vehiculo> listaVehiculos, int indiceVehiculo) {
+		if (listaPedido.contains(listaVehiculos.get(indiceVehiculo))) {
+			return null;
+		} else {
+			listaPedido.add(listaVehiculos.get(indiceVehiculo));
+			return listaPedido;
+		}
 	}
 
 }

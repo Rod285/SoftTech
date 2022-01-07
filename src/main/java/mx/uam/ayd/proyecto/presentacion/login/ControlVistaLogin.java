@@ -1,22 +1,17 @@
 package mx.uam.ayd.proyecto.presentacion.login;
 
-import javax.swing.JOptionPane;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import mx.uam.ayd.proyecto.ProyectoApplication;
 import mx.uam.ayd.proyecto.negocio.ServicioUsuario;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
-import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.VistaAdministrador;
-import mx.uam.ayd.proyecto.presentacion.principal.VentanaPrincipal;
-import mx.uam.ayd.proyecto.presentacion.seleccionDeArticulos.VistaSeleccionDeArticulos;
+import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
 /**
  * 
  * Módulo de control para login
  * 
- * @author BurbujasMaravillosas
+ * @author SoftTech
  *
  */
 @Component
@@ -25,21 +20,36 @@ public class ControlVistaLogin {
 	@Autowired
 	private ServicioUsuario servicioUsuario;
 	
+	@Autowired
+	private ControlPrincipal control;
+	
+	@Autowired
+	private VistaLogin vl;
+	
 	Usuario ur;
 	
-	public long recuperaUsuarioYPasswordYTipo(String nombre, String password, String tipo, VistaLogin vl) {
+	public void validaDatos(String nombre, String password, String tipo) {
 		
-		try {
-			ur = servicioUsuario.RecuperaUsuarioYPasswordYTipo(nombre, password, tipo, vl);
-			
-		} catch(Exception ex) {//SI ENCUENTRA AL USUARIO MANDA MENSAJE DE ERROR 
-			
-			JOptionPane.showMessageDialog(null, "El usuario no existe");
-		}
+		Boolean datosValidos = servicioUsuario.validaUsuario(nombre, password, tipo);
+		String tipoRecuperado = tipo;
 		
-		VistaAdministrador.idUsuario=ur.getIdUsuario();
-		
-		//VistaSeleccionDeArticulos.idUsuario=ur.getIdUsuario();
-		return ur.getIdUsuario();
-	}
+		if(datosValidos == true) {
+			System.out.println(tipoRecuperado + " es el tipo de usuario que ingreso");
+			 if(tipoRecuperado.equals("Administrador")) {
+				 control.mostrarVistaAdmin();
+				 vl.dispose();
+			 }else {
+				 if(tipoRecuperado.equals("Cliente")) {
+	    			 control.mostrarVistaCliente();
+	    			 vl.dispose();
+	    		 }else {
+	    			 if(tipoRecuperado.equals("Operaciones")) {
+	    				 control.mostrarVistaMOp();
+	        			 vl.dispose();
+	    			 }
+	    		 }
+			 }	
+		 } //Fin del if
+	
+	} //fin del metodo valida datos
 }

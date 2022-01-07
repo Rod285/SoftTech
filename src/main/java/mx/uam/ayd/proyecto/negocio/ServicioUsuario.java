@@ -140,32 +140,38 @@ public Usuario agregaUsuario(String nombre, String apellido, String edad, String
  	 * Recupera el usuario
  	 */
      
-     public Usuario RecuperaUsuarioYPasswordYTipo(String nombre, String password, String tipo, VistaLogin vl) {
-    	 
-    	 Usuario usuarioRecuperado = usuarioRepository.findByNombreAndContraseniaAndTipo(nombre, password, tipo);//REVISA EN EL REPOSITORIO SI YA EXISTE EL USUARIO 
-    	 
-    	 if(usuarioRecuperado == null) {
-    		 JOptionPane.showMessageDialog(null, "El usuario no existe");
-    		 
-    			
-    	 }else {
-    		 String tipoRecuperado = usuarioRecuperado.getTipo();
-    		 System.out.println(tipoRecuperado);
-    		 
-    		 if(tipoRecuperado.equals("Administrador")) {
-    			 control.mostrarVistaAdmin();
-    			 vl.dispose();
-    		 }else {
-    			 if(tipoRecuperado.equals("Cliente")) {
-        			 control.mostrarVistaCliente();
-        			 vl.dispose();
-        		 }
-    		 }
-    		 
-    	 }
-    	 
-    	 return usuarioRecuperado;//REGRESA AL USUARIO
-     }
+     /**
+      * @author Jonathan Cruz
+  	 * Valida la existencia de un usuario en el sistema
+  	 * 
+  	 * @param nombre, contraseña y tipo
+  	 * @return true si el usuario existe , false si no
+  	 */
+      
+      public Boolean validaUsuario(String nombre, String password, String tipo) {
+     	 
+     	 Boolean usuario = null;
+     	 String pass = password;
+     	 
+     	 Usuario usuarioRecuperado = usuarioRepository.findByNombreAndTipo(nombre, tipo);//REVISA EN EL REPOSITORIO SI YA EXISTE EL USUARIO 
+
+     	 if(usuarioRecuperado != null) {
+     		 
+     		 usuario = true;
+     		 if((pass.equals(usuarioRecuperado.getContrasenia())) != true) {  
+     		     usuario = false;
+         		 JOptionPane.showMessageDialog(null, "La contraseña es incorrecta");
+     		 }
+     		 
+     	 }else {
+     		 usuario = false;
+     		 JOptionPane.showMessageDialog(null, "El usuario no existe");
+     	 }
+     	 
+     	 System.out.println("Se regreso al control un: " + usuario);
+     	 return usuario;
+     	 
+      }//fin del metodo
      
    //METODO QUE VERIFICA SI EL CORREO Y CONTRASEÑA YA EXISTEN EN LA BASE DE DATOS
      public Usuario recuperaCorreo(String correo) {

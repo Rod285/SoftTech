@@ -8,6 +8,7 @@ import mx.uam.ayd.proyecto.presentacion.listarUsuarios.ControlListarUsuarios;
 import mx.uam.ayd.proyecto.presentacion.login.VistaLogin;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.ControlVistaAdministrador;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.VistaAdministrador;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaMOp.ControlVistaMOp;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.ControlnotificarSolicitudAceptada;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.VistanotificarSolicitudAceptada;
 import mx.uam.ayd.proyecto.presentacion.seleccionDeArticulos.ControlSeleccionDeArticulos;
@@ -35,6 +36,9 @@ public class ControlPrincipal {
 	
 	@Autowired
 	private ControlSeleccionDeArticulos controlSeleccionDeArticulos;
+	
+	@Autowired
+	private ControlVistaMOp controlVistaOperaciones;
 	
 	@Autowired
 	ControlnotificarSolicitudAceptada controlSolicitudAceptada;
@@ -73,6 +77,14 @@ public class ControlPrincipal {
 	
 	public void mostrarVistaAdmin() {
 		controlVistaAdministrador.inicia();
+	}
+	
+	/*
+	 * Metodo que arranca la vista del miembro de operaciones
+	 */
+	
+	public void mostrarVistaMOp() {
+		controlVistaOperaciones.inicia();
 	}
 	
 	/*

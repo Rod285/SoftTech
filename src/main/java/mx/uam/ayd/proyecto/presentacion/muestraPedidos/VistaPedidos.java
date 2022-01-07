@@ -1,77 +1,88 @@
 package mx.uam.ayd.proyecto.presentacion.muestraPedidos;
 
 import java.awt.EventQueue;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
-public class VistaPedidos extends JFrame {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-	private JPanel contentPane;
+import mx.uam.ayd.proyecto.presentacion.generarContrapropuesta.ControlGenerarContrapropuesta;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaPedidos frame = new VistaPedidos();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+import java.awt.ScrollPane;
+import java.awt.BorderLayout;
+import javax.swing.JProgressBar;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+
+@SuppressWarnings("serial")
+@Component
+public class VistaPedidos extends JPanel {
+	
+	@Autowired
+	private ControlPedidos controlPedidos;
+
+	private JTable tablaPedidos;
 
 	/**
 	 * Create the frame.
 	 */
 	public VistaPedidos() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		List <String> pedidos = new ArrayList<String>();
-		Object[] titulos = {"Proyecto"};
-        Object[][] datos = new Object[10][1];
-
-		for(int i=0; i<pedidos.size(); i++) {
-			String dato = pedidos.get(i);
-			System.out.println(dato);
-			for(int j=0; j<2; j++) {
-				datos[i][j]= dato; 
+		Object[] columnas = {"ID", "Pedido", "Entrega", "Status"};
+		Object[][] data = new Object [10][4];
+		
+		for(int i=0; i<10; i++) {
+			for(int j=0; j<4; j++) {
+				data[i][j]="";
 			}	
-		}		
-        		
-        DefaultTableModel modelo = new DefaultTableModel(datos, titulos);
+		}	
 		
-        JTable table = new JTable(modelo){
+		DefaultTableModel model = new DefaultTableModel(data, columnas);
 		
+		tablaPedidos = new JTable(model) {
         	private static final long serialVersionUID = 1L;
         	public Class getColumnClass(int column) {
-        		switch (column) {
-                	default:
-                		return String.class;
-        		}
-        	}
+                switch (column) {
+                    default:
+                        return String.class;
+                }
+            }
         };
-    
-        table.setPreferredScrollableViewportSize(table.getPreferredSize());
-    
-		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(6, 6, 438, 223);
-		contentPane.add(scrollPane);
+		
+        tablaPedidos.setPreferredScrollableViewportSize(tablaPedidos.getPreferredSize());
+        tablaPedidos.getColumnModel().getColumn(0).setPreferredWidth(35);
+        tablaPedidos.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tablaPedidos.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tablaPedidos.getColumnModel().getColumn(3).setPreferredWidth(50);
+        
+		JScrollPane scrollPane = new JScrollPane(tablaPedidos);
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+					.addGap(6))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(10)
+					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+					.addGap(6))
+		);
+		setLayout(groupLayout);
+
+	}
+	
+	public VistaPedidos muestra(ControlPedidos control) {
+		controlPedidos = control;
+		//setVisible(true);
+		return this;
 	}
 
 }

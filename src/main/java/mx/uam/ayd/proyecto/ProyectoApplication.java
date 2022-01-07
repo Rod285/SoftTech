@@ -17,12 +17,14 @@ import mx.uam.ayd.proyecto.datos.AdministradorRepository;
 import mx.uam.ayd.proyecto.datos.ClienteRepository;
 import mx.uam.ayd.proyecto.datos.GrupoRepository;
 import mx.uam.ayd.proyecto.datos.NotificacionRepository;
+import mx.uam.ayd.proyecto.datos.OperacionesRepository;
 import mx.uam.ayd.proyecto.datos.PedidoRepository;
 import mx.uam.ayd.proyecto.datos.PedidoVehiculoRepository;
 import mx.uam.ayd.proyecto.datos.VehiculoRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
+import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
 import mx.uam.ayd.proyecto.negocio.modelo.PedidoVehiculo;
@@ -55,6 +57,9 @@ public class ProyectoApplication {
 
 	@Autowired
 	ClienteRepository clienteRepository;
+	
+	@Autowired
+	OperacionesRepository operacionesRepository;
 	
 	@Autowired
 	NotificacionRepository notificacionRepository;
@@ -156,6 +161,16 @@ public class ProyectoApplication {
 		clienteRepository.save(cliente);
 		
 		/*
+		 * Declaracion de miembro de operaciones de prueba.
+		 */
+		
+		MiembroOperaciones oper = new MiembroOperaciones();
+		oper.setNombre("operaciones");
+		oper.setContrasenia("operaciones");
+		oper.setTipo("Operaciones");
+		operacionesRepository.save(oper);
+		
+		/*
 		 * Declaracion de notificaciones de prueba.
 		 */
 		
@@ -190,6 +205,7 @@ public class ProyectoApplication {
 		vehiculoPrueba1.setTipo("Deportivo");
 		vehiculoPrueba1.setDescripcion("A1");
 		vehiculoPrueba1.setDisponibilidad(true);
+		vehiculoPrueba1.setFoto("c:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\audi_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba1);
 		
 		//2
@@ -200,6 +216,7 @@ public class ProyectoApplication {
 		vehiculoPrueba2.setTipo("Clasico");
 		vehiculoPrueba2.setDescripcion("Eleanor");
 		vehiculoPrueba2.setDisponibilidad(true);
+		vehiculoPrueba2.setFoto("C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\mustang_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba2);
 		
 		//3
@@ -210,6 +227,7 @@ public class ProyectoApplication {
 		vehiculoPrueba3.setTipo("Deportivo");
 		vehiculoPrueba3.setDescripcion("");
 		vehiculoPrueba3.setDisponibilidad(true);
+		vehiculoPrueba3.setFoto("C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\camaro_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba3);
 		
 		//4
@@ -217,9 +235,10 @@ public class ProyectoApplication {
 		vehiculoPrueba4.setModelo("Mazda3");
 		vehiculoPrueba4.setPrecio(3500);
 		vehiculoPrueba4.setAnio(2020);
-		vehiculoPrueba4.setTipo("Standard");
+		vehiculoPrueba4.setTipo("Deportivo");
 		vehiculoPrueba4.setDescripcion("");
 		vehiculoPrueba4.setDisponibilidad(true);
+		vehiculoPrueba4.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mazda3_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba4);
 		
 		//5
@@ -230,6 +249,7 @@ public class ProyectoApplication {
 		vehiculoPrueba5.setTipo("Lujo");
 		vehiculoPrueba5.setDescripcion("");
 		vehiculoPrueba5.setDisponibilidad(true);
+		vehiculoPrueba5.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mercedes_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba5);
 		
 		//6
@@ -240,7 +260,41 @@ public class ProyectoApplication {
 		vehiculoPrueba6.setTipo("Lujo");
 		vehiculoPrueba6.setDescripcion("");
 		vehiculoPrueba6.setDisponibilidad(true);
+		vehiculoPrueba6.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/BMW_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba6);
+		
+		//7
+		Vehiculo vehiculoPrueba7 = new Vehiculo();
+		vehiculoPrueba7.setModelo("Internacional");
+		vehiculoPrueba7.setPrecio(5000);
+		vehiculoPrueba7.setAnio(2018);
+		vehiculoPrueba7.setTipo("Carga");
+		vehiculoPrueba7.setDescripcion("");
+		vehiculoPrueba7.setDisponibilidad(true);
+		vehiculoPrueba7.setFoto("C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\VolteoInternacional_320x180.jpg");
+		vehiculoRepository.save(vehiculoPrueba7);
+			
+		//8
+		Vehiculo vehiculoPrueba8 = new Vehiculo();
+		vehiculoPrueba8.setModelo("Freightliner");
+		vehiculoPrueba8.setPrecio(7000);
+		vehiculoPrueba8.setAnio(2018);
+		vehiculoPrueba8.setTipo("Carga");
+		vehiculoPrueba8.setDescripcion("");
+		vehiculoPrueba8.setDisponibilidad(true);
+		vehiculoPrueba8.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/TrailerFreightliner_320x180.jpg");
+		vehiculoRepository.save(vehiculoPrueba8);
+				
+		//9
+		Vehiculo vehiculoPrueba9 = new Vehiculo();
+		vehiculoPrueba9.setModelo("Maverick");
+		vehiculoPrueba9.setPrecio(3500);
+		vehiculoPrueba9.setAnio(1977);
+		vehiculoPrueba9.setTipo("Clasico");
+		vehiculoPrueba9.setDescripcion("");
+		vehiculoPrueba9.setDisponibilidad(true);
+		vehiculoPrueba9.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/Maverick_320x180.jpg");
+		vehiculoRepository.save(vehiculoPrueba9);
 		
 		/*
 		 * Declaracion de pedioVehículo para pedido de prueba.

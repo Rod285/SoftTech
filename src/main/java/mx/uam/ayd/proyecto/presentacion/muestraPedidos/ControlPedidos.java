@@ -17,6 +17,12 @@ public class ControlPedidos {
 	@Autowired
 	private ServicioPedido servicioPedido;
 	
+	@Autowired
+	private VistaPedidos vistaPedidos;
+	
+	@Autowired
+	private VistaPedidos vp;
+	
 	public Pedido damePedido(long id) {
 		
 		Pedido p = null;
@@ -27,6 +33,11 @@ public class ControlPedidos {
 			return p;
 		}
 		return p;
+	}
+	
+	public VistaPedidos inicia() {
+		vp =  vistaPedidos.muestra(this);
+		return vp;
 	}
 
 }

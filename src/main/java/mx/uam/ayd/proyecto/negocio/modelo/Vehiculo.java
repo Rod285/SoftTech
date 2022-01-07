@@ -32,6 +32,7 @@ public class Vehiculo {
 	private String tipo;
 	private String descripcion;
 	private boolean disponibilidad;
+	private String foto;
 	
 	/*
 	@ManyToOne

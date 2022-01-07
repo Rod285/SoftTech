@@ -22,6 +22,6 @@ public interface UsuarioRepository extends CrudRepository <Usuario, Long> {
 	
 	public List <Usuario> findByEdadBetween(int edad1, int edad2);
 	
-	public Usuario findByNombreAndContraseniaAndTipo(String nombre, String contrasenia, String tipo);
+	public Usuario findByNombreAndTipo(String nombre, String tipo);
 	
 }

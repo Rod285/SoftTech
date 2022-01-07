@@ -39,6 +39,7 @@ import javax.swing.ImageIcon;
 public class VistaLogin extends JFrame implements ActionListener {
 	static final String ADMIN = "Administrador";
 	static final String CLIENTE = "Cliente";
+	static final String OPER = "Operaciones";
 	
 	public static long idUsuario;
 	
@@ -143,29 +144,37 @@ public class VistaLogin extends JFrame implements ActionListener {
 		 	 String user = txtUsuario.getText();
 		 	 String pass = txtPassword.getText();
 		 	 
-		 	 if(user.equals("") || pass.equals("")) {
+		 	 if(user.equals("") || pass.equals("")) {  //Valida si los campos usuario y contraseña son vacios
 	            	JOptionPane.showMessageDialog(null, "Ingrese usuario y contraseña");
 	            	txtUsuario.requestFocus(); //puntero del mouse va al txtField
 	         }else {
 	           	if(user != null && pass != null) {
+	           		
 	           		if(cbTipoUsuario.getSelectedItem() == tipoUsuario[0]) {
-	           			tipo=ADMIN;
-	           			
-	           			idUsuario=verificausuario.recuperaUsuarioYPasswordYTipo(user, pass, tipo, this);
-	           			//verificausuario.recuperaUsuarioYPasswordYTipo(user, pass, tipo, this);
+	           			tipo=ADMIN;       			
+	           			verificausuario.validaDatos(user, pass, tipo);
 	           			
 	           		}else{
 	           			if(cbTipoUsuario.getSelectedItem() == tipoUsuario[1]) {
 		           			tipo=CLIENTE;
-		           			verificausuario.recuperaUsuarioYPasswordYTipo(user, pass, tipo, this);
+		           			verificausuario.validaDatos(user, pass, tipo);
+	           			}else {
+	           			   if(cbTipoUsuario.getSelectedItem() == tipoUsuario[2]) {
+	           				   tipo=OPER;
+	           				   verificausuario.validaDatos(user, pass, tipo);
+	           				 
+	           			   }
+	           				
+	           				
 	           			}
 	           		}
 	           		
 	           		txtUsuario.setText("");
 	           		txtPassword.setText("");
+	           		
 	           	}         
 	         }
 		}	
-	}
+	} //Fin del escuchador
 }
 

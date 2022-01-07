@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.presentacion.bandejaNotificaciones.ControlBandejaNotificaciones;
 import mx.uam.ayd.proyecto.presentacion.generarContrapropuesta.ControlGenerarContrapropuesta;
 import mx.uam.ayd.proyecto.presentacion.login.ControlVistaLogin;
+import mx.uam.ayd.proyecto.presentacion.muestraPedidos.ControlPedidos;
+import mx.uam.ayd.proyecto.presentacion.muestraPedidos.VistaPedidos;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalogo;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.ControlnotificarSolicitudAceptada;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.VistanotificarSolicitudAceptada;
@@ -19,7 +21,7 @@ import mx.uam.ayd.proyecto.presentacion.principal.VentanaPrincipal;
  * 
  * Módulo de control para la mostrar la vista de Administrador
  * 
- * @author BurbujasMaravillosas
+ * @author BurbujasMaravillosas/Softech
  *
  */
 
@@ -40,6 +42,12 @@ public class ControlVistaAdministrador {
 	
 	@Autowired
 	private ControlBandejaNotificaciones controlBandejaNotificaciones;
+	
+	@Autowired
+	private ControlPedidos controlPedidos;
+	
+	@Autowired
+	VistaPedidos vp;
 		
 	/**
 	 * Muestra ventana Administrador
@@ -86,6 +94,11 @@ public class ControlVistaAdministrador {
 	
 	public void muestraVistaNotificaciones(JScrollPane spNotificaciones, JButton btnElimina) {
 		controlBandejaNotificaciones.inicia(spNotificaciones, btnElimina);
+	}
+	
+	public VistaPedidos muestraVistaPedidos() {
+		vp = controlPedidos.inicia();
+		return vp;
 	}
 
 }

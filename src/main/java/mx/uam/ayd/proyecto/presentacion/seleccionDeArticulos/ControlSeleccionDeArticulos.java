@@ -12,6 +12,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalogo;
 
 /**
  * 
@@ -35,6 +36,9 @@ public class ControlSeleccionDeArticulos {
 	*/
 	
 	@Autowired
+	private ControlVistaCatalogo controlVistaCatalogo;
+	
+	@Autowired
 	private VistaSeleccionDeArticulos vistaSeleccionDeArticulos;//PREGUNTA, esta es una ventana de la misma vista porque forma parte de la misma HU2 pero se geenra a través de un botoncito "Ir a Pedido", cómo la creo en la vista y cómo hago referencia a ella aquí?
 	
 	/**
@@ -46,6 +50,10 @@ public class ControlSeleccionDeArticulos {
 		
 		
 		vistaSeleccionDeArticulos.muestra(this); //Debo agregar método muestra en la vista
+	}
+
+	public void iniciaVistaCatalogo() {
+		controlVistaCatalogo.inicia();
 	}
 	
 	/**

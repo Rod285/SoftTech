@@ -317,7 +317,8 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 			System.out.println("Botonactivo");
 		}
 		if((String)this.comboBox.getSelectedItem() == opciones[1]) {
-			VistaCatalogo vistaCat = new VistaCatalogo();
+			controlSeleccionDeArticulos.iniciaVistaCatalogo();
+			comboBox.setSelectedIndex(0);
 		}
 		if (e.getSource() == btnEspecificacionesMustang) {
 			VistaEspecificaciones vistaEsp = new VistaEspecificaciones();
