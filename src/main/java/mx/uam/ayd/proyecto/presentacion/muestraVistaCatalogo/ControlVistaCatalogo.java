@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.ServicioPedido;
 import mx.uam.ayd.proyecto.negocio.ServicioVehiculo;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido.ControlVistaIrAPedido;
 
 /**
  * 
@@ -37,10 +38,14 @@ public class ControlVistaCatalogo {
 	@Autowired
 	private ServicioPedido servicioPedido;
 	
+	@Autowired
+	private ControlVistaIrAPedido controlIrAPedido;
+		
 	private List<Vehiculo> listaClasicos = new ArrayList<>();
 	private List<Vehiculo> listaLuxury = new ArrayList<>();
 	private List<Vehiculo> listaCarga = new ArrayList<>();
 	private List<Vehiculo> listaDeportivos = new ArrayList<>();
+	private List<Vehiculo> listaPedido = new ArrayList<>();
 	
 	/**
 	 * Muestra ventana catalogo
@@ -65,12 +70,16 @@ public class ControlVistaCatalogo {
 	}
 
 	public void agregarAPedido(List<Vehiculo> listaVehiculos, int indiceVehiculo) {
-		List<Vehiculo> listaPedido = new ArrayList<>();
+		
 		listaPedido = servicioPedido.agregarAPedido(listaVehiculos, indiceVehiculo);
 		if(listaPedido == null) {
 			vistaCatalogo.dialogoVehiculoEnListaDePedido();
 		}else {
 			vistaCatalogo.actualizaBotonIrAPedido(listaPedido);
 		}
+	}
+
+	public void iniciarIrAPedido() {
+		controlIrAPedido.inicia(listaPedido);		
 	}
 }
