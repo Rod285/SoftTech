@@ -23,6 +23,8 @@ import javax.swing.GroupLayout.Alignment;
 @Component
 public class VistaPedidos extends JPanel {
 	
+	//PRUEBA 
+	
 	@Autowired
 	private ControlPedidos controlPedidos;
 
