@@ -95,7 +95,7 @@ public class VistaCatalogo extends JFrame {
 		btnIrAPedido.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Se deben implementar las acciones para que se abra la vista ir a pedido
+				control.iniciaIrAPedido();
 			}
 		});
 		btnIrAPedido.setVisible(true);
