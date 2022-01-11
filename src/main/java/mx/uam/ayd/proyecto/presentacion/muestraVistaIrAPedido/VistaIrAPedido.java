@@ -14,17 +14,28 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.BorderLayout;
 
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.GridLayout;
+import javax.swing.JComboBox;
+
 import java.awt.Image;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Font;
 
 @Slf4j
@@ -39,6 +50,7 @@ public class VistaIrAPedido extends JFrame{
 	private List<Vehiculo> listaPedido;
 	private PedidoTableModel modelo;
 	private JTable tablaPedido;
+	private JComboBox<Integer> cantidades;
 
 	public VistaIrAPedido() {
 		setBounds(200, 5, 650, 725);
@@ -92,6 +104,7 @@ public class VistaIrAPedido extends JFrame{
 		gbc_noPedido.insets = new Insets(0, 0, 5, 0);
 		gbc_noPedido.gridx = 3;
 		gbc_noPedido.gridy = 0;
+		noPedido.setVisible(false);
 		panelNorte.add(noPedido, gbc_noPedido);
 		
 		JLabel nombre = new JLabel("Montalvo Picture Cars");
@@ -121,7 +134,12 @@ public class VistaIrAPedido extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(70, 5, 500, 473);
 		tablaPedido = new JTable();
+		tablaPedido.setCellSelectionEnabled(true);
 		tablaPedido.setRowHeight(90);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
+		tablaPedido.setDefaultRenderer(String.class, centerRenderer);
+		tablaPedido.setDefaultRenderer(Integer.class, centerRenderer);
 		scrollPane.setViewportView(tablaPedido);
 		panelCentro.add(scrollPane);
 		
@@ -140,5 +158,93 @@ public class VistaIrAPedido extends JFrame{
 		tablaPedido.setModel(modelo);
 		
 		setVisible(true);
+	}
+	
+	private class PedidoTableModel implements TableModel{
+		
+		private List<Vehiculo> listaPedido;
+
+		public PedidoTableModel(List<Vehiculo> listaPedido) {
+			this.listaPedido = listaPedido;
+		}
+		
+		@Override
+		public int getRowCount() {
+			return listaPedido.size();
+		}
+
+		@Override
+		public int getColumnCount() {
+			return 3;
+		}
+
+		@Override
+		public String getColumnName(int columnIndex) {
+			String title = null;
+			
+			switch(columnIndex) {
+				case 0 : title = "FOTO";
+						break;
+				case 1 : title = "MODELO";
+						break;
+				case 2 : title = "CANTIDAD";
+						break;		
+			}
+			return title;
+		}
+
+		@Override
+		public Class<?> getColumnClass(int columnIndex) {
+			if(columnIndex == 0) {
+				return ImageIcon.class;
+			}else if(columnIndex == 1){
+				return String.class;
+			}else {
+				return Integer.class;
+			}
+			
+		}
+
+		@Override
+		public boolean isCellEditable(int rowIndex, int columnIndex) {
+			return false;
+		}
+
+		@Override
+		public Object getValueAt(int rowIndex, int columnIndex) {
+			Vehiculo v = listaPedido.get(rowIndex);
+			
+			Object value = null;
+			
+			switch(columnIndex) {
+			case 0 : {value = new ImageIcon(new ImageIcon(v.getFoto()).getImage().getScaledInstance(180, 90, Image.SCALE_SMOOTH));
+					  break;}
+			case 1 : {value = v.getModelo();
+					  break;}
+			case 2 : {value = 1;
+					  break;}
+			}
+			
+			return value;
+		}
+
+		@Override
+		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void addTableModelListener(TableModelListener l) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void removeTableModelListener(TableModelListener l) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }
