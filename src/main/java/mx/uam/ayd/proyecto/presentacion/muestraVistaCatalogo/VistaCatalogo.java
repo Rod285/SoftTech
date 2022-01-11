@@ -95,7 +95,9 @@ public class VistaCatalogo extends JFrame {
 		btnIrAPedido.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				control.iniciaIrAPedido();
+
+				control.iniciarIrAPedido();
+
 			}
 		});
 		btnIrAPedido.setVisible(true);

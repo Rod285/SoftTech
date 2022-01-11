@@ -1,5 +1,6 @@
 package mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido;
 
+
 import java.util.List;
 
 
@@ -247,4 +248,5 @@ public class VistaIrAPedido extends JFrame{
 		}
 		
 	}
+
 }

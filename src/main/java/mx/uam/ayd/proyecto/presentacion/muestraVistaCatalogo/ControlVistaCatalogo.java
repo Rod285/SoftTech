@@ -40,11 +40,12 @@ public class ControlVistaCatalogo {
 	
 	@Autowired
 	private ControlVistaIrAPedido controlIrAPedido;
-	
+
 	private List<Vehiculo> listaClasicos = new ArrayList<>();
 	private List<Vehiculo> listaLuxury = new ArrayList<>();
 	private List<Vehiculo> listaCarga = new ArrayList<>();
 	private List<Vehiculo> listaDeportivos = new ArrayList<>();
+
 	private List<Vehiculo> listaPedido;
 	
 	/**
@@ -79,8 +80,7 @@ public class ControlVistaCatalogo {
 		}
 	}
 
-	void iniciaIrAPedido() {
-		controlIrAPedido.inicia(listaPedido);
-		
+	public void iniciarIrAPedido() {
+		controlIrAPedido.inicia(listaPedido);		
 	}
 }
