@@ -106,6 +106,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
 		btnProyect = new JButton("Proyectos");
+		/*Escuchador boton proyectos*/
 		btnProyect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Pedido p = controlPedidos.damePedido(1);
@@ -160,6 +161,22 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		imagen1 = new ImageIcon (imagen.getScaledInstance(25,25,10)); //Tama o de imagen ancho, alto
 		
 		btnNoti = new JButton();
+		/*Escuchador boton notificaciones*/
+		btnNoti.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Se presiono el btn Noti");
+				String titulo = "Notificaciones";
+				Desk.removeAll();
+				desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaNotificaciones());
+				Desk.add(desk);	
+				try {
+					desk.setMaximum(true);
+				} catch (PropertyVetoException pve) {
+					pve.printStackTrace();
+				}
+				
+			}		
+		});
 		btnNoti.setIcon(imagen1);
 			
 		icon1 = new ImageIcon(getClass().getResource("lupa.png"));  	//Agrega la imagen existente en la clase
@@ -181,8 +198,6 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		panelDiasMes.setBounds(6, 47, 240, 168);
 		panel.add(panelDiasMes);
 		panelDiasMes.setLayout(new GridLayout(0, 7, 0, 0));
-		
-		
 		
 		JButton btn1 = new JButton();
 		btn1.setEnabled(false);

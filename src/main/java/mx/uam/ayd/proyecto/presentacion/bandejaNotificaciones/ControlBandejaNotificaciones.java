@@ -28,16 +28,19 @@ public class ControlBandejaNotificaciones {
 	@Autowired
 	ServicioNotificacion servicioNotificacion;
 	
+	@Autowired
+	private VistaBandejaNotificaciones vistaNotificaciones;
+	
+	//@Autowired
+	//private VistaBandejaNotificaciones vn;
+	
 	/**
 	 * Muestra ventana notificaciones
 	 * 
 	 */
-	public void inicia(JScrollPane spNotificaciones, JButton btnElimina) {
-		
-		spNotificaciones.setVisible(true);
-		spNotificaciones.setEnabled(true);
-		btnElimina.setVisible(true);
-		btnElimina.setEnabled(true);
+	public VistaBandejaNotificaciones inicia() {
+		VistaBandejaNotificaciones vn = vistaNotificaciones.muestra(this);
+		return vn;
 	}
 	
 	public List<Notificacion> muestraNotificaciones() {

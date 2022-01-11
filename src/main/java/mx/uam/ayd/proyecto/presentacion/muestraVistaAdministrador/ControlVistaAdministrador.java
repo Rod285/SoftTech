@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.presentacion.bandejaNotificaciones.ControlBandejaNotificaciones;
+import mx.uam.ayd.proyecto.presentacion.bandejaNotificaciones.VistaBandejaNotificaciones;
 import mx.uam.ayd.proyecto.presentacion.generarContrapropuesta.ControlGenerarContrapropuesta;
 import mx.uam.ayd.proyecto.presentacion.login.ControlVistaLogin;
 import mx.uam.ayd.proyecto.presentacion.muestraPedidos.ControlPedidos;
@@ -41,13 +42,16 @@ public class ControlVistaAdministrador {
 	private ControlVistaCatalogo controlVistaCatalogo; 
 	
 	@Autowired
-	private ControlBandejaNotificaciones controlBandejaNotificaciones;
+	private ControlBandejaNotificaciones controlBN;
 	
 	@Autowired
 	private ControlPedidos controlPedidos;
 	
 	@Autowired
 	VistaPedidos vp;
+	
+	@Autowired
+	VistaBandejaNotificaciones vn;
 		
 	/**
 	 * Muestra ventana Administrador
@@ -92,8 +96,10 @@ public class ControlVistaAdministrador {
 	 * 
 	 */
 	
-	public void muestraVistaNotificaciones(JScrollPane spNotificaciones, JButton btnElimina) {
-		controlBandejaNotificaciones.inicia(spNotificaciones, btnElimina);
+	public VistaBandejaNotificaciones muestraVistaNotificaciones() {
+		//controlBandejaNotificaciones.inicia();
+		vn = controlBN.inicia();
+		return vn;
 	}
 	
 	public VistaPedidos muestraVistaPedidos() {
