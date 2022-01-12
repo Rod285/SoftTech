@@ -179,8 +179,8 @@ public class VistaBandejaNotificaciones extends JPanel{
         	
 	} //Fin del metodo VistaBandejaNotificaciones
 	
-	public VistaBandejaNotificaciones muestra(ControlBandejaNotificaciones control) {
-		controlBandeja = control;
-		return this;
+	public void muestra() {
+		//controlBandeja = control;
+		//return this;
 	}
 }

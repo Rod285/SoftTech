@@ -34,7 +34,7 @@ public class ControlVistaLogin {
 		String tipoRecuperado = tipo;
 		
 		if(datosValidos == true) {
-			System.out.println(tipoRecuperado + " es el tipo de usuario que ingreso");
+			//System.out.println(tipoRecuperado + " es el tipo de usuario que ingreso");
 			 if(tipoRecuperado.equals("Administrador")) {
 				 control.mostrarVistaAdmin();
 				 vl.dispose();

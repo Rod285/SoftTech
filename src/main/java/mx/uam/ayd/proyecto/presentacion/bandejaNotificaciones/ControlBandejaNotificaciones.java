@@ -13,6 +13,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioAdministrador;
 import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
+import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 /**
  * 
@@ -38,13 +39,15 @@ public class ControlBandejaNotificaciones {
 	 * Muestra ventana notificaciones
 	 * 
 	 */
-	public VistaBandejaNotificaciones inicia() {
-		VistaBandejaNotificaciones vn = vistaNotificaciones.muestra(this);
-		return vn;
+	public void inicia(Administrador administrador) {
+		Administrador adminlog = administrador;
+		List <Notificacion> notificaciones = servicioNotificacion.recuperaNotificaciones(adminlog);
+		notificaciones.forEach(employee -> System.out.println(employee.toString()));
+		vistaNotificaciones.muestra(); //posiblemente aqui se pasan las notificaciones para mostrarlas en la tabla	
 	}
 	
-	public List<Notificacion> muestraNotificaciones() {
+/*	public List<Notificacion> muestraNotificaciones() {
 		
 		return servicioNotificacion.recuperaNotificaciones();
-	}
+	}*/
 }

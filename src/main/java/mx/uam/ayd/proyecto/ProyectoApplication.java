@@ -33,7 +33,7 @@ import mx.uam.ayd.proyecto.presentacion.login.VistaLogin;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
 /**
- * Cambio en rama
+ * 
  * Clase principal que arranca la aplicación 
  * construida usando el principio de 
  * inversión de control
@@ -187,7 +187,7 @@ public class ProyectoApplication {
 		notificacionRepository.save(notificacion2);
 		
 		Notificacion notificacion3 = new Notificacion();
-		notificacion3.setDescripcion("E cliente ha aceptado la contrapropuesta ");
+		notificacion3.setDescripcion("El cliente ha aceptado la contrapropuesta ");
 		notificacion3.setFecha("18/10/21");
 		notificacion3.setAdministrador(root);
 		notificacionRepository.save(notificacion3);

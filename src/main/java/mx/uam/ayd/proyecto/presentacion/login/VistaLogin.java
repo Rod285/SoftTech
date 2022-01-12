@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.ProyectoApplication;
 import mx.uam.ayd.proyecto.presentacion.agregarUsuario.ControlAgregarUsuario;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.ControlVistaAdministrador;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.VistaAdministrador;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.ControlnotificarSolicitudAceptada;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.VistanotificarSolicitudAceptada;
@@ -47,8 +48,11 @@ public class VistaLogin extends JFrame implements ActionListener {
 	@Autowired
 	private ControlVistaLogin verificausuario;
 	
+	//@Autowired
+	//private ControlPrincipal controlPincipal;
+	
 	@Autowired
-	private ControlPrincipal controlPincipal;
+	private ControlVistaAdministrador controlVistaAdministrador;
 	
 	private JPanel contentPane;
 	
@@ -131,7 +135,7 @@ public class VistaLogin extends JFrame implements ActionListener {
 	
 	public void muestra(ControlPrincipal control) {
 		
-		controlPincipal = control;
+		//controlPincipal = control;
 		
 		setVisible(true);
 	}
@@ -153,7 +157,7 @@ public class VistaLogin extends JFrame implements ActionListener {
 	           		if(cbTipoUsuario.getSelectedItem() == tipoUsuario[0]) {
 	           			tipo=ADMIN;       			
 	           			verificausuario.validaDatos(user, pass, tipo);
-	           			
+	           			controlVistaAdministrador.adminLog(user);
 	           		}else{
 	           			if(cbTipoUsuario.getSelectedItem() == tipoUsuario[1]) {
 		           			tipo=CLIENTE;

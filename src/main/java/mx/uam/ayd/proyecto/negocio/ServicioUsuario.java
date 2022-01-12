@@ -137,8 +137,18 @@ public Usuario agregaUsuario(String nombre, String apellido, String edad, String
 	}//FIN DEL METODO DE VERIFICACION 
      
      /**
- 	 * Recupera el usuario
- 	 */
+      * @author Jonathan Cruz
+  	 * recupera el usuario que ingreso en ese momento al sistema
+  	 * 
+  	 * @param nombre,  tipo
+  	 * @return usuario logueado 
+  	 */
+     
+     public Usuario recuperaUsuario(String nombre, String tipo) {
+    	 
+    	 Usuario usuario = usuarioRepository.findByNombreAndTipo(nombre, tipo);
+    	 return usuario;
+     }
      
      /**
       * @author Jonathan Cruz
@@ -168,7 +178,7 @@ public Usuario agregaUsuario(String nombre, String apellido, String edad, String
      		 JOptionPane.showMessageDialog(null, "El usuario no existe");
      	 }
      	 
-     	 System.out.println("Se regreso al control un: " + usuario);
+     	 //System.out.println("Se regreso al control un: " + usuario);
      	 return usuario;
      	 
       }//fin del metodo

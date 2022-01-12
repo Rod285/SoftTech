@@ -18,7 +18,6 @@ public class Notificacion {
 	private String fecha;
 	private String descripcion;
 	
-	
 	//MULTIPLES NOTIFICACIONES PUEDEN PERTENCER A UN MISMO CLIENTE 
 	@ManyToOne
 	@JoinColumn(name = "idNotificacionC")
