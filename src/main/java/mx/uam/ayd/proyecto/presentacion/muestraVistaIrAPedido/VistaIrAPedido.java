@@ -143,8 +143,6 @@ public class VistaIrAPedido extends JFrame{
 		tablaPedido.setDefaultRenderer(Integer.class, centerRenderer);
 		scrollPane.setViewportView(tablaPedido);
 		panelCentro.add(scrollPane);
-		
-		
 	}
 	
 	public void muestra(ControlVistaIrAPedido controlVistaIrAPedido, List<Vehiculo> listaPedido) {
