@@ -34,6 +34,8 @@ public class Vehiculo {
 	private boolean disponibilidad;
 	private String foto;
 	
+	//prueba
+	
 	/*
 	@ManyToOne
 	@JoinColumn(name = "idVehiculo")
