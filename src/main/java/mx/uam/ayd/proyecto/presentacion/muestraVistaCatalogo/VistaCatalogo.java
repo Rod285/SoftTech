@@ -410,7 +410,7 @@ public class VistaCatalogo extends JFrame {
 		this.listaLuxury = listaLuxury;
 		this.listaCarga = listaCarga;
 		this.listaDeportivos = listaDeportivos;
-
+				
 		imgClasico.setIcon(new ImageIcon(listaClasicos.get(0).getFoto()));
 		imgLuxury.setIcon(new ImageIcon(listaLuxury.get(0).getFoto()));
 		imgCarga.setIcon(new ImageIcon(listaCarga.get(0).getFoto()));
@@ -420,6 +420,26 @@ public class VistaCatalogo extends JFrame {
 		textLuxury.setText(listaLuxury.get(0).getModelo());
 		textCarga.setText(listaCarga.get(0).getModelo());
 		textDeportivo.setText(listaDeportivos.get(0).getModelo());
+		
+		if(listaClasicos.size() == 1 && listaClasicos.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregaClasico.setEnabled(false);
+			especClasico.setEnabled(false);
+		}
+		
+		if(listaLuxury.size() == 1 && listaLuxury.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregarLuxury.setEnabled(false);
+			especLuxury.setEnabled(false);
+		}
+		
+		if(listaCarga.size() == 1 && listaCarga.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregaCarga.setEnabled(false);
+			especCarga.setEnabled(false);
+		}
+		   
+		if(listaDeportivos.size() == 1 && listaDeportivos.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregaDeportivo.setEnabled(false);
+			especDeportivo.setEnabled(false);
+		}
 		
 		//Muestra ID Usuario
 		System.out.println("id de cliente conectado: " + VistaSeleccionDeArticulos.idUsuario);

@@ -180,6 +180,5 @@ public class ServicioPedido {
 			listaPedido.add(listaVehiculos.get(indiceVehiculo));
 			return listaPedido;
 		}
-	}
-
+	} 
 }
