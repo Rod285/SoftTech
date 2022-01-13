@@ -32,6 +32,9 @@ public class ControlBandejaNotificaciones {
 	@Autowired
 	private VistaBandejaNotificaciones vistaNotificaciones;
 	
+	@Autowired
+	private ControlBandejaNotificaciones controlBandeja;
+	
 	//@Autowired
 	//private VistaBandejaNotificaciones vn;
 	
@@ -42,8 +45,13 @@ public class ControlBandejaNotificaciones {
 	public void inicia(Administrador administrador) {
 		Administrador adminlog = administrador;
 		List <Notificacion> notificaciones = servicioNotificacion.recuperaNotificaciones(adminlog);
-		notificaciones.forEach(employee -> System.out.println(employee.toString()));
-		vistaNotificaciones.muestra(); //posiblemente aqui se pasan las notificaciones para mostrarlas en la tabla	
+		List <String> descripciones = new ArrayList<>();
+		for(Notificacion notificacion:notificaciones) {
+			descripciones.add(notificacion.getDescripcion() + " " + notificacion.getFecha() + " a las " + notificacion.getHora());
+		}
+		
+		//descripciones.forEach(employee -> System.out.println(employee.toString()));
+		vistaNotificaciones.muestra(this.controlBandeja,descripciones); 	
 	}
 	
 /*	public List<Notificacion> muestraNotificaciones() {

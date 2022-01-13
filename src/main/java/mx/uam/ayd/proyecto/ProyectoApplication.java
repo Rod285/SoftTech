@@ -136,7 +136,7 @@ public class ProyectoApplication {
 		grupoRepository.save(grupoCli);
 		
 		/*
-		 * Declaracion de administrador root para poder iniciar por primera vez el sistema.
+		 * Declaracion de administradores root, root2 para poder iniciar sesión en el sistema.
 		*/ 
 		
 		Administrador root = new Administrador();
@@ -148,6 +148,16 @@ public class ProyectoApplication {
 		root.setTelefono("55");
 		root.setTipo("Administrador");
 		administradorRepository.save(root);
+		
+		Administrador root2 = new Administrador();
+		root2.setNombre("root2");
+		root2.setContrasenia("root2");
+		root2.setApellido("root2");
+		root2.setCorreo("root2");
+		root2.setEdad("23");
+		root2.setTelefono("5545");
+		root2.setTipo("Administrador");
+		administradorRepository.save(root2);
 		
 		
 		/*
@@ -182,13 +192,15 @@ public class ProyectoApplication {
 		
 		Notificacion notificacion2 = new Notificacion();
 		notificacion2.setDescripcion("Nuevo pedido generado");
-		notificacion2.setFecha("18/10/21");
+		notificacion2.setFecha("12/01/22");
+		notificacion2.setHora("10:30 am");
 		notificacion2.setAdministrador(root);
 		notificacionRepository.save(notificacion2);
 		
 		Notificacion notificacion3 = new Notificacion();
-		notificacion3.setDescripcion("El cliente ha aceptado la contrapropuesta ");
-		notificacion3.setFecha("18/10/21");
+		notificacion3.setDescripcion("El cliente ha aceptado la contrapropuesta");
+		notificacion3.setFecha("13/01/22");
+		notificacion3.setHora("3:40 pm");
 		notificacion3.setAdministrador(root);
 		notificacionRepository.save(notificacion3);
 		

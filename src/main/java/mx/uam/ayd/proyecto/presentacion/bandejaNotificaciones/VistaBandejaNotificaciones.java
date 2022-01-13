@@ -47,34 +47,37 @@ public class VistaBandejaNotificaciones extends JPanel{
 	
 	private JTable tablaNotificaciones;
 	
-	//Icon
-		private ImageIcon icon1;
-		private Image imagen;
-		private ImageIcon imagen1;
-		
+	private List<String> descrip;
+	
 	/**
 	 * Create the frame.
 	 */
-	public VistaBandejaNotificaciones() { //Inicio del metodo
-
-        //List <String> notificaciones = new ArrayList<String>();
+	public VistaBandejaNotificaciones() { 
 		
+	} 
+	
+	public void muestra(ControlBandejaNotificaciones control, List<String> descripciones) {
+		controlBandeja = control;
+		this.descrip = descripciones;
+		//System.out.println("Entro al metodo muestra de la vista bandeja");
+		//descrip.forEach(employee -> System.out.println(employee.toString()));	
 		Object[] titulos = {"Bandeja notificaciones", "☑️"};
-        Object[][] datos = new Object[8][2];
+        Object[][] datos = new Object[10][2];
 
-		/*for(int i=0; i<notificaciones.size(); i++) {
-			String dato = notificaciones.get(i);
-			System.out.println(dato);
-			for(int j=0; j<2; j++) {
+		for(int i=0; i<descrip.size(); i++) {
+			String dato = descripciones.get(i);
+			//System.out.println(dato);
+			for(int j=0; j<1; j++) {
 				datos[i][j]= dato; // Almacenan las notificaciones 
 			}	
-		}*/		
+		}
         		
         DefaultTableModel modelo = new DefaultTableModel(datos, titulos);	
         tablaNotificaciones = new JTable(modelo){
 		
-        	private static final long serialVersionUID = 1L;
-        	public Class getColumnClass(int column) {
+        	//private static final long serialVersionUID = 1L;
+        	
+        	public Class<?> getColumnClass(int column) {
         		switch (column) {
                 	case 0:
                 		return String.class;
@@ -90,97 +93,22 @@ public class VistaBandejaNotificaciones extends JPanel{
     
         JScrollPane scrollPane = new JScrollPane(tablaNotificaciones);
         
-        /*Boton elimina*/
-        JButton btnElimina = new JButton();
-        icon1 = new ImageIcon(getClass().getResource("basura.png"));  	//Agrega la imagen existente en la clase
-		imagen = icon1.getImage(); 										//
-		imagen1 = new ImageIcon (imagen.getScaledInstance(32,32,10)); //Tama o de imagen ancho, alto
-		
-		//btnElimina.setBounds(562, 293, 40, 35);
-		btnElimina.setIcon(imagen1);
-		//btnElimina.setVisible(false);
-		//btnElimina.setEnabled(false);
-		btnElimina.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				int aux = 0;
-				for(int i=0; i<8; i++) {
-					
-					boolean estado = (boolean) tablaNotificaciones.getValueAt(i, 1);
-	                	if(estado == true) { //Conprueba si hubo una notificacion seleccionada
-	                		aux=1;
-	    				}
-				}
-				
-				ArrayList <Integer> x = new ArrayList<Integer>();   
-				if(aux==1) { //Si aux=1, hubo una notificacion selecionada
-	                for(int i =0;i<8;i++) {
-	                	if((boolean) tablaNotificaciones.getValueAt(i, 1)) {
-	                		x.add(i); //Se guardan en ArrayList x los renglones de las notificaciones seleccionadas.
-	                	    //System.out.println(x.get(i));
-	                	}
-	                }
-	                Object[] message = {"Se eliminaran las notificaciones seleccionadas \n¿Desea continuar?"};
-	    			Object[] options = {"Sí", "No"};
-	    			
-	    		    int n = JOptionPane.showOptionDialog(new JFrame(),
-	    		            message, "Confirmar",
-	    		            JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null,
-	    		            options, options[0]);
-	    		    
-	    		    if(n == JOptionPane.OK_OPTION) {
-	    		    	
-	    		    	for(int k=0; k<x.size(); k++) {
-	    		    		tablaNotificaciones.setValueAt("", x.get(k), 0);  
-	    		    	}
-	    		    			
-	    		    	JOptionPane.showMessageDialog(null, "Eliminadas");    	
-	    		    }
-				}
-
-				for(int k=0; k<8; k++) { // Verifica si hay notificaciones seleccionadas
-	                	if(k == 7 && aux==0) {
-	                		JOptionPane.showMessageDialog(null, "No hay notificaciones seleccionadas");
-				        }
-				}  
-				
-				for(int j=0; j<8; j++) { //Quita todas las checkbox seleccionadas
-					tablaNotificaciones.setValueAt(false, j, 1);
-				}
-
-			}
-		});
-        
-        
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
         	groupLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(groupLayout.createSequentialGroup()
+        		.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
         			.addContainerGap()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-        				.addComponent(scrollPane, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-        				.addComponent(btnElimina, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE))
+        			.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
         			.addContainerGap())
         );
         groupLayout.setVerticalGroup(
         	groupLayout.createParallelGroup(Alignment.TRAILING)
         		.addGroup(groupLayout.createSequentialGroup()
         			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(btnElimina)
-        			.addGap(24))
+        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 181, GroupLayout.PREFERRED_SIZE)
+        			.addGap(48))
         );
-		setLayout(groupLayout);
-
-        for(int j=0;j<8;j++) {
-        	tablaNotificaciones.setValueAt(false, j, 1); //Establece el valor de la celda .
-        }
-        //add(spNotificaciones);	
-        	
-	} //Fin del metodo VistaBandejaNotificaciones
-	
-	public void muestra() {
-		//controlBandeja = control;
-		//return this;
-	}
+		setLayout(groupLayout);	
+	} //Fin del metodo muestra
+		
 }
