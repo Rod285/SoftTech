@@ -42,6 +42,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 @Component
 public class VistaBandejaNotificaciones extends JPanel{
 
+	static final int CNoti = 3;
 	@Autowired
 	private ControlBandejaNotificaciones controlBandeja;
 	
@@ -61,13 +62,14 @@ public class VistaBandejaNotificaciones extends JPanel{
 		this.descrip = descripciones;
 		//System.out.println("Entro al metodo muestra de la vista bandeja");
 		//descrip.forEach(employee -> System.out.println(employee.toString()));	
-		Object[] titulos = {"Bandeja notificaciones", "☑️"};
-        Object[][] datos = new Object[10][2];
+		Object[] titulos = {"Descripcion","Fecha","Hora", "☑️"};
+        Object[][] datos = new Object[10][4];
 
-		for(int i=0; i<descrip.size(); i++) {
-			String dato = descripciones.get(i);
-			//System.out.println(dato);
-			for(int j=0; j<1; j++) {
+        int filas = descrip.size()/CNoti;
+        
+		for(int i=0; i<filas; i++) {
+			for(int j=0; j<CNoti; j++) {
+				String dato = descripciones.get(j+(i*CNoti));
 				datos[i][j]= dato; // Almacenan las notificaciones 
 			}	
 		}
@@ -77,9 +79,13 @@ public class VistaBandejaNotificaciones extends JPanel{
 		
         	//private static final long serialVersionUID = 1L;
         	
-        	public Class<?> getColumnClass(int column) {
+        	public Class getColumnClass(int column) {
         		switch (column) {
                 	case 0:
+                		return String.class;
+                	case 1:
+                		return String.class;
+                	case 2:
                 		return String.class;
                 	default:
                 		return Boolean.class;
@@ -88,8 +94,10 @@ public class VistaBandejaNotificaciones extends JPanel{
         };
     
         tablaNotificaciones.setPreferredScrollableViewportSize(tablaNotificaciones.getPreferredSize());
-        tablaNotificaciones.getColumnModel().getColumn(0).setPreferredWidth(350);
-        tablaNotificaciones.getColumnModel().getColumn(1).setPreferredWidth(10);
+        tablaNotificaciones.getColumnModel().getColumn(0).setPreferredWidth(250);
+        tablaNotificaciones.getColumnModel().getColumn(1).setPreferredWidth(70);
+        tablaNotificaciones.getColumnModel().getColumn(2).setPreferredWidth(70);
+        tablaNotificaciones.getColumnModel().getColumn(3).setPreferredWidth(15);
     
         JScrollPane scrollPane = new JScrollPane(tablaNotificaciones);
         

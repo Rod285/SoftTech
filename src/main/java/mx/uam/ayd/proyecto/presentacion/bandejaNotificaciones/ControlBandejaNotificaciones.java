@@ -47,10 +47,12 @@ public class ControlBandejaNotificaciones {
 		List <Notificacion> notificaciones = servicioNotificacion.recuperaNotificaciones(adminlog);
 		List <String> descripciones = new ArrayList<>();
 		for(Notificacion notificacion:notificaciones) {
-			descripciones.add(notificacion.getDescripcion() + " " + notificacion.getFecha() + " a las " + notificacion.getHora());
+			descripciones.add(notificacion.getDescripcion());
+			descripciones.add(notificacion.getFecha());
+			descripciones.add(notificacion.getHora());
 		}
 		
-		//descripciones.forEach(employee -> System.out.println(employee.toString()));
+		descripciones.forEach(employee -> System.out.println(employee.toString()));
 		vistaNotificaciones.muestra(this.controlBandeja,descripciones); 	
 	}
 	
