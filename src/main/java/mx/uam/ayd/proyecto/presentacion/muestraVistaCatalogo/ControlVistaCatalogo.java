@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.ServicioPedido;
 import mx.uam.ayd.proyecto.negocio.ServicioVehiculo;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido.ControlVistaIrAPedido;
 
 /**
  * 
@@ -37,10 +38,15 @@ public class ControlVistaCatalogo {
 	@Autowired
 	private ServicioPedido servicioPedido;
 	
+	@Autowired
+	private ControlVistaIrAPedido controlIrAPedido;
+
 	private List<Vehiculo> listaClasicos = new ArrayList<>();
 	private List<Vehiculo> listaLuxury = new ArrayList<>();
 	private List<Vehiculo> listaCarga = new ArrayList<>();
 	private List<Vehiculo> listaDeportivos = new ArrayList<>();
+
+	private List<Vehiculo> listaPedido;
 	
 	/**
 	 * Muestra ventana catalogo
@@ -64,13 +70,27 @@ public class ControlVistaCatalogo {
 		listaDeportivos = servicioVehiculo.recuperaVehiculosPorTipo(DEPORTIVO);
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que llama al métod que actualiza el botón "Ir a Pedido", si el vehiculo no se encontraba en
+	 * la listaPedido y si un vehículo ya se encuentra en la lista, llama al método que se lo notifica al usuario.
+	 * @Parametros: List<Vehiculo>, int
+	 */
 	public void agregarAPedido(List<Vehiculo> listaVehiculos, int indiceVehiculo) {
-		List<Vehiculo> listaPedido = new ArrayList<>();
+		
 		listaPedido = servicioPedido.agregarAPedido(listaVehiculos, indiceVehiculo);
 		if(listaPedido == null) {
 			vistaCatalogo.dialogoVehiculoEnListaDePedido();
 		}else {
 			vistaCatalogo.actualizaBotonIrAPedido(listaPedido);
 		}
+	}
+
+	/*
+	 *@Autor: Mejía Velázquez José Rodrigo
+	 *@Descripción: Método que llama al control de la historia de usuario ir a Pedido y le indica que inicie la historia de usuario
+    */
+	public void iniciarIrAPedido() {
+		controlIrAPedido.inicia(listaPedido);		
 	}
 }
