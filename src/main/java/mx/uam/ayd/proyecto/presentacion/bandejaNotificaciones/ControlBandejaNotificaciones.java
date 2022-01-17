@@ -13,6 +13,7 @@ import mx.uam.ayd.proyecto.negocio.ServicioAdministrador;
 import mx.uam.ayd.proyecto.negocio.ServicioNotificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
+import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 /**
  * 
@@ -28,20 +29,35 @@ public class ControlBandejaNotificaciones {
 	@Autowired
 	ServicioNotificacion servicioNotificacion;
 	
+	@Autowired
+	private VistaBandejaNotificaciones vistaNotificaciones;
+	
+	@Autowired
+	private ControlBandejaNotificaciones controlBandeja;
+	
+	//@Autowired
+	//private VistaBandejaNotificaciones vn;
+	
 	/**
 	 * Muestra ventana notificaciones
 	 * 
 	 */
-	public void inicia(JScrollPane spNotificaciones, JButton btnElimina) {
+	public void inicia(Administrador administrador) {
+		Administrador adminlog = administrador;
+		List <Notificacion> notificaciones = servicioNotificacion.recuperaNotificaciones(adminlog);
+		List <String> descripciones = new ArrayList<>();
+		for(Notificacion notificacion:notificaciones) {
+			descripciones.add(notificacion.getDescripcion());
+			descripciones.add(notificacion.getFecha());
+			descripciones.add(notificacion.getHora());
+		}
 		
-		spNotificaciones.setVisible(true);
-		spNotificaciones.setEnabled(true);
-		btnElimina.setVisible(true);
-		btnElimina.setEnabled(true);
+		descripciones.forEach(employee -> System.out.println(employee.toString()));
+		vistaNotificaciones.muestra(this.controlBandeja,descripciones); 	
 	}
 	
-	public List<Notificacion> muestraNotificaciones() {
+/*	public List<Notificacion> muestraNotificaciones() {
 		
 		return servicioNotificacion.recuperaNotificaciones();
-	}
+	}*/
 }
