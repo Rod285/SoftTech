@@ -312,8 +312,8 @@ public class ProyectoApplication {
 		 * Declaracion de pedioVehículo para pedido de prueba.
 		 */
 		Pedido pedidoPrueba = new Pedido();
-		pedidoPrueba.setFechaInicio("18/10/2021");
-		pedidoPrueba.setFechaEntrega("25/10/2021");
+		pedidoPrueba.setFechaInicio("18/01/2022");
+		pedidoPrueba.setFechaEntrega("20/01/2022");
 		pedidoPrueba.setEstado("Por aceptar");
 		pedidoPrueba.setAdministrador(root);
 		pedidoPrueba.setCliente(cliente);
