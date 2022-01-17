@@ -27,6 +27,7 @@ import javax.swing.JButton;
 /*
  * @author Fernanda Marcelin Leyva
  * @Updated José Rodrigo Mejía Velázquez 7/12/2021
+ * @17/01/2022 Inicio Tercer Sprint HU-10
  */
 
 @SuppressWarnings("serial")
