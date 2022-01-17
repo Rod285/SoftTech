@@ -70,6 +70,12 @@ public class ControlVistaCatalogo {
 		listaDeportivos = servicioVehiculo.recuperaVehiculosPorTipo(DEPORTIVO);
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que llama al métod que actualiza el botón "Ir a Pedido", si el vehiculo no se encontraba en
+	 * la listaPedido y si un vehículo ya se encuentra en la lista, llama al método que se lo notifica al usuario.
+	 * @Parametros: List<Vehiculo>, int
+	 */
 	public void agregarAPedido(List<Vehiculo> listaVehiculos, int indiceVehiculo) {
 		
 		listaPedido = servicioPedido.agregarAPedido(listaVehiculos, indiceVehiculo);
@@ -80,6 +86,10 @@ public class ControlVistaCatalogo {
 		}
 	}
 
+	/*
+	 *@Autor: Mejía Velázquez José Rodrigo
+	 *@Descripción: Método que llama al control de la historia de usuario ir a Pedido y le indica que inicie la historia de usuario
+    */
 	public void iniciarIrAPedido() {
 		controlIrAPedido.inicia(listaPedido);		
 	}

@@ -480,13 +480,19 @@ public class VistaCatalogo extends JFrame {
 	}
 	
 	/*
-	 * Método que muestra un diálogo de vehículo repetido
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que muestra al usuario un diálogo si el vehiculo que desea agregar a la listaPedido está repetido.
 	 */
 	public void dialogoVehiculoEnListaDePedido() {
 		JOptionPane.showMessageDialog(null, "El vehículo se escuentra en su lista de pedidos,"
 				+ " presiones el botón \"ir a Pedidos\" para elegir la cantidad deseada");
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que actualiza la cantidad de vehículos que han sido agregados a la listaPedido en el botón "Ir a Pedido".
+	 * @Parametros: List<Vehiculo>
+	 */
 	public void actualizaBotonIrAPedido(List<Vehiculo> listaPedido) {
 		btnIrAPedido.setEnabled(true);
 		btnIrAPedido.setText("Ir a Pedido (" + listaPedido.size() + ")");	

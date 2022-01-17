@@ -45,6 +45,20 @@ class ServicioPedidoTest {
 		
 		//Caso 2: Intentar agregar un vehiculo repetido a la lista
 		
+		listaPrueba = new ArrayList<>();
+		listaPedidoPrueba = new ArrayList<>();
+		
+		listaPrueba.add(v1);
+		listaPrueba.add(v2);
+				
+		indiceLista = 0;
+		
+		listaPedidoPrueba = servicioPedido.agregarAPedido(listaPrueba, indiceLista);
+		
+		indiceLista = 1;
+		
+		listaPedidoPrueba = servicioPedido.agregarAPedido(listaPrueba, indiceLista);
+		
 		indiceLista = 0;
 		
 		listaPedidoPrueba = servicioPedido.agregarAPedido(listaPrueba, indiceLista);

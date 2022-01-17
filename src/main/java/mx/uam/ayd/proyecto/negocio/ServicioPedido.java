@@ -173,6 +173,15 @@ public class ServicioPedido {
 	}
 
 
+	/*
+	 * Autor: Mejía Velázquez José Rodrigo
+	 * Descripción: Método que agrega a la lista de Pedidos los vehículos seleccionados por el usuario, el método regresa
+	 * la listaPedido, si el vehículo ya se encuentra en la listaPedido, regresa un nulo.
+	 * 
+	 * @Parameter List<Vehiculo>, int indiceVehiculo
+	 * @return List<Vehiculo>
+	 * @null si el vehiculo ya está en la lista
+	 */
 	public List<Vehiculo> agregarAPedido(List<Vehiculo> listaVehiculos, int indiceVehiculo) {
 		if (listaPedido.contains(listaVehiculos.get(indiceVehiculo))) {
 			return null;

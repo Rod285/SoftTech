@@ -1,12 +1,18 @@
 package mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido;
 
+/*
+ * @Autor: Mejía Velázquez José Rodrigo
+ * @Descripción: Clase que se encarga de la VistaIrAPedido, la clase cuenta con un constructor que hace posible la visualización
+ * de la ventana, además de un método muestra por el cual se le inyecta la información necesaria para su funcionamiento,
+ * así cono un modelo de tabla utilizado para la muestra de información que se encuentra como una clase interna.
+ */
 
 import java.util.List;
 
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +22,7 @@ import javax.swing.JTable;
 import java.awt.BorderLayout;
 
 import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -23,8 +30,6 @@ import javax.swing.JComboBox;
 import java.awt.Image;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 import javax.swing.event.TableModelListener;
@@ -51,8 +56,10 @@ public class VistaIrAPedido extends JFrame{
 	private List<Vehiculo> listaPedido;
 	private PedidoTableModel modelo;
 	private JTable tablaPedido;
-	private JComboBox<Integer> cantidades;
-
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Constructor de la VistaIrAPedido
+	 */
 	public VistaIrAPedido() {
 		setBounds(200, 5, 650, 725);
 		setResizable(false);
@@ -66,6 +73,12 @@ public class VistaIrAPedido extends JFrame{
 		panelSur.add(enviarPedido);
 		
 		JButton regresar = new JButton("Regresar");
+		regresar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
 		panelSur.add(regresar);
 		
 		JPanel panelNorte = new JPanel();
@@ -126,6 +139,7 @@ public class VistaIrAPedido extends JFrame{
 		gbc_cliente.fill = GridBagConstraints.BOTH;
 		gbc_cliente.gridx = 3;
 		gbc_cliente.gridy = 1;
+		cliente.setVisible(false);
 		panelNorte.add(cliente, gbc_cliente);
 		
 		JPanel panelCentro = new JPanel();
@@ -145,6 +159,13 @@ public class VistaIrAPedido extends JFrame{
 		panelCentro.add(scrollPane);
 	}
 	
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que muestra la ventana de la historia de usuario Ir a Pedido, se muestran los vehiculos que
+	 * se encuentran dentro de la lista de Pedido en una tabla, mostrando su fot, modelo y número de elementos, que por
+	 * default es 1
+	 * @Parametros: ControlVistaIrAPedido, List<Vehiculo> 
+	 */
 	public void muestra(ControlVistaIrAPedido controlVistaIrAPedido, List<Vehiculo> listaPedido) {
 		this.controlIrAPedido = controlVistaIrAPedido;
 		this.listaPedido = listaPedido;
@@ -156,9 +177,14 @@ public class VistaIrAPedido extends JFrame{
 		modelo = new PedidoTableModel(this.listaPedido);
 		tablaPedido.setModel(modelo);
 		
+		
 		setVisible(true);
 	}
 	
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Clase que configura el modelo de tabla que se utiliza en la VistaIrAPedido
+	 */
 	private class PedidoTableModel implements TableModel{
 		
 		private List<Vehiculo> listaPedido;
@@ -199,14 +225,17 @@ public class VistaIrAPedido extends JFrame{
 			}else if(columnIndex == 1){
 				return String.class;
 			}else {
-				return Integer.class;
+				return Integer.class; //Debe modificarse para la siguiente historia de usuario
 			}
-			
 		}
 
 		@Override
 		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			return false;
+			if(columnIndex == 2) {
+				return true;
+			}else {
+				return false;
+			}	
 		}
 
 		@Override
@@ -220,7 +249,7 @@ public class VistaIrAPedido extends JFrame{
 					  break;}
 			case 1 : {value = v.getModelo();
 					  break;}
-			case 2 : {value = 1;
+			case 2 : {value = 1; //Debe modificarse para la siguiente historia de usuario
 					  break;}
 			}
 			
