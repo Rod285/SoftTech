@@ -26,10 +26,12 @@ public class ServicioAdministrador {
 		 		
 		Administrador administrador = administradorRepository.findByNombre(nombre);  //findByNombre(nomre)
 		if(administrador == null) {
-			throw new IllegalArgumentException("No se encontró el administrador");
+			System.out.println("No se encontró el administrador");
 		}else {
 			return administrador; //regresa el administrador si fue encontrado
 		}
+		return administrador;
+		
 	}//Fin del metodo recuperaAdmistrador
 
 }
