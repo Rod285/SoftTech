@@ -611,6 +611,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		panelDiasMes.add(btn25);
 		
 		JButton btn26 = new JButton();
+		btn26.setForeground(Color.RED);
 		btn26.setEnabled(false);
 		btn26.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

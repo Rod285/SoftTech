@@ -62,6 +62,11 @@ public class VistaPedidos extends JPanel {
         tablaPedidos.getColumnModel().getColumn(2).setPreferredWidth(50);
         tablaPedidos.getColumnModel().getColumn(3).setPreferredWidth(50);
         
+        tablaPedidos.setValueAt("1",0 , 0);
+        tablaPedidos.setValueAt("Cliente",0 , 1);
+        tablaPedidos.setValueAt("20/01/2022",0 , 2);
+        tablaPedidos.setValueAt("Por aceptar",0 , 3);
+        
 		JScrollPane scrollPane = new JScrollPane(tablaPedidos);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
