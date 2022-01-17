@@ -52,7 +52,7 @@ public class ControlBandejaNotificaciones {
 			descripciones.add(notificacion.getHora());
 		}
 		
-		descripciones.forEach(employee -> System.out.println(employee.toString()));
+		//descripciones.forEach(employee -> System.out.println(employee.toString()));
 		vistaNotificaciones.muestra(this.controlBandeja,descripciones); 	
 	}
 	
