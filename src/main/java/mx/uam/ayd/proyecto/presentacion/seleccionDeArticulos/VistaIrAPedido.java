@@ -1,29 +1,21 @@
 package mx.uam.ayd.proyecto.presentacion.seleccionDeArticulos;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido.ControlVistaIrAPedido;
+
 import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.time.LocalDate;
-import java.util.Date;
-
 import javax.swing.JButton;
 import javax.swing.JTextField;
 
@@ -50,7 +42,7 @@ public class VistaIrAPedido extends JFrame implements ActionListener {
 	private JLabel lblAuto2;
 	private JLabel lblAuto3;
 	
-	private ControlSeleccionDeArticulos csa;
+	private ControlVistaIrAPedido controlIrAPedido;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;

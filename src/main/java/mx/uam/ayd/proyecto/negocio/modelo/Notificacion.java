@@ -17,7 +17,7 @@ public class Notificacion {
 	private long id;
 	private String fecha;
 	private String descripcion;
-	
+	private String hora;
 	
 	//MULTIPLES NOTIFICACIONES PUEDEN PERTENCER A UN MISMO CLIENTE 
 	@ManyToOne

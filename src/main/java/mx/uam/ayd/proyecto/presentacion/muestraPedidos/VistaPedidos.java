@@ -84,7 +84,7 @@ public class VistaPedidos extends JPanel {
 		);
 		setLayout(groupLayout);
 
-	}
+	}// Fin del metodo 
 	
 	public VistaPedidos muestra(ControlPedidos control) {
 		controlPedidos = control;

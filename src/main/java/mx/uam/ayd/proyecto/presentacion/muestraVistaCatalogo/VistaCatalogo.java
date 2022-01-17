@@ -95,7 +95,9 @@ public class VistaCatalogo extends JFrame {
 		btnIrAPedido.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Se deben implementar las acciones para que se abra la vista ir a pedido
+
+				control.iniciarIrAPedido();
+
 			}
 		});
 		btnIrAPedido.setVisible(true);
@@ -408,7 +410,7 @@ public class VistaCatalogo extends JFrame {
 		this.listaLuxury = listaLuxury;
 		this.listaCarga = listaCarga;
 		this.listaDeportivos = listaDeportivos;
-
+				
 		imgClasico.setIcon(new ImageIcon(listaClasicos.get(0).getFoto()));
 		imgLuxury.setIcon(new ImageIcon(listaLuxury.get(0).getFoto()));
 		imgCarga.setIcon(new ImageIcon(listaCarga.get(0).getFoto()));
@@ -418,6 +420,26 @@ public class VistaCatalogo extends JFrame {
 		textLuxury.setText(listaLuxury.get(0).getModelo());
 		textCarga.setText(listaCarga.get(0).getModelo());
 		textDeportivo.setText(listaDeportivos.get(0).getModelo());
+		
+		if(listaClasicos.size() == 1 && listaClasicos.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregaClasico.setEnabled(false);
+			especClasico.setEnabled(false);
+		}
+		
+		if(listaLuxury.size() == 1 && listaLuxury.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregarLuxury.setEnabled(false);
+			especLuxury.setEnabled(false);
+		}
+		
+		if(listaCarga.size() == 1 && listaCarga.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregaCarga.setEnabled(false);
+			especCarga.setEnabled(false);
+		}
+		   
+		if(listaDeportivos.size() == 1 && listaDeportivos.get(0).getModelo().equals("Error vehiculos no encontrados")){
+			agregaDeportivo.setEnabled(false);
+			especDeportivo.setEnabled(false);
+		}
 		
 		//Muestra ID Usuario
 		System.out.println("id de cliente conectado: " + VistaSeleccionDeArticulos.idUsuario);
@@ -458,13 +480,19 @@ public class VistaCatalogo extends JFrame {
 	}
 	
 	/*
-	 * Método que muestra un diálogo de vehículo repetido
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que muestra al usuario un diálogo si el vehiculo que desea agregar a la listaPedido está repetido.
 	 */
 	public void dialogoVehiculoEnListaDePedido() {
 		JOptionPane.showMessageDialog(null, "El vehículo se escuentra en su lista de pedidos,"
 				+ " presiones el botón \"ir a Pedidos\" para elegir la cantidad deseada");
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que actualiza la cantidad de vehículos que han sido agregados a la listaPedido en el botón "Ir a Pedido".
+	 * @Parametros: List<Vehiculo>
+	 */
 	public void actualizaBotonIrAPedido(List<Vehiculo> listaPedido) {
 		btnIrAPedido.setEnabled(true);
 		btnIrAPedido.setText("Ir a Pedido (" + listaPedido.size() + ")");	

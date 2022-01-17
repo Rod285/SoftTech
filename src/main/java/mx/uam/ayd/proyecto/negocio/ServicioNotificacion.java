@@ -26,14 +26,10 @@ import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 public class ServicioNotificacion {
 	
-	/*@Autowired 
-	private PedidoRepository pedidoRepository;*/
-	
 	@Autowired 
 	private NotificacionRepository notificacionRepository;
 	
-	
-	
+		
 	/**
 	 * 
 	 * Guarda las notificaciones generadas
@@ -42,7 +38,6 @@ public class ServicioNotificacion {
 	 * 
 	 * @param String descripcion, String fecha, String nombre, String tipo
 	 */
-	
 	
 	public boolean enviaNotificacion(String descripcion, String fecha, Cliente cliente) {
 			
@@ -58,20 +53,18 @@ public class ServicioNotificacion {
 			return false;
 			
 	}
-	
 	/**
 	 * 
-	 * Recupera todos las notificaciones del administrador 
-	 * @return 
-	 * 
-	 * @return
+	 * Recupera todos las notificaciones del administrador
+	 *  
+	 * @return notificaciones
+	 *
 	 */
-	
-	public List<Notificacion> recuperaNotificaciones(){
-		System.out.println("Metodo en servicio notifiaciones");
-		List <Notificacion> employees = notificacionRepository.findAll();
-	        employees.forEach(employee -> System.out.println(employee.toString()));
-		return notificacionRepository.findAll();
+	public List<Notificacion> recuperaNotificaciones(Administrador administrador){
+		//System.out.println("Metodo en servicio notifiaciones");
+		List <Notificacion> employees = notificacionRepository.findByadministrador(administrador);
+		//employees.forEach(employee -> System.out.println(employee.toString()));
+		return employees;
 	}
 
 }
