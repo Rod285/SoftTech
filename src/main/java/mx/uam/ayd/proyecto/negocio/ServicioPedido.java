@@ -181,5 +181,12 @@ public class ServicioPedido {
 			return listaPedido;
 		}
 	}
+	
+	public List<Pedido> recuperaPedido(){
+		System.out.println("Metodo en servicio pedido");
+		List <Pedido> employees = pedidoRepository.findAll();
+	        employees.forEach(employee -> System.out.println(employee.toString()));
+		return pedidoRepository.findAll();
+	}
 
 }
