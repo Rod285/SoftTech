@@ -32,7 +32,7 @@ public class Pedido {
 	private String fechaInicio;
 	private String fechaEntrega;
 	private String estado;
-	private ArrayList<Pedido> ordenPedido;
+	//private ArrayList<Long> vehiculos = new ArrayList<>();
 	
 	//CADA PEDIDO ES ASIGNADO A UN ADMINISTRADOR PARA SER ATENDIDO
 	@ManyToOne
@@ -43,12 +43,13 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "idPedidoC")
 	private Cliente cliente;
-	
-	
-	 //UN PEDIDO INCLUYE MULTIPLES vwhiculos POR MODIFICAR 
+		
+	//UN PEDIDO INCLUYE MULTIPLES vwhiculos POR MODIFICAR 
 	@OneToMany(targetEntity = Vehiculo.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idVehiculo")
 	private final List<Vehiculo> vehiculos = new ArrayList<>();
+		
+	private ArrayList<Pedido> ordenPedido;
 	
 	@Builder.Default 
 	@OneToMany(mappedBy = "pedido")
