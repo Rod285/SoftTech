@@ -33,7 +33,7 @@ import mx.uam.ayd.proyecto.presentacion.login.VistaLogin;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
 /**
- * 
+ * Prueba rama HU12
  * Clase principal que arranca la aplicación 
  * construida usando el principio de 
  * inversión de control
