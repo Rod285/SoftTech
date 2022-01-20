@@ -167,10 +167,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel.setBounds(7, 106, 174, 221);
+		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panelDiasMes = new JPanel();
-		panelDiasMes.setBounds(6, 47, 240, 168);
+		panelDiasMes.setBounds(6, 47, 162, 168);
 		panel.add(panelDiasMes);
 		panelDiasMes.setLayout(new GridLayout(0, 7, 0, 0));
 		
@@ -900,7 +902,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		lblMes.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		JPanel panelDiasSemana = new JPanel();
-		panelDiasSemana.setBounds(6, 21, 210, 21);
+		panelDiasSemana.setBounds(6, 21, 162, 21);
 		panel.add(panelDiasSemana);
 		FlowLayout fl_panelDiasSemana = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		panelDiasSemana.setLayout(fl_panelDiasSemana);
@@ -999,9 +1001,9 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 							.addComponent(lblBuscar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)))
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+							.addGap(87)
+							.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -1032,10 +1034,9 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 					.addGap(26)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-							.addContainerGap())
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 	} //Fin de VistaAdministrador()  

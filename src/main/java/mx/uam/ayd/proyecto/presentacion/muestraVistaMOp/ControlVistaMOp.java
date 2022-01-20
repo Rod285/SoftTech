@@ -19,14 +19,16 @@ public class ControlVistaMOp {
 	@Autowired
 	private VistaMOp vistaOperaciones;
 	
+
 	/**
-	 * Muestra ventana miembro operaciones
-	 * 
-	 */
-	
+     * @author Jonathan Cruz
+ 	 * Muestra vista miembro operaciones
+ 	 * 
+ 	 * @param 
+ 	 * @return  
+ 	 */
 	public void inicia() {
-		vistaOperaciones.muestra(this);
-		
+		vistaOperaciones.muestra(this);	
 	}
 
 }

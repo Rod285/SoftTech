@@ -45,22 +45,6 @@ public class VistaMOp extends JFrame implements KeyListener{
 	private ControlVistaMOp controlVistaOperaciones;
 
 	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VistaMOp frame = new VistaMOp();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
 	 * Create the frame.
 	 */
 	private ImageIcon icon1;
@@ -68,7 +52,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 	private ImageIcon imagen1;
 	private JTextField textField;
 	private JLabel lblBuscar;
-	private JButton btnContactos;
+	private JButton btnAgenda;
 	private JButton btnProyect;
 	private JButton btnNoti;
 	
@@ -98,7 +82,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
 		btnProyect = new JButton("Proyectos");
-		btnProyect.setBounds(126, 28, 100, 25);
+		btnProyect.setBounds(131, 28, 115, 25);
 		btnProyect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -106,22 +90,22 @@ public class VistaMOp extends JFrame implements KeyListener{
 		});
 		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		 btnContactos = new JButton("Contactos");
-		btnContactos.setBounds(228, 28, 100, 25);
-		btnContactos.addActionListener(new ActionListener() {
+		btnAgenda = new JButton("Agenda");
+		btnAgenda.setBounds(242, 28, 100, 25);
+		btnAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				System.out.println("Se presiono el boton Contactos");
+				System.out.println("Se presiono el boton Agenda");
 			}
 		});
-		btnContactos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAgenda.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		icon1 = new ImageIcon(getClass().getResource("notification.png"));  	//Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); 										//
 		imagen1 = new ImageIcon (imagen.getScaledInstance(25,25,10)); //Tama o de imagen ancho, alto
 		
 		btnNoti = new JButton();
-		btnNoti.setBounds(340, 24, 50, 30);
+		btnNoti.setBounds(354, 24, 50, 30);
 		btnNoti.setIcon(imagen1);
 		
 		btnNoti.addActionListener(new ActionListener() {
@@ -136,10 +120,10 @@ public class VistaMOp extends JFrame implements KeyListener{
         imagen1 = new ImageIcon (imagen.getScaledInstance(17,17,100)); //Tamaño de imagen ancho, alto
 				
 		lblBuscar = new JLabel(imagen1);
-		lblBuscar.setBounds(554, 29, 25, 20);
+		lblBuscar.setBounds(572, 29, 25, 20);
 		
 		textField = new JTextField();
-		textField.setBounds(416, 29, 134, 20);
+		textField.setBounds(440, 31, 134, 20);
 		textField.setColumns(10);
 		
 		textField.addKeyListener(this);
@@ -149,7 +133,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 		contentPane.add(lblMvc);
 		contentPane.add(lblNewLabel);
 		contentPane.add(btnProyect);
-		contentPane.add(btnContactos);
+		contentPane.add(btnAgenda);
 		contentPane.add(btnNoti);
 		contentPane.add(textField);
 		contentPane.add(lblBuscar);

@@ -15,6 +15,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import lombok.Builder;
 import mx.uam.ayd.proyecto.datos.AdministradorRepository;
 import mx.uam.ayd.proyecto.datos.ClienteRepository;
+import mx.uam.ayd.proyecto.datos.ContactoRepository;
 import mx.uam.ayd.proyecto.datos.GrupoRepository;
 import mx.uam.ayd.proyecto.datos.NotificacionRepository;
 import mx.uam.ayd.proyecto.datos.OperacionesRepository;
@@ -23,6 +24,7 @@ import mx.uam.ayd.proyecto.datos.PedidoVehiculoRepository;
 import mx.uam.ayd.proyecto.datos.VehiculoRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+import mx.uam.ayd.proyecto.negocio.modelo.Contacto;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
@@ -33,7 +35,7 @@ import mx.uam.ayd.proyecto.presentacion.login.VistaLogin;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
 /**
- * Prueba rama HU12
+ * 
  * Clase principal que arranca la aplicación 
  * construida usando el principio de 
  * inversión de control
@@ -63,6 +65,9 @@ public class ProyectoApplication {
 	
 	@Autowired
 	NotificacionRepository notificacionRepository;
+	
+	@Autowired
+	ContactoRepository contactoRepository;
 	
 	@Autowired
 	VehiculoRepository vehiculoRepository;
@@ -180,6 +185,28 @@ public class ProyectoApplication {
 		oper.setTipo("Operaciones");
 		operacionesRepository.save(oper);
 		
+		MiembroOperaciones oper2 = new MiembroOperaciones();
+		oper2.setNombre("operaciones2");
+		oper2.setContrasenia("operaciones2");
+		oper2.setTipo("Operaciones");
+		operacionesRepository.save(oper2);
+		
+		/*
+		 * Declaración contactos de prueba
+		 */
+		Contacto contacto1 = new Contacto();
+		contacto1.setNombreContacto("Marco");
+		contacto1.setApellidoContacto("Rodriguez");
+		contacto1.setTelefono("5545859156");
+		contacto1.setMiembroOp(oper);
+		contactoRepository.save(contacto1);
+		
+		Contacto contacto2 = new Contacto();
+		contacto2.setNombreContacto("Pedro");
+		contacto2.setApellidoContacto("Días");
+		contacto2.setTelefono("5698387496");
+		contacto2.setMiembroOp(oper2);
+		contactoRepository.save(contacto2);
 		/*
 		 * Declaracion de notificaciones de prueba.
 		 */
