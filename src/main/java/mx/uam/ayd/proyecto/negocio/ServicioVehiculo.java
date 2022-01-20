@@ -80,4 +80,27 @@ public class ServicioVehiculo {
 		return listaTipo;
 	}
 
+
+	public List<Vehiculo> buscaVehiculosPorModelo(String modeloVehiculo) {
+		List<Vehiculo> resultadosBusqueda = vehiculoRepository.findByModeloIgnoreCaseContaining(modeloVehiculo);
+		log.info("tamaño resultados " + resultadosBusqueda.size());
+		
+		boolean bandera = validaResultadosnoVacios(resultadosBusqueda);
+		log.info("" + bandera);
+		
+		if(bandera == true) {
+			return resultadosBusqueda;
+		}else {
+			return null;
+		}
+	}
+
+
+	private boolean validaResultadosnoVacios(List<Vehiculo> resultadosBusqueda) {
+		if(resultadosBusqueda.size() != 0) {
+			return true;
+		}
+		return false;
+	}
+
 }

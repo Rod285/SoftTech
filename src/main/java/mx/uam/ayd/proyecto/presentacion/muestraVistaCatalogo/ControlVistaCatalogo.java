@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.ServicioPedido;
 import mx.uam.ayd.proyecto.negocio.ServicioVehiculo;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda.ControlVistaResultadosBusqueda;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido.ControlVistaIrAPedido;
 
 /**
@@ -28,6 +29,7 @@ public class ControlVistaCatalogo {
 	static final String LUXURY = "Lujo";
 	static final String CARGA = "Carga";
 	static final String DEPORTIVO = "Deportivo";
+	private List<Vehiculo> resultadosBusqueda;
 	
 	@Autowired
 	private VistaCatalogo vistaCatalogo;
@@ -40,6 +42,9 @@ public class ControlVistaCatalogo {
 	
 	@Autowired
 	private ControlVistaIrAPedido controlIrAPedido;
+	
+	@Autowired
+	private ControlVistaResultadosBusqueda controlBusqueda;
 
 	private List<Vehiculo> listaClasicos = new ArrayList<>();
 	private List<Vehiculo> listaLuxury = new ArrayList<>();
@@ -92,5 +97,20 @@ public class ControlVistaCatalogo {
     */
 	public void iniciarIrAPedido() {
 		controlIrAPedido.inicia(listaPedido);		
+	}
+
+	public void iniciaBusqueda(String modeloVehiculo) {
+		resultadosBusqueda = servicioVehiculo.buscaVehiculosPorModelo(modeloVehiculo);
+		
+		if(resultadosBusqueda == null) {
+			vistaCatalogo.muestraDialogoVehiculoNoEncontrado();
+		}else {
+			for(Vehiculo vehiculo : resultadosBusqueda) {
+				log.info("modelo: " + vehiculo.getModelo());
+			}
+			controlBusqueda.inicia(resultadosBusqueda);
+		}
+		
+		
 	}
 }

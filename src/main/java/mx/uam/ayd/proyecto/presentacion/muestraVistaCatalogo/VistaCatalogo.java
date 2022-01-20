@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import java.awt.FlowLayout;
 
@@ -82,11 +84,26 @@ public class VistaCatalogo extends JFrame {
 		lblCatalogo.setFont(new Font("Tahoma", Font.BOLD, 70));
 
 		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(721, 50, 164, 33);
+		textFieldSearch.setBounds(707, 50, 180, 33);
 		textFieldSearch.setColumns(10);
+		textFieldSearch.setToolTipText("Ingrese el modelo del vehículo que desea y presione Enter");
+		textFieldSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String modeloVehiculo = textFieldSearch.getText();
+				if(modeloVehiculo == null) {
+					muestraDialogoModeloEnBlanco();
+				}
+				
+				control.iniciaBusqueda(modeloVehiculo);
+				
+			}
+			
+		});
 
 		JLabel lblSearch = new JLabel("Buscar:");
-		lblSearch.setBounds(812, 20, 70, 20);
+		lblSearch.setBounds(707, 20, 70, 20);
 		lblSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
 
 		btnIrAPedido = new JButton("Ir a pedido");
@@ -404,6 +421,10 @@ public class VistaCatalogo extends JFrame {
 		panelDeportivo.add(especDeportivo);
 	}
 
+	protected void muestraDialogoModeloEnBlanco() {
+		JOptionPane.showMessageDialog(null, "User must not be blank");
+	}
+
 	public void muestra(ControlVistaCatalogo control, List<Vehiculo> listaClasicos, List<Vehiculo> listaLuxury, List<Vehiculo> listaCarga,
 			List<Vehiculo> listaDeportivos) {
 		this.control = control;
@@ -497,6 +518,10 @@ public class VistaCatalogo extends JFrame {
 	public void actualizaBotonIrAPedido(List<Vehiculo> listaPedido) {
 		btnIrAPedido.setEnabled(true);
 		btnIrAPedido.setText("Ir a Pedido (" + listaPedido.size() + ")");	
+	}
+
+	public void muestraDialogoVehiculoNoEncontrado() {
+		JOptionPane.showMessageDialog(null, "El vehículo que busca no se encuentra, por favor intente con otro modelo");
 	}
 
 }
