@@ -14,7 +14,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Entity
-@Data
+//@Data
 public class MiembroOperaciones extends Usuario{
 
 	@OneToMany(targetEntity = Contacto.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)

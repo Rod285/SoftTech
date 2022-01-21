@@ -205,7 +205,7 @@ public class ProyectoApplication {
 		contacto2.setNombreContacto("Pedro");
 		contacto2.setApellidoContacto("Días");
 		contacto2.setTelefono("5698387496");
-		contacto2.setMiembroOp(oper2);
+		contacto2.setMiembroOp(oper);
 		contactoRepository.save(contacto2);
 		/*
 		 * Declaracion de notificaciones de prueba.

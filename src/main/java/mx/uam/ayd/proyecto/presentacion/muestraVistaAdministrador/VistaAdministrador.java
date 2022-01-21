@@ -74,7 +74,6 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 	private JTextField textField;
 	private JLabel lblBuscar;
 	private JButton btnCatalogo;
-		
 	private JButton btnProyect;
 	private JButton btnNoti;
 	
@@ -120,7 +119,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				}
 			}
 		});
-		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		 btnCatalogo = new JButton("Catálogo");
 		btnCatalogo.addActionListener(new ActionListener() {
@@ -129,7 +128,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				System.out.println("Se presiono el boton Catalogos");
 			}
 		});
-		btnCatalogo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCatalogo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		icon1 = new ImageIcon(getClass().getResource("notification.png"));  	//Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); 										//
@@ -897,7 +896,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		panelDiasMes.add(btn42);
 		
 		JLabel lblMes = new JLabel();
-		lblMes.setBounds(6, 6, 210, 16);
+		lblMes.setBounds(6, 6, 162, 16);
 		panel.add(lblMes);
 		lblMes.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -941,7 +940,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		try {
 			LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 31);
 			ultimoDia=31;
-			System.out.println("Ultimo dia del mes: " + ultimoDia);
+			//System.out.println("Ultimo dia del mes: " + ultimoDia);
 		}catch(DateTimeException e){
 			try {
 				LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 30);
