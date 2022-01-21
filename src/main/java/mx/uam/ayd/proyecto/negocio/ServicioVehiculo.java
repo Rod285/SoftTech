@@ -95,7 +95,6 @@ public class ServicioVehiculo {
 		}
 	}
 
-
 	private boolean validaResultadosnoVacios(List<Vehiculo> resultadosBusqueda) {
 		if(resultadosBusqueda.size() != 0) {
 			return true;

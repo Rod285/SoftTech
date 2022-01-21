@@ -121,7 +121,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 		imagen1 = new ImageIcon (imagen.getScaledInstance(25,25,10)); //Tama o de imagen ancho, alto
 		
 		btnNoti = new JButton();
-		btnNoti.setBounds(340, 24, 50, 30);
+		btnNoti.setBounds(340, 24, 40, 25);
 		btnNoti.setIcon(imagen1);
 		
 		btnNoti.addActionListener(new ActionListener() {
