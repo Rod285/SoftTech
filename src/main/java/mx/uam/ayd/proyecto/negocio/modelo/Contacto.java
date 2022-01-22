@@ -17,8 +17,8 @@ public class Contacto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String nombreContacto;
-	private String apellidoContacto;
+	private String nombre;
+	private String apellido;
 	private String telefono;
 	
 	//Multiples contactos pueden pertenecer a un mismo miembro de operaciones

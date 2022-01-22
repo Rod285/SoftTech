@@ -129,7 +129,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 				} catch (PropertyVetoException pve) {
 					pve.printStackTrace();
 				}
-				System.out.println("Se presiono el boton Agenda");
+				
 			}
 		});
 		btnAgenda.setFont(new Font("Tahoma", Font.PLAIN, 12));

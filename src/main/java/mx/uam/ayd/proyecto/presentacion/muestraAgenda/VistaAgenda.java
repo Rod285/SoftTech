@@ -24,7 +24,6 @@ public class VistaAgenda extends JPanel{
 
 	static final int COLUMNASC = 4;
 	
-	@Autowired
 	private ControlVistaAgenda controlAgenda;
 	
 	private JTable tablaAgenda;
@@ -87,8 +86,7 @@ JScrollPane scrollPane = new JScrollPane(tablaAgenda);
         btnAñadir = new JButton("Añadir contacto");
         btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-				System.out.println("Se presiono el boton añadir");
+				controlAgenda.agregarContacto();	
 			}
 		});
         btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 12));

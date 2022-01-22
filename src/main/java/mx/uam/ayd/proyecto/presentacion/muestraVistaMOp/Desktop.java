@@ -36,7 +36,7 @@ public class Desktop extends JInternalFrame {
 		JScrollPane scrollPane = new JScrollPane(panel);
 		getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		setVisible(true);
+		//setVisible(true);
 
 	}
 }

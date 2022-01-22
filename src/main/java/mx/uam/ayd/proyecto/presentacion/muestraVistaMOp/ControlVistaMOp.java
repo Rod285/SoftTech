@@ -64,6 +64,7 @@ public class ControlVistaMOp {
 	/**
      * @author Jonathan Cruz
  	 * Muestra vista agenda
+	 * @param desk 
  	 * 
  	 * @param 
  	 * @return  VistaAgenda

@@ -17,4 +17,6 @@ public interface ContactoRepository extends CrudRepository <Contacto, Long>{
 	 */
 	public List <Contacto> findBymiembroOp(MiembroOperaciones operaciones);
 	
+	public Contacto findByTelefono(String telefono);
+	
 }

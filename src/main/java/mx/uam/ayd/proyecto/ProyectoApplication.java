@@ -195,15 +195,15 @@ public class ProyectoApplication {
 		 * Declaración contactos de prueba
 		 */
 		Contacto contacto1 = new Contacto();
-		contacto1.setNombreContacto("Marco");
-		contacto1.setApellidoContacto("Rodriguez");
+		contacto1.setNombre("Marco");
+		contacto1.setApellido("Rodriguez");		
 		contacto1.setTelefono("5545859156");
 		contacto1.setMiembroOp(oper);
 		contactoRepository.save(contacto1);
 		
 		Contacto contacto2 = new Contacto();
-		contacto2.setNombreContacto("Pedro");
-		contacto2.setApellidoContacto("Días");
+		contacto2.setNombre("Pedro");
+		contacto2.setApellido("Días");
 		contacto2.setTelefono("5698387496");
 		contacto2.setMiembroOp(oper);
 		contactoRepository.save(contacto2);
