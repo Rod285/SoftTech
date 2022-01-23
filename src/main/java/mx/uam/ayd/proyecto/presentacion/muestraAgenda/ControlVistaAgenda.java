@@ -35,17 +35,20 @@ public class ControlVistaAgenda {
 	
 	/**
      * @author Jonathan Cruz
- 	 * En este método se obtendrán los contactos
+     * Método que da inicio a la HU-12,
+ 	 * en este método se obtendrán los contactos
  	 * corresponientes a un miebro de operaciones
-	 * @param desk 
+ 	 * para mostrarlos en la vista correspondiente
  	 * 
- 	 * @param Objeto de tipo MiembroOperaciones
+ 	 * 
+ 	 * @param MiembroOperaciones operaciones
  	 * @return 
  	 * @fechaImplementacion 20 de enero de 2022 
  	 */
 	public void inicia(MiembroOperaciones operaciones) {
 		this.oper = operaciones;
-		List<Contacto> contactos = servicioContacto.recuperaContactos(operaciones);
+		//En ésta lista se alamacenan los contactos recuperados
+		List<Contacto> contactos = servicioContacto.recuperaContactos(operaciones); 
 		List <String> descripciones = new ArrayList<>();
 		for(Contacto contacto:contactos){
 			descripciones.add(Long.toString(contacto.getId()));
@@ -53,11 +56,10 @@ public class ControlVistaAgenda {
 			descripciones.add(contacto.getApellido());
 			descripciones.add(contacto.getTelefono());
 		}
-		//descripciones.forEach(employee -> System.out.println(employee.toString()));
+		//Muestra la vistaAgenda con los contactos recuperados
 		vistaAgenda.muestra(this, descripciones);
 	} //fin del método inicia
 
-	
 	/**
      * @author Jonathan Cruz
  	 * Método que arranca la segunda parte
@@ -72,9 +74,13 @@ public class ControlVistaAgenda {
 	}
 	
 	/**
-	 * Termina la historia de usuario
-	 * 
-	 */
+     * @author Jonathan Cruz
+ 	 * Método que termina la vista agenda
+ 	 * 
+ 	 * @param 
+ 	 * @return  
+ 	 * @fechaImplementación 21 de enero de 2022
+ 	 */
 	public void termina() {
 		vistaAgenda.setVisible(false);		
 	}

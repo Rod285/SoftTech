@@ -50,7 +50,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JDesktopPane;
 
 /*
- * @author Omar Aldaco Montalvo
+ * VistaMOP
+ * Es la vista correspondiente al miembro de operaciones
+ * @author Jonathan Cruz
+ * @fechaImplementación  20 de enero de 2022 
  */
 
 @SuppressWarnings("serial")
@@ -61,7 +64,6 @@ public class VistaMOp extends JFrame implements KeyListener{
 	static Desktop desk;
 	private JPanel contentPane;
 	
-	@Autowired
 	private ControlVistaMOp controlVistaOperaciones;
 	
 	//Icon
@@ -74,7 +76,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 	private JButton btnProyect;
 	private JButton btnNoti;
 	
-	JDesktopPane Desk;
+	//JDesktopPane Desk;
 	
 	private boolean disponibilidad =false;//
 	
@@ -85,9 +87,10 @@ public class VistaMOp extends JFrame implements KeyListener{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		/*
 		Desk = new JDesktopPane();
 		Desk.setBounds(269, 106, 476, 242);
-		Desk.setBackground(Color.WHITE);
+		Desk.setBackground(Color.WHITE);*/
 		//Logo
 		icon1 = new ImageIcon(getClass().getResource("logo.png"));  	//Agrega la imagen existente en la clase
 	    imagen = icon1.getImage(); 										//
@@ -120,16 +123,7 @@ public class VistaMOp extends JFrame implements KeyListener{
 		btnAgenda.setBounds(228, 28, 100, 25);
 		btnAgenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String titulo = "Agenda";
-				Desk.removeAll();
-				desk = new Desktop(titulo, controlVistaOperaciones.muestraVistaAgenda());
-				Desk.add(desk);
-				try {
-					desk.setMaximum(true);
-				} catch (PropertyVetoException pve) {
-					pve.printStackTrace();
-				}
-				
+				controlVistaOperaciones.muestraVistaAgenda();
 			}
 		});
 		btnAgenda.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -390,9 +384,15 @@ public class VistaMOp extends JFrame implements KeyListener{
 		contentPane.add(textField);
 		contentPane.add(lblBuscar);
 		contentPane.add(lblNewLabel);
-		contentPane.add(Desk);
+		//contentPane.add(Desk);
 	} //Fin de VistaAdministrador()  
 	
+	/*
+	 * @author Jonathan Cruz
+	 * Método que muestra la venta correspondiete al miembro de operaciones
+	 * @param ControlVistaMOp control
+	 * @fechaImplementación  20 de enero de 2022 
+	 */
 	public void muestra(ControlVistaMOp control) {
 		controlVistaOperaciones = control;
 		setVisible(true);

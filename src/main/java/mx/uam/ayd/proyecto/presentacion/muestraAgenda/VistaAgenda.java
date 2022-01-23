@@ -1,49 +1,70 @@
 package mx.uam.ayd.proyecto.presentacion.muestraAgenda;
 
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import javax.swing.GroupLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
-import javax.swing.JDesktopPane;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+
+/*
+ * VistaAgenda
+ * Es la vista correspondiente a la agenda del miembro de operaciones
+ * @author Jonathan Cruz
+ * @fechaImplementación  20 de enero de 2022 
+ */
 
 @SuppressWarnings("serial")
 @Component
-public class VistaAgenda extends JPanel{
-
+public class VistaAgenda extends JFrame {
+	
 	static final int COLUMNASC = 4;
 	
-	private ControlVistaAgenda controlAgenda;
-	
+	@Autowired
+	private ControlVistaAgenda controlVistaAgenda;
+
+	private JPanel contentPane;
 	private JTable tablaAgenda;
-	
 	private JButton btnAñadir;
 	
 	private List<String> descrip;
+	private JButton btnRegresar;
 	
-	/*
-	 * Create the frame
-	 */
+
 	public VistaAgenda() {
+		
 	}
-	
-	public void muestra(ControlVistaAgenda controlAgenda, List<String> descripciones) {
-		this.controlAgenda = controlAgenda;
+
+	public void muestra(ControlVistaAgenda controlVistaAgenda, List<String> descripciones) {
+		this.controlVistaAgenda = controlVistaAgenda;
 		this.descrip = descripciones;
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 315);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		JLabel lblAgenda = new JLabel("Agenda");
+		lblAgenda.setFont(new Font("Tahoma", Font.BOLD, 30));
+		
 		Object[] titulos = {"ID","Nombre","Apellido", "Teléfono"};
-        Object[][] datos = new Object[10][4];
+        Object[][] datos = new Object[15][4];
         
         int numContactos = descrip.size()/COLUMNASC;
         
@@ -54,12 +75,12 @@ public class VistaAgenda extends JPanel{
 			}	
 		}
         
-        DefaultTableModel modelo = new DefaultTableModel(datos, titulos);	
+        DefaultTableModel modelo = new DefaultTableModel(datos, titulos);
         tablaAgenda = new JTable(modelo){
-		
-        	//private static final long serialVersionUID = 1L;
-        	
-        	public Class getColumnClass(int column) {
+
+			private static final long serialVersionUID = 1L;
+
+			public Class getColumnClass(int column) {
         		switch (column) {
                 	case 0:
                 		return String.class;
@@ -74,44 +95,64 @@ public class VistaAgenda extends JPanel{
         		}
         	}
         };
-		
+        
         tablaAgenda.setPreferredScrollableViewportSize(tablaAgenda.getPreferredSize());
         tablaAgenda.getColumnModel().getColumn(0).setPreferredWidth(10);
         tablaAgenda.getColumnModel().getColumn(1).setPreferredWidth(70);
         tablaAgenda.getColumnModel().getColumn(2).setPreferredWidth(70);
         tablaAgenda.getColumnModel().getColumn(3).setPreferredWidth(70);
         
-JScrollPane scrollPane = new JScrollPane(tablaAgenda);
-        
-        btnAñadir = new JButton("Añadir contacto");
-        btnAñadir.addActionListener(new ActionListener() {
+        JScrollPane scrollPane = new JScrollPane(tablaAgenda);
+		
+		btnAñadir = new JButton("Añadir contacto");
+		btnAñadir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controlAgenda.agregarContacto();	
+				controlVistaAgenda.termina();
+				controlVistaAgenda.agregarContacto();			
 			}
 		});
-        btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 12));
-        
-        GroupLayout groupLayout = new GroupLayout(this);
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-        				.addComponent(btnAñadir, Alignment.TRAILING))
-        			.addContainerGap())
-        );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(btnAñadir)
-        			.addContainerGap(13, Short.MAX_VALUE))
-        );
-        
-		setLayout(groupLayout);	
+		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		
+		btnRegresar = new JButton("Regresar");
+		btnRegresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlVistaAgenda.termina();			
+			}
+		});
+		btnRegresar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(150)
+							.addComponent(lblAgenda))
+						.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+							.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+								.addContainerGap()
+								.addComponent(btnAñadir)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnRegresar))
+							.addGroup(gl_contentPane.createSequentialGroup()
+								.addGap(20)
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(20, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(lblAgenda)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnRegresar)
+						.addComponent(btnAñadir))
+					.addContainerGap())
+		);
+		contentPane.setLayout(gl_contentPane);
+		setVisible(true);
 		
 	}
 }

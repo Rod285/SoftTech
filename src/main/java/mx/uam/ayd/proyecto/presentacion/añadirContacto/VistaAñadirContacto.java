@@ -18,6 +18,13 @@ import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+/*
+ * VistaAñadirContacto
+ * Vista para añadir un contacto
+ * @author Jonathan Cruz
+ * @fechaImplementación  20 de enero de 2022 
+ */
+
 @SuppressWarnings("serial")
 @Component
 public class VistaAñadirContacto extends JFrame {
@@ -35,25 +42,6 @@ public class VistaAñadirContacto extends JFrame {
 	private JLabel lblApellido;
 	private JLabel lblTelefono;
 
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VistaAñadirContacto frame = new VistaAñadirContacto();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-*/
-	/**
-	 * Create the frame.
-	 */
 	public VistaAñadirContacto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 400, 260);
@@ -94,7 +82,13 @@ public class VistaAñadirContacto extends JFrame {
 				if(txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtTelefono.getText().equals("")) {
 					muestraDialogoConMensaje("Los campos no deben estar vacios");
 				} else {
-					controlAñadirContacto.agregaContacto(txtNombre.getText(), txtApellido.getText(), txtTelefono.getText());
+					String telefono = txtTelefono.getText();
+					if(EsNumero(telefono) && telefono.length() == 10) {
+						controlAñadirContacto.agregaContacto(txtNombre.getText(), txtApellido.getText(), txtTelefono.getText());
+					}else {
+						muestraDialogoConMensaje("Debes ingresar un número de diez digitos en el campo teléfono");
+						txtTelefono.setText("");
+					}
 				}
 			}
 		});
@@ -152,4 +146,24 @@ public class VistaAñadirContacto extends JFrame {
 	public void muestraDialogoConMensaje(String mensaje ) {
 		JOptionPane.showMessageDialog(this , mensaje);
 	}
+	
+	/**
+     * @author Jonathan Cruz
+ 	 * Método que convierte un String a Long para 
+ 	 * poder verificar si lo que se ingreso en el 
+ 	 * campo telefono es un múmero o no
+ 	 * 
+ 	 * @param String cadena
+ 	 * @return  Noolean
+ 	 * @fechaImplementación 21 de enero de 2022
+ 	 */
+	public static boolean EsNumero(String cadena){
+    	try {
+    		Long.parseLong(cadena);
+    		return true;
+    	} catch (NumberFormatException nfe){
+    		//catch sí no se pudo convertir la cadena
+    		return false;
+    	}
+    }
 }

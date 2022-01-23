@@ -11,7 +11,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
  * Módulo de control para la mostrar la vista añadir contacto 
  * 
  * @author Jonathan Cruz
- * @fechaImplementación  20 de enero de 2022
+ * @fechaImplementación  21 de enero de 2022
  */
 
 @Component
@@ -30,7 +30,7 @@ public class ControlAñadirContacto {
  	 * Método que inicia la segunda parte
  	 * (paso 3) de la historia de usuario 12 
  	 * 
- 	 * @param 
+ 	 * @param MjembroOperaciones operaciones
  	 * @return  
  	 * @fechaImplementación 21 de enero de 2022
  	 */
@@ -65,12 +65,12 @@ public class ControlAñadirContacto {
 		try {
 			servicioContacto.agregaContacto(nombre, apellido, tel, oper);
 			vistaAñadirContacto.muestraDialogoConMensaje("Contacto agregado exitosamente");
+			
 		} catch(Exception ex) {
 			vistaAñadirContacto.muestraDialogoConMensaje("Error al agregar contacto: "+ ex.getMessage());
 		}
 		
-		termina();
-		
+		termina();	
 	}
-
+	
 }

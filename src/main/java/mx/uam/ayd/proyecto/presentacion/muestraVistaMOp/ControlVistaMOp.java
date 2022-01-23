@@ -9,15 +9,15 @@ import mx.uam.ayd.proyecto.negocio.ServicioMiembroOperaciones;
 import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
 import mx.uam.ayd.proyecto.presentacion.muestraAgenda.ControlVistaAgenda;
 import mx.uam.ayd.proyecto.presentacion.muestraAgenda.VistaAgenda;
-
+import mx.uam.ayd.proyecto.presentacion.muestraAgenda.VistaAgenda;
 
 
 /**
+ * ControlVistaMOp
+ * Módulo de control para la mostrar la vistaMOp
  * 
- * Módulo de control para la mostrar la vista del miembro de operaciones 
- * 
- * @author SoftTech
- *
+ * @author Jonathan Cruz
+ * @fechaImplementación  20 de enero de 2022
  */
 
 @Component
@@ -63,16 +63,13 @@ public class ControlVistaMOp {
 	
 	/**
      * @author Jonathan Cruz
- 	 * Muestra vista agenda
-	 * @param desk 
+ 	 * Da inicio a la HU-12 
  	 * 
  	 * @param 
- 	 * @return  VistaAgenda
+ 	 * @return 
  	 */
-	
-	public VistaAgenda muestraVistaAgenda() {
-	   controlAgenda.inicia(oper);
-	   return vistaAgenda;	
+	public void muestraVistaAgenda() {
+	   controlAgenda.inicia(oper);	
 	}
 
 }
