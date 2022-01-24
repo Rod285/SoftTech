@@ -99,6 +99,15 @@ public class ControlVistaCatalogo {
 		controlIrAPedido.inicia(listaPedido);		
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que llama al servicio vehiculo para que inicie la busqueda del modelo de vehículo
+	 * que el usuario desea, al encontrar el vehiculo, inicia la vista de resultados, si no lo encuentra,
+	 * le informa al usuario que no ha sido posible encontrar el vehículo que busca, que intente con otro modelo.
+	 * @Fecha de implementación: 21/01/2022
+	 * @Parametro de entrada: String modeloVehiculo
+	 * @Valor de retorno: void
+	 */
 	public void iniciaBusqueda(String modeloVehiculo) {
 		resultadosBusqueda = servicioVehiculo.buscaVehiculosPorModelo(modeloVehiculo);
 		

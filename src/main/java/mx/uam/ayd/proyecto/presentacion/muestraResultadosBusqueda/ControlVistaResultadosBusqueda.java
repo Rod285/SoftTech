@@ -24,6 +24,13 @@ public class ControlVistaResultadosBusqueda {
 
 	private List<Vehiculo> resultadosBusqueda;
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que inicia la vista de resultados de busqueda
+	 * @Fecha de implementación: 20/01/2022
+	 * @Parametro de entrada: List<Vehiculo> resultadosBusqueda 
+	 * @Valor de retorno: void
+	 */
 	public void inicia(List<Vehiculo> resultadosBusqueda) {
 		this.resultadosBusqueda = resultadosBusqueda;
 		
@@ -32,9 +39,6 @@ public class ControlVistaResultadosBusqueda {
 			log.info("modelo: " + vehiculo.getModelo());
 		}
 		
-		ventana.muestra(this, this.resultadosBusqueda);
-		
-	}
-	
-	
+		ventana.muestra(this, this.resultadosBusqueda);	
+	}	
 }

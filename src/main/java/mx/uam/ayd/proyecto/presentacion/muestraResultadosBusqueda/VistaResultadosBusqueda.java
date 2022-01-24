@@ -1,7 +1,8 @@
 /*
- * VistaResultadosBusqueda
- * Esta clase lleva a cabo es la vista del sistema que muestra los resultados de buscar un vehiculo por su modelo.
- * Fecha de implementación: 20/01/2022
+ * @Autor: Mejía Velázquez José Rodrigo
+ * @Nombre: VistaResultadosBusqueda
+ * @Descripción: Esta clase lleva a cabo es la vista del sistema que muestra los resultados de buscar un vehiculo por su modelo.
+ * @Fecha de implementación: 20/01/2022
  */
 package mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda;
 
@@ -152,6 +153,14 @@ public class VistaResultadosBusqueda extends JFrame{
 		panelCentro.add(scrollPane);
 	}
 	
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que invoca la inicialización de la vista de resultados de busqueda e inicializa sus
+	 * componentes más importantes
+	 * @Fecha de implementación: 20/01/2022
+	 * @Parametro de entrada: ControlVistaResultadosBusqueda controlVistaResultadosBusqueda, List<Vehiculo> resultadosBusqueda 
+	 * @Valor de retorno: void
+	 */
 	public void muestra(ControlVistaResultadosBusqueda controlVistaResultadosBusqueda, List<Vehiculo> resultadosBusqueda) {
 		this.control = controlVistaResultadosBusqueda;
 		this.resultadosBusqueda = resultadosBusqueda;
@@ -162,6 +171,14 @@ public class VistaResultadosBusqueda extends JFrame{
 		setVisible(true);
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Clase privada en la cual se establece el módelo de la tabla dónde se muestran los resultados de la
+	 * búsqueda solicitada por el cliente.
+	 * @Fecha de implementación: 21/01/2022
+	 * @Parametro de entrada: NA 
+	 * @Valor de retorno: NA
+	 */
 private class ResultadosTableModel extends AbstractTableModel{
 		
 		private List<Vehiculo> resultadosBusqueda;

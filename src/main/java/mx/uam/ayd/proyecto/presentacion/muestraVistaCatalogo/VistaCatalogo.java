@@ -92,14 +92,29 @@ public class VistaCatalogo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String modeloVehiculo = textFieldSearch.getText();
-				if(modeloVehiculo == null) {
+				boolean bandera = validaModeloNoVacio(modeloVehiculo);
+				if(bandera == false) {
 					muestraDialogoModeloEnBlanco();
+				}else {
+					control.iniciaBusqueda(modeloVehiculo);
 				}
-				
-				control.iniciaBusqueda(modeloVehiculo);
-				
 			}
-			
+
+			/*
+			 * @Autor: Mejía Velázquez José Rodrigo
+			 * @Descripción: Método que valida que el Campo de busqueda no se encuentra vacío cuando el usuario
+			 * presiona Enter, si el campo no está vacío regresa true, de lo contrario regresa false.
+			 * @Fecha de implementación: 24/01/2022
+			 * @Paramentro de entrada: String modeloVehiculo
+			 * @Valor de retorno: Boolean
+			 */
+			private boolean validaModeloNoVacio(String modeloVehiculo) {
+				if(!modeloVehiculo.equals("")) {
+					return true;
+				}else {
+					return false;
+				}
+			}
 		});
 
 		JLabel lblSearch = new JLabel("Buscar:");
@@ -421,10 +436,6 @@ public class VistaCatalogo extends JFrame {
 		panelDeportivo.add(especDeportivo);
 	}
 
-	protected void muestraDialogoModeloEnBlanco() {
-		JOptionPane.showMessageDialog(null, "User must not be blank");
-	}
-
 	public void muestra(ControlVistaCatalogo control, List<Vehiculo> listaClasicos, List<Vehiculo> listaLuxury, List<Vehiculo> listaCarga,
 			List<Vehiculo> listaDeportivos) {
 		this.control = control;
@@ -520,8 +531,25 @@ public class VistaCatalogo extends JFrame {
 		btnIrAPedido.setText("Ir a Pedido (" + listaPedido.size() + ")");	
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que informa la usuario que el modelo de vehículo que buscó no se encontró
+	 * @Fecha de implementación: 21/01/2022
+	 * @Parametro de entrada: void
+	 * @Valor de retorno: void
+	 */
 	public void muestraDialogoVehiculoNoEncontrado() {
 		JOptionPane.showMessageDialog(null, "El vehículo que busca no se encuentra, por favor intente con otro modelo");
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que informa la usuario que el campo de búsquedano debé estar en blanco
+	 * @Fecha de implementación: 24/01/2022
+	 * @Parametro de entrada: void
+	 * @Valor de retorno: void
+	 */
+	private void muestraDialogoModeloEnBlanco() {
+		JOptionPane.showMessageDialog(null, "Para realizar la búsqueda, el modelo no debe estar vacío");
+	}
 }
