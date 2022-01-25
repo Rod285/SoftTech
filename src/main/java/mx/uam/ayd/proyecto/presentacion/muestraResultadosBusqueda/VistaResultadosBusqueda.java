@@ -113,7 +113,7 @@ public class VistaResultadosBusqueda extends JFrame{
 		panelNorte.setBounds(0, 0, 650, 200);
 		getContentPane().add(panelNorte, BorderLayout.NORTH);
 		GridBagLayout gbl_panelNorte = new GridBagLayout();
-		gbl_panelNorte.columnWidths = new int[] {90, 70, 60, 210, 30, 30};
+		gbl_panelNorte.columnWidths = new int[] {88, 70, 60, 210, 30, 30};
 		gbl_panelNorte.rowHeights = new int[] {14, 30};
 		gbl_panelNorte.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelNorte.rowWeights = new double[]{0.0, 0.0};
@@ -126,7 +126,7 @@ public class VistaResultadosBusqueda extends JFrame{
 		gbc_logo.insets = new Insets(0, 0, 5, 5);
 		gbc_logo.gridx = 0;
 		gbc_logo.gridy = 0;
-		logo.setIcon(new ImageIcon(new ImageIcon(LOGO).getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
+		logo.setIcon(new ImageIcon(new ImageIcon(LOGO).getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH)));
 		panelNorte.add(logo, gbc_logo);
 		
 		JLabel siglas = new JLabel("MVC");

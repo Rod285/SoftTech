@@ -81,18 +81,28 @@ public class ServicioVehiculo {
 	}
 
 
-	public List<Vehiculo> buscaVehiculosPorModelo(String modeloVehiculo) {
-		List<Vehiculo> resultadosBusqueda = vehiculoRepository.findByModeloIgnoreCaseContaining(modeloVehiculo);
-		log.info("tamaño resultados " + resultadosBusqueda.size());
-		
-		boolean bandera = validaResultadosnoVacios(resultadosBusqueda);
-		log.info("" + bandera);
-		
-		if(bandera == true) {
-			return resultadosBusqueda;
+	public ArrayList<Vehiculo> buscaVehiculosPorModelo(String modeloVehiculo) {
+		ArrayList<Vehiculo> resultadosBusqueda = new ArrayList<>();
+		if(modeloVehiculo != null) {
+			for(Vehiculo vehiculo : vehiculoRepository.findByModeloIgnoreCaseContaining(modeloVehiculo)) {
+				resultadosBusqueda.add(vehiculo);
+			}
+			
+			log.info("tamaño resultados " + resultadosBusqueda.size());
+			
+			boolean bandera = validaResultadosnoVacios(resultadosBusqueda);
+			log.info("" + bandera);
+			
+			if(bandera == true) {
+				return resultadosBusqueda;
+			}else {
+				return null;
+			}
 		}else {
 			return null;
 		}
+		
+		
 	}
 
 	private boolean validaResultadosnoVacios(List<Vehiculo> resultadosBusqueda) {

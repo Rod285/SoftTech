@@ -1,6 +1,6 @@
 package mx.uam.ayd.proyecto.datos;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,5 +15,5 @@ public interface VehiculoRepository extends CrudRepository <Vehiculo, Long> {
 	
 	public Optional<Vehiculo> findByModelo(String modelo);
 
-	public List<Vehiculo> findByModeloIgnoreCaseContaining(String modeloVehiculo);
+	public ArrayList<Vehiculo> findByModeloIgnoreCaseContaining(String modeloVehiculo);
 }

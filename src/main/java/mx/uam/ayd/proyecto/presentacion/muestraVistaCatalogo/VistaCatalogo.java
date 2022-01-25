@@ -138,18 +138,18 @@ public class VistaCatalogo extends JFrame {
 		// PARA IMAGEN LOGO
 		icon1 = new ImageIcon(getClass().getResource("logo.png")); // Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); //
-		imagen1 = new ImageIcon(imagen.getScaledInstance(60, 60, Image.SCALE_SMOOTH)); // Tama o de imagen ancho, alto
+		imagen1 = new ImageIcon(imagen.getScaledInstance(55, 55, Image.SCALE_SMOOTH)); // Tama o de imagen ancho, alto
 		JLabel lblLogo = new JLabel();
-		lblLogo.setBounds(35, 15, 60, 60);
+		lblLogo.setBounds(33, 19, 50, 50);
 		lblLogo.setIcon(imagen1);
 
 		lblMVC = new JLabel("MVC");
-		lblMVC.setBounds(105, 31, 77, 33);
+		lblMVC.setBounds(93, 31, 77, 33);
 		lblMVC.setFont(new Font("Tahoma", Font.BOLD, 20));
 
 		lblMarca = new JLabel("Montalvo Picture Cars");
 		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMarca.setBounds(5, 75, 120, 25);
+		lblMarca.setBounds(0, 64, 120, 25);
 		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 9));
 
 		lblClasicos = new JLabel("Clásicos");
