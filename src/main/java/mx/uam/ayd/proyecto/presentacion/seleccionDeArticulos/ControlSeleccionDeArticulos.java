@@ -7,11 +7,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+import mx.uam.ayd.proyecto.negocio.ServicioVehiculo;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda.ControlVistaResultadosBusqueda;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalogo;
 
 /**
@@ -21,7 +24,7 @@ import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalog
  * @author Fernanda Marcelin Leyva
  *
  */
-
+@Slf4j
 @Component
 public class ControlSeleccionDeArticulos {
 
@@ -41,6 +44,14 @@ public class ControlSeleccionDeArticulos {
 	@Autowired
 	private VistaSeleccionDeArticulos vistaSeleccionDeArticulos;//PREGUNTA, esta es una ventana de la misma vista porque forma parte de la misma HU2 pero se geenra a través de un botoncito "Ir a Pedido", cómo la creo en la vista y cómo hago referencia a ella aquí?
 	
+	@Autowired
+	private ServicioVehiculo servicioVehiculo;
+	
+	@Autowired
+	private ControlVistaResultadosBusqueda controlBusqueda;
+
+	private List<Vehiculo> resultadosBusqueda;
+	
 	/**
 	 * Muestra ventana cliente
 	 * 
@@ -54,6 +65,28 @@ public class ControlSeleccionDeArticulos {
 
 	public void iniciaVistaCatalogo() {
 		controlVistaCatalogo.inicia();
+	}
+
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que llama al servicio vehiculo para que inicie la busqueda del modelo de vehículo
+	 * que el usuario desea, al encontrar el vehiculo, inicia la vista de resultados, si no lo encuentra,
+	 * le informa al usuario que no ha sido posible encontrar el vehículo que busca, que intente con otro modelo.
+	 * @Fecha de implementación: 21/01/2022
+	 * @Parametro de entrada: String modeloVehiculo
+	 * @Valor de retorno: void
+	 */
+	public void iniciaBusqueda(String modeloVehiculo) {
+		resultadosBusqueda = servicioVehiculo.buscaVehiculosPorModelo(modeloVehiculo);
+		
+		if(resultadosBusqueda == null) {
+			vistaSeleccionDeArticulos.muestraDialogoVehiculoNoEncontrado();
+		}else {
+			for(Vehiculo vehiculo : resultadosBusqueda) {
+				log.info("modelo: " + vehiculo.getModelo());
+			}
+			controlBusqueda.inicia(resultadosBusqueda);
+		}
 	}
 	
 	/**

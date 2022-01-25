@@ -38,13 +38,18 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalogo;
 
+@Slf4j
 @Component
 public class VistaResultadosBusqueda extends JFrame{
 	
@@ -61,28 +66,57 @@ public class VistaResultadosBusqueda extends JFrame{
 		
 		JPanel panelSur = new JPanel();
 		getContentPane().add(panelSur, BorderLayout.SOUTH);
-		panelSur.setLayout(new FlowLayout(FlowLayout.CENTER, 200, 20));
+		GridBagLayout gbl_panelSur = new GridBagLayout();
+		gbl_panelSur.columnWidths = new int[] {90, 130, 210, 130, 0};
+		gbl_panelSur.rowHeights = new int[] {30, 25, 30};
+		gbl_panelSur.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gbl_panelSur.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+		panelSur.setLayout(gbl_panelSur);
 		
 		JButton agregarAPedido = new JButton("Agregar a Pedido");
-		panelSur.add(agregarAPedido);
+		agregarAPedido.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TableModel modeloTabla = tablaResultados.getModel();
+				List<Boolean> seleccion = new ArrayList<>();
+				for(int i = 0; i < modeloTabla.getRowCount() ;i++) {
+					seleccion.add((Boolean) modeloTabla.getValueAt(i, 2));
+					log.info("valor: " + seleccion.get(i));
+				}
+			}
+		});
+		agregarAPedido.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		agregarAPedido.setSize(100, 25);
+		GridBagConstraints gbc_agregarAPedido = new GridBagConstraints();
+		gbc_agregarAPedido.fill = GridBagConstraints.BOTH;
+		gbc_agregarAPedido.gridx = 1;
+		gbc_agregarAPedido.gridy = 1;
+		panelSur.add(agregarAPedido, gbc_agregarAPedido);
 		
 		JButton regresar = new JButton("Regresar");
+		regresar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		regresar.setSize(100, 25);
 		regresar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
-		panelSur.add(regresar);
+		GridBagConstraints gbc_regresar = new GridBagConstraints();
+		gbc_regresar.fill = GridBagConstraints.BOTH;
+		gbc_regresar.gridx = 3;
+		gbc_regresar.gridy = 1;
+		panelSur.add(regresar, gbc_regresar);
 		
 		JPanel panelNorte = new JPanel();
 		panelNorte.setBounds(0, 0, 650, 200);
 		getContentPane().add(panelNorte, BorderLayout.NORTH);
 		GridBagLayout gbl_panelNorte = new GridBagLayout();
-		gbl_panelNorte.columnWidths = new int[] {100, 110, 30, 0, 30, 30};
-		gbl_panelNorte.rowHeights = new int[] {14, 30, 20};
+		gbl_panelNorte.columnWidths = new int[] {90, 70, 60, 210, 30, 30};
+		gbl_panelNorte.rowHeights = new int[] {14, 30};
 		gbl_panelNorte.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-		gbl_panelNorte.rowWeights = new double[]{0.0, 0.0, 0.0};
+		gbl_panelNorte.rowWeights = new double[]{0.0, 0.0};
 		panelNorte.setLayout(gbl_panelNorte);
 		
 		JLabel logo = new JLabel("");
@@ -92,11 +126,11 @@ public class VistaResultadosBusqueda extends JFrame{
 		gbc_logo.insets = new Insets(0, 0, 5, 5);
 		gbc_logo.gridx = 0;
 		gbc_logo.gridy = 0;
-		logo.setIcon(new ImageIcon(new ImageIcon(LOGO).getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH)));
+		logo.setIcon(new ImageIcon(new ImageIcon(LOGO).getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
 		panelNorte.add(logo, gbc_logo);
 		
 		JLabel siglas = new JLabel("MVC");
-		siglas.setFont(new Font("Tahoma", Font.BOLD, 40));
+		siglas.setFont(new Font("Tahoma", Font.BOLD, 20));
 		siglas.setHorizontalAlignment(SwingConstants.LEFT);
 		GridBagConstraints gbc_siglas = new GridBagConstraints();
 		gbc_siglas.fill = GridBagConstraints.BOTH;
@@ -105,43 +139,32 @@ public class VistaResultadosBusqueda extends JFrame{
 		gbc_siglas.gridy = 0;
 		panelNorte.add(siglas, gbc_siglas);
 		
-		JLabel noPedido = new JLabel("No. Pedido:");
-		noPedido.setFont(new Font("Tahoma", Font.BOLD, 40));
-		GridBagConstraints gbc_noPedido = new GridBagConstraints();
-		gbc_noPedido.fill = GridBagConstraints.BOTH;
-		gbc_noPedido.insets = new Insets(0, 0, 5, 0);
-		gbc_noPedido.gridx = 3;
-		gbc_noPedido.gridy = 0;
-		noPedido.setVisible(false);
-		panelNorte.add(noPedido, gbc_noPedido);
+		JLabel lblResultados = new JLabel("Resultados:");
+		lblResultados.setFont(new Font("Tahoma", Font.BOLD, 30));
+		GridBagConstraints gbc_lblResultados = new GridBagConstraints();
+		gbc_lblResultados.fill = GridBagConstraints.VERTICAL;
+		gbc_lblResultados.insets = new Insets(0, 0, 5, 0);
+		gbc_lblResultados.gridx = 3;
+		gbc_lblResultados.gridy = 0;
+		panelNorte.add(lblResultados, gbc_lblResultados);
 		
 		JLabel nombre = new JLabel("Montalvo Picture Cars");
-		nombre.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		nombre.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		nombre.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_nombre = new GridBagConstraints();
+		gbc_nombre.anchor = GridBagConstraints.NORTHWEST;
 		gbc_nombre.gridwidth = 2;
-		gbc_nombre.fill = GridBagConstraints.BOTH;
-		gbc_nombre.insets = new Insets(0, 0, 5, 5);
+		gbc_nombre.insets = new Insets(0, 8, 5, 5);
 		gbc_nombre.gridx = 0;
 		gbc_nombre.gridy = 1;
 		panelNorte.add(nombre, gbc_nombre);
-		
-		JLabel cliente = new JLabel("Cliente:");
-		cliente.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		GridBagConstraints gbc_cliente = new GridBagConstraints();
-		gbc_cliente.insets = new Insets(0, 0, 5, 0);
-		gbc_cliente.fill = GridBagConstraints.BOTH;
-		gbc_cliente.gridx = 3;
-		gbc_cliente.gridy = 1;
-		cliente.setVisible(false);
-		panelNorte.add(cliente, gbc_cliente);
 		
 		JPanel panelCentro = new JPanel();
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(70, 5, 500, 473);
+		scrollPane.setBounds(75, 5, 500, 473);
 		tablaResultados = new JTable();
 		tablaResultados.setCellSelectionEnabled(true);
 		tablaResultados.setRowHeight(90);

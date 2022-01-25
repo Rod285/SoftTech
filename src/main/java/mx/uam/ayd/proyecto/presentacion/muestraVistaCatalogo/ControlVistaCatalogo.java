@@ -119,7 +119,5 @@ public class ControlVistaCatalogo {
 			}
 			controlBusqueda.inicia(resultadosBusqueda);
 		}
-		
-		
 	}
 }

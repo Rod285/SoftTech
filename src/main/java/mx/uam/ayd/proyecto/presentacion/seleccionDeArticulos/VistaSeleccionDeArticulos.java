@@ -1,6 +1,5 @@
 package mx.uam.ayd.proyecto.presentacion.seleccionDeArticulos;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,23 +10,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.springframework.stereotype.Component;
-import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.ControlVistaAdministrador;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
-import javax.swing.JMenuBar;
-import javax.swing.JPopupMenu;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import java.awt.Image;
 
 
@@ -59,7 +51,7 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 	private ImageIcon imagen1;
 	
 	private JTextField textField;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 	
 	String[] opciones = {"Opciones", "Catalogo", "Clasicos", "Deportivos", "Luxury", "Carga"};
 
@@ -93,7 +85,7 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		String [] categorias = {"Clasicos","Deportivos","Luxury","Carga"};
+		//String [] categorias = {"Clasicos","Deportivos","Luxury","Carga"};
 		
 		
 		JLabel lblNewJgoodiesTitle = new JLabel("MVC");
@@ -115,8 +107,38 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 		
 		textField = new JTextField();
 		textField.setColumns(10);
+		textField.setToolTipText("Ingrese el modelo del vehículo que desea y presione Enter");
+		textField.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String modeloVehiculo = textField.getText();
+				boolean bandera = validaModeloNoVacio(modeloVehiculo);
+				if(bandera == false) {
+					muestraDialogoModeloEnBlanco();
+				}else {
+					controlSeleccionDeArticulos.iniciaBusqueda(modeloVehiculo);
+				}
+			}
+
+			/*
+			 * @Autor: Mejía Velázquez José Rodrigo
+			 * @Descripción: Método que valida que el Campo de busqueda no se encuentra vacío cuando el usuario
+			 * presiona Enter, si el campo no está vacío regresa true, de lo contrario regresa false.
+			 * @Fecha de implementación: 24/01/2022
+			 * @Paramentro de entrada: String modeloVehiculo
+			 * @Valor de retorno: Boolean
+			 */
+			private boolean validaModeloNoVacio(String modeloVehiculo) {
+				if(!modeloVehiculo.equals("")) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		});
 		
-		JLabel LabelSearch = new JLabel("Search:");
+		JLabel LabelSearch = new JLabel("Buscar:");
 		LabelSearch.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		btnRealizarPedido = new JButton("Realizar Pedido");
@@ -149,12 +171,12 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 		
 		JLabel lblNewLabel = new JLabel("");
 		
-		String frase = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n"
+/*		String frase = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. \n"
 				+ "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, \n"
 				+ "when an unknown printer took a galley of type and scrambled it to make a type specimen book. \n"
 				+ "It has survived not only five centuries, but also the leap into electronic typesetting, \n"
 				+ "remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
-		
+*/		
 		JTextArea txtrloremIpsumIs = new JTextArea();
 		txtrloremIpsumIs.setFont(new Font("Tahoma", Font.ITALIC, 16));
 		txtrloremIpsumIs.setWrapStyleWord(true);
@@ -256,10 +278,10 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 		btnNotificaciones.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnNotificaciones.addActionListener(this);
 		
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		comboBox.setBackground(new Color(240, 248, 255));
-		comboBox.setModel(new DefaultComboBoxModel(opciones));
+		comboBox.setModel(new DefaultComboBoxModel<String>(opciones));
 		comboBox.addActionListener(this);
 		
 		GroupLayout gl_panel = new GroupLayout(panel);
@@ -327,5 +349,20 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 			VistaCatalogo vistaCat = new VistaCatalogo();
 		}
 	
+	}
+	
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que informa la usuario que el campo de búsquedano debé estar en blanco
+	 * @Fecha de implementación: 24/01/2022
+	 * @Parametro de entrada: void
+	 * @Valor de retorno: void
+	 */
+	private void muestraDialogoModeloEnBlanco() {
+		JOptionPane.showMessageDialog(null, "Para realizar la búsqueda, el modelo no debe estar vacío");
+	}
+
+	public void muestraDialogoVehiculoNoEncontrado() {
+		JOptionPane.showMessageDialog(null, "El vehículo que busca no se encuentra, por favor intente con otro modelo");
 	}
 }
