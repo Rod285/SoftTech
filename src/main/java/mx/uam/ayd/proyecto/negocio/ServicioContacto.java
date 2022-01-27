@@ -1,5 +1,6 @@
 package mx.uam.ayd.proyecto.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -23,12 +24,17 @@ public class ServicioContacto {
 	 * @author Jonathan Cruz
 	 * Recupera todos los contactos de un miembro de operaciones
 	 * @param MiembroOperaciones MOperaciones 
-	 * @return lista de contactos
+	 * @return lista de contactos, que puede estar vacia si no hay contactos 
 	 * @fechaImplementacion 20 de enero de 2022
 	 */
 	public List<Contacto> recuperaContactos(MiembroOperaciones MOperaciones){
+		
 		//En ésta lista se alamacenan los contactos recuperados
-		List <Contacto> contactos = contactoRepository.findBymiembroOp(MOperaciones);
+		  List <Contacto> contactos = new ArrayList<>();
+		  for(Contacto contacto:contactoRepository.findBymiembroOp(MOperaciones)) {
+			  contactos.add(contacto);
+		  }
+		
 		return contactos;
 	}
 
@@ -36,8 +42,12 @@ public class ServicioContacto {
      * @author Jonathan Cruz
  	 * Método que permite agregar un contacto 
  	 * 
- 	 * @param Strin nombre, String apellido, Strig telefono, MiembroOperaciones oper
- 	 * @return  Contacto
+ 	 * @param Strin nombre, nombre del contacto
+ 	 * @param String apellido, apellido del contacto 
+ 	 * @param Strig telefono, numero de telédfono del contactro
+ 	 * @param MiembroOperaciones oper, miembro de operaciones al que le pertenece elcontacto
+ 	 * @return El contacto que se agregó 
+ 	 * @throws IllegalArgumentException si el número de telefono ya se encuentra registrado
  	 * @fechaImplementación 21 de enero de 2022
  	 */
 	public Contacto agregaContacto(String nombre, String apellido, String tel, MiembroOperaciones oper) {
@@ -46,6 +56,7 @@ public class ServicioContacto {
 		Contacto contacto = contactoRepository.findByTelefono(tel);
 		
 		if(contacto != null) {
+			System.out.println("Existe un contacto con ese numero de teléfono");
 			throw new IllegalArgumentException("Existe un contacto con ese numero de teléfono");
 		}
 		
