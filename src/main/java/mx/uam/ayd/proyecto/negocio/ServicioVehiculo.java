@@ -80,7 +80,15 @@ public class ServicioVehiculo {
 		return listaTipo;
 	}
 
-
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que realiza el llamado del vehiculoRepository para que lleve a cabo la busqueda
+	 * de los vehiculos con el modelo proporcionado por el usuario
+	 * @Fecha de implementación: 20/01/2022
+	 * @Parametro de entrada: String modeloVehiculo 
+	 * @Valor de retorno: List<Vehiculo> resultadosBusqueda si encuentra vehiculos con el modelo dado,
+	 * null si no encuentra ningún vehículo con dicho modelo
+	 */
 	public ArrayList<Vehiculo> buscaVehiculosPorModelo(String modeloVehiculo) {
 		ArrayList<Vehiculo> resultadosBusqueda = new ArrayList<>();
 		if(modeloVehiculo != null) {
@@ -101,10 +109,16 @@ public class ServicioVehiculo {
 		}else {
 			return null;
 		}
-		
-		
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que valida si se encontraron vehiculos con el modelo solicitado
+	 * @Fecha de implementación: 20/01/2022
+	 * @Parametro de entrada: List<Vehiculo> resultadosBusqueda 
+	 * @Valor de retorno: Boolean, true si se encontraron vehiculos con el modelo requerido
+	 * false si no encontró ningún vehiculo con el modelo solicitado.
+	 */
 	private boolean validaResultadosnoVacios(List<Vehiculo> resultadosBusqueda) {
 		if(resultadosBusqueda.size() != 0) {
 			return true;

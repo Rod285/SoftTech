@@ -1,8 +1,6 @@
 package mx.uam.ayd.proyecto.negocio;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -15,12 +13,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.datos.VehiculoRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
-import mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda.ControlVistaResultadosBusqueda;
 
-@Slf4j
+
 @ExtendWith(MockitoExtension.class)
 class ServicioVehiculoTest {
 
@@ -37,6 +33,13 @@ class ServicioVehiculoTest {
 	private ArrayList<Vehiculo> listaPruebaModelo;
 	private Vehiculo v1, v2, v3, v4, v5, v6, v7, v8;
 	
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Preparación para las pruebas
+	 * @Fecha de implementación: 24/01/2022
+	 * @Parametros de entrada: ninguno
+	 * @Valor de retorno: void
+	 */
 	@BeforeEach
 	void preparaTest() {
 		listaIterable = new ArrayList<>();
@@ -87,16 +90,19 @@ class ServicioVehiculoTest {
 		listaPrueba.add(v8);
 		
 		listaIterable = listaPrueba;
-		
-		listaPruebaModelo.add(v5);
 	}
 	
 	@Test
 	void testRecuperaVehiculosPorTipo() {
 		
 		when(vehiculoRepository.findAll()).thenReturn(listaIterable);
-
-		//Caso 1: Recupera una lista vacía
+		
+		/*
+		 * ID: Prueba 1
+		 * Objetivo: Probar que la recuperación de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, pero se busca un tipo de vehiculo no definido.
+		 * Valor esperado: Una lista vacía. 
+		 */
 		
 		String tipo = "EsteTipoNoEstaDefinido";
 		
@@ -105,7 +111,12 @@ class ServicioVehiculoTest {
 		assertEquals(1, listaTipo.size());
 		assertEquals(tipo, listaTipo.get(0).getTipo());
 		
-		//Caso 2: Recupera una lista cuando se le da como parametro null
+		/*
+		 * ID: Prueba 2
+		 * Objetivo: Probar que la recuperación de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, se introduce null como tipo.
+		 * Valor esperado: Una lista vacía. 
+		 */
 		
 		tipo = null;
 		
@@ -114,7 +125,12 @@ class ServicioVehiculoTest {
 		assertEquals(1, listaTipo.size());
 		assertEquals("nulo", listaTipo.get(0).getTipo());
 		
-		//Caso 3: Recupera una lista de tipo Clasico
+		/*
+		 * ID: Prueba 3
+		 * Objetivo: Probar que la recuperación de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, el tipo de busqueda es Clasico.
+		 * Valor esperado: Una lista con dos elementos, ambos del tipo Clasico.
+		 */
 		
 		tipo = "Clasico";
 		
@@ -124,7 +140,12 @@ class ServicioVehiculoTest {
 		assertEquals(tipo, listaTipo.get(0).getTipo(), "Tenía que ser Clásico");
 		assertEquals(tipo, listaTipo.get(1).getTipo(), "Tenía que ser Clásico");
 		
-		//Caso 4: Recupera una lista de tipo Lujo
+		/*
+		 * ID: Prueba 4
+		 * Objetivo: Probar que la recuperación de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, el tipo de busqueda es Lujo.
+		 * Valor esperado: Una lista con dos elementos, ambos del tipo Lujo.
+		 */
 		
 		tipo = "Lujo";
 				
@@ -134,7 +155,12 @@ class ServicioVehiculoTest {
 		assertEquals(tipo, listaTipo.get(0).getTipo(), "Tenia que ser Lujo");
 		assertEquals(tipo, listaTipo.get(1).getTipo(), "Tenia que ser Lujo");
 		
-		//Caso 5: Recupera una lista de tipo Carga
+		/*
+		 * ID: Prueba 5
+		 * Objetivo: Probar que la recuperación de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, el tipo de busqueda es Carga.
+		 * Valor esperado: Una lista con dos elementos, ambos del tipo Carga.
+		 */
 		
 		tipo = "Carga";
 					
@@ -144,7 +170,12 @@ class ServicioVehiculoTest {
 		assertEquals(tipo, listaTipo.get(0).getTipo(), "Tenía que ser Carga");
 		assertEquals(tipo, listaTipo.get(1).getTipo(), "Tenía que ser Carga");
 		
-		//Caso 6: Recupera una lista de tipo Deportivo
+		/*
+		 * ID: Prueba 6
+		 * Objetivo: Probar que la recuperación de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, el tipo de busqueda es Deportivo.
+		 * Valor esperado: Una lista con dos elementos, ambos del tipo Deportivo.
+		 */
 		
 		tipo = "Deportivo";
 							
@@ -162,13 +193,23 @@ class ServicioVehiculoTest {
 		
 		when(vehiculoRepository.findByModeloIgnoreCaseContaining(modelo)).thenReturn(listaVacia);
 		
-		//Caso 1: Recupera lista de resultados vacía
+		/*
+		 * ID: Prueba 1
+		 * Objetivo: Probar que la busqueda de vehiculos por modelo funciona correctamente
+		 * Precondiciones: No existen vehiculos registrados, el modelo de busqueda es NoDefinido.
+		 * Valor esperado: null.
+		 */
 			
 		listaResultados = servicioVehiculo.buscaVehiculosPorModelo(modelo);
 		
 		assertEquals(null, listaResultados, "Debe ser null");
 		
-		//Caso 2: Se le da un parametro nulo
+		/*
+		 * ID: Prueba 2
+		 * Objetivo: Probar que la busqueda de vehiculos por modelo funciona correctamente
+		 * Precondiciones: No existen vehiculos registrados, modelo es igual a null.
+		 * Valor esperado: null.
+		 */
 		
 		modelo = null;
 				
@@ -176,9 +217,16 @@ class ServicioVehiculoTest {
 		
 		assertEquals(null, listaResultados, "Debe ser null");
 		
-		//Caso 3: Se recupera un vehiculo por su modelo exacto
+		/*
+		 * ID: Prueba 3
+		 * Objetivo: Probar que la busqueda de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, el modelo de busqueda es Maverick.
+		 * Valor esperado: Una lista con un elemento modelo Maverick.
+		 */
 		
 		modelo = "Maverick";
+		
+		listaPruebaModelo.add(v5);
 		
 		when(vehiculoRepository.findByModeloIgnoreCaseContaining(modelo)).thenReturn(listaPruebaModelo);
 				
@@ -186,5 +234,43 @@ class ServicioVehiculoTest {
 		
 		assertEquals(modelo, listaResultados.get(0).getModelo(), "Debe ser Maverick");
 		
+		/*
+		 * ID: Prueba 4
+		 * Objetivo: Probar que la busqueda de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen vehiculos registrados, el modelo de busqueda es parcial Mav.
+		 * Valor esperado: Una lista con un elemento modelo Maverick.
+		 */
+		
+		modelo = "Mav";
+		
+		listaPruebaModelo = new ArrayList<>();
+		listaPruebaModelo.add(v5);
+		
+		when(vehiculoRepository.findByModeloIgnoreCaseContaining(modelo)).thenReturn(listaPruebaModelo);
+				
+		listaResultados = servicioVehiculo.buscaVehiculosPorModelo(modelo);
+		
+		assertEquals(true, listaResultados.get(0).getModelo().contains(modelo), "Debe ser Maverick");
+		
+		/*
+		 * ID: Prueba 5
+		 * Objetivo: Probar que la busqueda de vehiculos por tipo funciona correctamente
+		 * Precondiciones: Existen 2 vehiculos registrados cuyo modelo incluye Mustang, el modelo de busqueda es Mustang.
+		 * Valor esperado: Una lista con 2 vehiculos de modelo Mustang.
+		 */
+		//caso 5: Se recupera más de un vehiculo con modelo parecido
+		
+		modelo = "Mustang";
+		
+		listaPruebaModelo = new ArrayList<>();
+		listaPruebaModelo.add(v1);
+		listaPruebaModelo.add(v8);
+		
+		when(vehiculoRepository.findByModeloIgnoreCaseContaining(modelo)).thenReturn(listaPruebaModelo);
+				
+		listaResultados = servicioVehiculo.buscaVehiculosPorModelo(modelo);
+		
+		assertEquals(true, listaResultados.get(0).getModelo().contains(modelo), "No contiene Mustang");
+		assertEquals(true, listaResultados.get(1).getModelo().contains(modelo), "No contiene Mustang");
 	}
 }

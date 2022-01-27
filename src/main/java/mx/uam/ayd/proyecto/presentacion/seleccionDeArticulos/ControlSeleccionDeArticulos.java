@@ -51,6 +51,8 @@ public class ControlSeleccionDeArticulos {
 	private ControlVistaResultadosBusqueda controlBusqueda;
 
 	private List<Vehiculo> resultadosBusqueda;
+
+	private List<Vehiculo> listaPedido;
 	
 	/**
 	 * Muestra ventana cliente
@@ -85,7 +87,7 @@ public class ControlSeleccionDeArticulos {
 			for(Vehiculo vehiculo : resultadosBusqueda) {
 				log.info("modelo: " + vehiculo.getModelo());
 			}
-			controlBusqueda.inicia(resultadosBusqueda);
+			controlBusqueda.inicia(controlVistaCatalogo, resultadosBusqueda, listaPedido);
 		}
 	}
 	

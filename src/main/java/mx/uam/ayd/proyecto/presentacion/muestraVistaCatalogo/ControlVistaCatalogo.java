@@ -60,6 +60,7 @@ public class ControlVistaCatalogo {
 	
 	public void inicia() {
 		log.info("iniciando VistaCatalogo");
+		listaPedido = new ArrayList<>();
 		recuperaVehiculos();
 		vistaCatalogo.muestra(this, listaClasicos, listaLuxury, listaCarga, listaDeportivos);
 	}
@@ -117,7 +118,7 @@ public class ControlVistaCatalogo {
 			for(Vehiculo vehiculo : resultadosBusqueda) {
 				log.info("modelo: " + vehiculo.getModelo());
 			}
-			controlBusqueda.inicia(resultadosBusqueda);
+			controlBusqueda.inicia(this, resultadosBusqueda, listaPedido);
 		}
 	}
 }

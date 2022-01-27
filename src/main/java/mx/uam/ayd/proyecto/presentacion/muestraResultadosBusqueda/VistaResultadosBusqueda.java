@@ -1,13 +1,12 @@
 /*
- * @Autor: Mejía Velázquez José Rodrigo
  * @Nombre: VistaResultadosBusqueda
  * @Descripción: Esta clase lleva a cabo es la vista del sistema que muestra los resultados de buscar un vehiculo por su modelo.
+ * @Autor: Mejía Velázquez José Rodrigo
  * @Fecha de implementación: 20/01/2022
  */
 package mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -15,40 +14,29 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.TableColumnModelEvent;
-import javax.swing.event.TableColumnModelListener;
-import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
-import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalogo;
 
+@SuppressWarnings("serial")
 @Slf4j
 @Component
 public class VistaResultadosBusqueda extends JFrame{
@@ -79,11 +67,15 @@ public class VistaResultadosBusqueda extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TableModel modeloTabla = tablaResultados.getModel();
-				List<Boolean> seleccion = new ArrayList<>();
+				List<Vehiculo> seleccion = new ArrayList<>();
+				
 				for(int i = 0; i < modeloTabla.getRowCount() ;i++) {
-					seleccion.add((Boolean) modeloTabla.getValueAt(i, 2));
-					log.info("valor: " + seleccion.get(i));
+					if((Boolean)modeloTabla.getValueAt(i, 2) == true) {
+						seleccion.add(resultadosBusqueda.get(i));
+					}
 				}
+				log.info("cantidad de vehiculos agregados a la seleccion: " + seleccion.size());
+				//falta implementar historia de usuario
 			}
 		});
 		agregarAPedido.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -202,7 +194,7 @@ public class VistaResultadosBusqueda extends JFrame{
 	 * @Parametro de entrada: NA 
 	 * @Valor de retorno: NA
 	 */
-private class ResultadosTableModel extends AbstractTableModel{
+	private class ResultadosTableModel extends AbstractTableModel{
 		
 		private List<Vehiculo> resultadosBusqueda;
 		private List<Boolean> seleccion = new ArrayList<>();
@@ -300,4 +292,6 @@ private class ResultadosTableModel extends AbstractTableModel{
 			
 		}
 	}
+
+
 }
