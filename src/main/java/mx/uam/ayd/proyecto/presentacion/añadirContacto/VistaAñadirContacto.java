@@ -81,6 +81,9 @@ public class VistaAñadirContacto extends JFrame {
 				
 				if(txtNombre.getText().equals("") || txtApellido.getText().equals("") || txtTelefono.getText().equals("")) {
 					muestraDialogoConMensaje("Los campos no deben estar vacios");
+					txtNombre.setText("");	
+					txtApellido.setText("");
+					txtTelefono.setText("");
 				} else {
 					String telefono = txtTelefono.getText();
 					if(EsNumero(telefono) && telefono.length() == 10) {
