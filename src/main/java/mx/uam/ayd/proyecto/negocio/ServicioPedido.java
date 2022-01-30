@@ -13,7 +13,6 @@ import mx.uam.ayd.proyecto.datos.AdministradorRepository;
 import mx.uam.ayd.proyecto.datos.ClienteRepository;
 import mx.uam.ayd.proyecto.datos.GrupoRepository;
 import mx.uam.ayd.proyecto.datos.PedidoRepository;
-import mx.uam.ayd.proyecto.datos.PedidoVehiculoRepository;
 import mx.uam.ayd.proyecto.datos.UsuarioRepository;
 import mx.uam.ayd.proyecto.datos.VehiculoRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
@@ -21,7 +20,6 @@ import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
-import mx.uam.ayd.proyecto.negocio.modelo.PedidoVehiculo;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
 
@@ -47,8 +45,6 @@ public class ServicioPedido {
 	@Autowired 
 	private VehiculoRepository vehiculoRepository;
 	
-	@Autowired 
-	private PedidoVehiculoRepository pedidovehiculoRepository;
 	
 	List<Vehiculo> listaPedido = new ArrayList<>();
 	
@@ -192,11 +188,17 @@ public class ServicioPedido {
 
 	}
 	
-	public List<Pedido> recuperaPedido(){
-		System.out.println("Metodo en servicio pedido");
-		List <Pedido> employees = pedidoRepository.findAll();
-	        employees.forEach(employee -> System.out.println(employee.toString()));
-		return pedidoRepository.findAll();
+	public List<Pedido> recuperaPedidos(){
+		
+		List <Pedido> pedidos = pedidoRepository.findAll();
+		
+		return pedidos;
+	}
+	
+	public List<Pedido> recuperaPedidoPorFecha(String fechaEntrega){
+		List<Pedido> pedidos = pedidoRepository.findByFechaEntrega(fechaEntrega);
+		System.out.println(pedidos);
+		return pedidos;
 	}
 } 
 

@@ -19,7 +19,6 @@ import mx.uam.ayd.proyecto.datos.GrupoRepository;
 import mx.uam.ayd.proyecto.datos.NotificacionRepository;
 import mx.uam.ayd.proyecto.datos.OperacionesRepository;
 import mx.uam.ayd.proyecto.datos.PedidoRepository;
-import mx.uam.ayd.proyecto.datos.PedidoVehiculoRepository;
 import mx.uam.ayd.proyecto.datos.VehiculoRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
@@ -27,9 +26,10 @@ import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
-import mx.uam.ayd.proyecto.negocio.modelo.PedidoVehiculo;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
 import mx.uam.ayd.proyecto.presentacion.login.VistaLogin;
+import mx.uam.ayd.proyecto.presentacion.muestraPedidos.ControlPedidos;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.VistaAdministrador;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
 
 /**
@@ -71,7 +71,10 @@ public class ProyectoApplication {
 	PedidoRepository pedidoRepository;
 	
 	@Autowired
-	PedidoVehiculoRepository pedidoVehiculoRepository;
+	VistaAdministrador vistaAdministrador;
+	
+	@Autowired
+	ControlPedidos controlPedido;
 	
 	/**
 	 * 
@@ -312,14 +315,29 @@ public class ProyectoApplication {
 		 * Declaracion de pedioVehículo para pedido de prueba.
 		 */
 		Pedido pedidoPrueba = new Pedido();
-		pedidoPrueba.setFechaInicio("18/01/2022");
-		pedidoPrueba.setFechaEntrega("20/01/2022");
+		pedidoPrueba.setFechaInicio("17/1/2022");
+		pedidoPrueba.setFechaEntrega("20/1/2022");
 		pedidoPrueba.setEstado("Por aceptar");
-		pedidoPrueba.setAdministrador(root);
 		pedidoPrueba.setCliente(cliente);
 		pedidoRepository.save(pedidoPrueba);
 		
-		PedidoVehiculo pedidoVehiculo1 = new PedidoVehiculo();
+		Pedido pedidoPrueba2 = new Pedido();
+		pedidoPrueba2.setFechaInicio("24/1/2022");
+		pedidoPrueba2.setFechaEntrega("28/1/2022");
+		pedidoPrueba2.setEstado("Por aceptar");
+		pedidoPrueba2.setCliente(cliente);
+		pedidoRepository.save(pedidoPrueba2);
+		
+		Pedido pedidoPrueba3 = new Pedido();
+		pedidoPrueba3.setFechaInicio("24/1/2022");
+		pedidoPrueba3.setFechaEntrega("28/1/2022");
+		pedidoPrueba3.setEstado("Aceptado");
+		pedidoPrueba3.setCliente(cliente);
+		pedidoRepository.save(pedidoPrueba3);
+		
+		vistaAdministrador.pedidos = controlPedido.recuperaPedidos();
+		
+		/*PedidoVehiculo pedidoVehiculo1 = new PedidoVehiculo();
 		PedidoVehiculo pedidoVehiculo2 = new PedidoVehiculo();
 		PedidoVehiculo pedidoVehiculo3 = new PedidoVehiculo();
 		
@@ -344,10 +362,10 @@ public class ProyectoApplication {
 		System.out.println(arregloPedidoVehiculo);
 		/*
 		 * Declaracion de pedido de prueba.
-		 */
+		 
 		
 		pedidoPrueba.setPedido_vehiculos(arregloPedidoVehiculo);
-		pedidoRepository.save(pedidoPrueba);
+		pedidoRepository.save(pedidoPrueba);*/
 				
 	}
 }

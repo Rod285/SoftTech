@@ -51,15 +51,5 @@ public class Pedido {
 		
 	private ArrayList<Pedido> ordenPedido;
 	
-	@Builder.Default 
-	@OneToMany(mappedBy = "pedido")
-	    private List<PedidoVehiculo> pedido_vehiculos = new ArrayList<PedidoVehiculo>();
-	
-	public Boolean AgregarAPedidoExistente(PedidoVehiculo pedvehi) {
-		//vehiculos.add(vehiculo);
-		pedido_vehiculos.add(pedvehi);
-		return (true);
-	}
-	
 
 }

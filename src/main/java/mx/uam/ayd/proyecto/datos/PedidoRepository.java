@@ -13,4 +13,6 @@ public interface PedidoRepository extends CrudRepository <Pedido, Long>{
 	
 	public Optional<Pedido> findById(long id);
 	
+	public List<Pedido> findByFechaEntrega(String fechaEntrega);
+	
 }

@@ -1,5 +1,8 @@
 package mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
@@ -7,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import mx.uam.ayd.proyecto.negocio.ServicioAdministrador;
+import mx.uam.ayd.proyecto.negocio.ServicioPedido;
 import mx.uam.ayd.proyecto.negocio.ServicioUsuario;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
+import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 import mx.uam.ayd.proyecto.presentacion.bandejaNotificaciones.ControlBandejaNotificaciones;
 import mx.uam.ayd.proyecto.presentacion.bandejaNotificaciones.VistaBandejaNotificaciones;
@@ -57,6 +62,9 @@ public class ControlVistaAdministrador {
 	private ServicioAdministrador servicioAd;
 	
 	@Autowired
+	private ServicioPedido servicioPedido;
+	
+	@Autowired
 	private VistaPedidos vp;
 	
 	@Autowired
@@ -67,7 +75,8 @@ public class ControlVistaAdministrador {
 	 * 
 	 */
 	public void inicia() {
-		vistaAdministrador.muestra(this);	
+		vistaAdministrador.muestra(this);
+		
 	}
 	
 	
@@ -121,8 +130,8 @@ public class ControlVistaAdministrador {
 		return vn;
 	}
 	
-	public VistaPedidos muestraVistaPedidos() {
-		vp = controlPedidos.inicia();
+	public VistaPedidos muestraVistaPedidos(List <Pedido> pedidos) {
+		vp = controlPedidos.inicia(pedidos);
 		return vp;
 	}
 

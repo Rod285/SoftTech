@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import mx.uam.ayd.proyecto.presentacion.generarContrapropuesta.ControlGenerarContrapropuesta;
 
 import java.awt.ScrollPane;
+import java.util.List;
 import java.awt.BorderLayout;
 import javax.swing.JProgressBar;
 import javax.swing.GroupLayout;
@@ -62,11 +63,6 @@ public class VistaPedidos extends JPanel {
         tablaPedidos.getColumnModel().getColumn(2).setPreferredWidth(50);
         tablaPedidos.getColumnModel().getColumn(3).setPreferredWidth(50);
         
-        tablaPedidos.setValueAt("1",0 , 0);
-        tablaPedidos.setValueAt("Cliente",0 , 1);
-        tablaPedidos.setValueAt("20/01/2022",0 , 2);
-        tablaPedidos.setValueAt("Por aceptar",0 , 3);
-        
 		JScrollPane scrollPane = new JScrollPane(tablaPedidos);
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
@@ -86,10 +82,23 @@ public class VistaPedidos extends JPanel {
 
 	}// Fin del metodo 
 	
-	public VistaPedidos muestra(ControlPedidos control) {
+	public VistaPedidos muestra(ControlPedidos control, List<String> informacion) {
+		
+		int columna = 0, fila = 0;
+		System.out.println(informacion.size());
+		
+		for(int i=0; i<informacion.size(); i++) {
+			System.out.println(i + ": " + informacion.get(i) + " Columna: " + columna + " Fila: " + fila);
+			tablaPedidos.setValueAt(informacion.get(i), fila, columna);
+			columna++;
+			if(columna%4==0) {
+				fila++;
+				columna=0;
+			}
+		}	
+		
 		controlPedidos = control;
 		//setVisible(true);
 		return this;
 	}
-
 }

@@ -3,6 +3,7 @@ package mx.uam.ayd.proyecto.presentacion.muestraPedidos;
  * @author Omar Aldaco Montalvo
  */
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,14 +38,29 @@ public class ControlPedidos {
 		return p;
 	}
 	
-	public VistaPedidos inicia() {
-		vp =  vistaPedidos.muestra(this);
+	public VistaPedidos inicia(List <Pedido> pedidos)  {
+		
+		List <String> informacion = new ArrayList<>();
+		for(Pedido pedido:pedidos) {
+			informacion.add(String.valueOf(pedido.getId()));
+			informacion.add(pedido.getCliente().getNombre());
+			informacion.add(pedido.getFechaEntrega());
+			informacion.add(pedido.getEstado());
+		}
+		vp =  vistaPedidos.muestra(this, informacion);
+		
 		return vp;
 	}
 	
-	public List<Pedido> muestraPedido() {
+	public List<Pedido> recuperaPedidos() {
 		
-		return servicioPedido.recuperaPedido();
+		return servicioPedido.recuperaPedidos();
+	}
+	
+	public List<Pedido> recuperaPedidosPorFecha(String fecha) {
+		
+		return servicioPedido.recuperaPedidoPorFecha(fecha);
+		
 	}
 
 }
