@@ -25,9 +25,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 /*
- * @author Fernanda Marcelin Leyva
- * @Updated José Rodrigo Mejía Velázquez 7/12/2021
- * @17/01/2022 Inicio Tercer Sprint HU-10
+ * VistaCatalogo
+ * @Descripcion: Vista de la HU Vista Catálogo
+ * @author Mejía Velázquez José Rodrigo
+ * @Fecha de implementación: 17/01/2022
  */
 
 @SuppressWarnings("serial")

@@ -66,7 +66,10 @@ public class VistaResultadosBusqueda extends JFrame{
 		
 		JButton agregarAPedido = new JButton("Agregar a Pedido");
 		agregarAPedido.addActionListener(new ActionListener() {
-
+			
+			/*
+			 * Escuchador botón agregar a Pedido
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				TableModel modeloTabla = tablaResultados.getModel();
@@ -93,6 +96,9 @@ public class VistaResultadosBusqueda extends JFrame{
 		regresar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		regresar.setSize(100, 25);
 		regresar.addActionListener(new ActionListener() {
+			/*
+			 * Escuchador botón regresar
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);

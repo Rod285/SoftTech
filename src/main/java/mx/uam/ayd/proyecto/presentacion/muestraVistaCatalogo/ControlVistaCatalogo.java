@@ -14,11 +14,10 @@ import mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda.ControlVistaRe
 import mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido.ControlVistaIrAPedido;
 
 /**
- * 
- * Módulo de control para la mostrar la vista catálogo
- * 
- * @author BurbujasMaravillosas
- *
+ * ControlVistaCatalogo
+ * @Descripción: Módulo de control para la mostrar la vista catálogo
+ * @author Mejía Velázquez José Rodrigo
+ * @Fecha de implementación: 21/01/2022
  */
 
 @Slf4j

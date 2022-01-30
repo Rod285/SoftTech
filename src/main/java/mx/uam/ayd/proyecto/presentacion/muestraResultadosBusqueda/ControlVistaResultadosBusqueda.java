@@ -1,7 +1,7 @@
 /*
  * ControlVistaResultadosBusqueda
- * Esta clase lleva a cabo el control de flujo del sistema de la vista VistaResultadosBusqueda
- * Mejía Velázquez José Rodrigo
+ * @Descripción: Esta clase lleva a cabo el control de flujo del sistema de la vista VistaResultadosBusqueda
+ * @Autor: Mejía Velázquez José Rodrigo
  * Fecha de implementación: 20/01/2022
  */
 package mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda;

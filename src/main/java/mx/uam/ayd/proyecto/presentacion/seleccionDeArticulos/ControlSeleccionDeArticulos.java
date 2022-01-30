@@ -18,10 +18,11 @@ import mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda.ControlVistaRe
 import mx.uam.ayd.proyecto.presentacion.muestraVistaCatalogo.ControlVistaCatalogo;
 
 /**
- * 
+ * ControlSeleccionDeArticulos 
  * Módulo de control para la historia de usuario Selección de Artículos
  * 
- * @author Fernanda Marcelin Leyva
+ * @author Mejía Velázquez José Rodrigo
+ * @Fecha de implementación: 21/01/2022
  *
  */
 @Slf4j

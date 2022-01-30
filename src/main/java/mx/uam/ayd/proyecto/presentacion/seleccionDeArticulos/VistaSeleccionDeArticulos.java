@@ -28,7 +28,10 @@ import java.awt.Color;
 import javax.swing.JTextArea;
 
 /*
- * @author Fernanda Marcelin Leyva
+ * VistaSeleccionDeArticulos
+ * @Descripcion: Vista de la interfaz de usuario de la HU Selección de artículos
+ * @author: Mejía Velázquez José Rodrigo
+ * @Fecha de implementación: 24/01/2022
  */
 
 @SuppressWarnings("serial")
@@ -362,6 +365,13 @@ public class VistaSeleccionDeArticulos extends JFrame implements ActionListener 
 		JOptionPane.showMessageDialog(null, "Para realizar la búsqueda, el modelo no debe estar vacío");
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que informa la usuario que el vehiculo no fue encontrado
+	 * @Fecha de implementación: 24/01/2022
+	 * @Parametro de entrada: void
+	 * @Valor de retorno: void
+	 */
 	public void muestraDialogoVehiculoNoEncontrado() {
 		JOptionPane.showMessageDialog(null, "El vehículo que busca no se encuentra, por favor intente con otro modelo");
 	}
