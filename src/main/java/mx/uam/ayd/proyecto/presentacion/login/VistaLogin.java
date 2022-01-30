@@ -17,6 +17,7 @@ import mx.uam.ayd.proyecto.ProyectoApplication;
 import mx.uam.ayd.proyecto.presentacion.agregarUsuario.ControlAgregarUsuario;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.ControlVistaAdministrador;
 import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.VistaAdministrador;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaMOp.ControlVistaMOp;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.ControlnotificarSolicitudAceptada;
 import mx.uam.ayd.proyecto.presentacion.notificarSolitudAceptada.VistanotificarSolicitudAceptada;
 import mx.uam.ayd.proyecto.presentacion.principal.ControlPrincipal;
@@ -48,8 +49,8 @@ public class VistaLogin extends JFrame implements ActionListener {
 	@Autowired
 	private ControlVistaLogin verificausuario;
 	
-	//@Autowired
-	//private ControlPrincipal controlPincipal;
+	@Autowired
+	private ControlVistaMOp controlVistaMOp;
 	
 	@Autowired
 	private ControlVistaAdministrador controlVistaAdministrador;
@@ -166,7 +167,7 @@ public class VistaLogin extends JFrame implements ActionListener {
 	           			   if(cbTipoUsuario.getSelectedItem() == tipoUsuario[2]) {
 	           				   tipo=OPER;
 	           				   verificausuario.validaDatos(user, pass, tipo);
-	           				 
+	           				   controlVistaMOp.operLog(user);
 	           			   }
 	           				
 	           				

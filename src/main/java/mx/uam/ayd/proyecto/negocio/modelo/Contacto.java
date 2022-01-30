@@ -16,12 +16,14 @@ import lombok.Data;
 public class Contacto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//private long idContacto;
+	private long id;
 	private String nombre;
-	private String numero;
+	private String apellido;
+	private String telefono;
 	
+	//Multiples contactos pueden pertenecer a un mismo miembro de operaciones
 	@ManyToOne
 	@JoinColumn(name = "idContacto")
-	private Cliente cliente;
+	private MiembroOperaciones miembroOp;
 
 }

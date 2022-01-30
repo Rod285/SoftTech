@@ -22,8 +22,6 @@ import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 @Slf4j
 @Service
-
-
 public class ServicioNotificacion {
 	
 	@Autowired 
@@ -54,10 +52,10 @@ public class ServicioNotificacion {
 			
 	}
 	/**
-	 * 
-	 * Recupera todos las notificaciones del administrador
-	 *  
-	 * @return notificaciones
+	 * @author Jonathan Cruz
+	 * Recupera todos las notificaciones de un administrador
+	 * @param Objeto tipo administrador 
+	 * @return lista de notificaciones
 	 *
 	 */
 	public List<Notificacion> recuperaNotificaciones(Administrador administrador){

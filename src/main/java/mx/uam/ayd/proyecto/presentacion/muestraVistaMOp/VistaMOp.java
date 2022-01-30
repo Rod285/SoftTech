@@ -1,85 +1,97 @@
+
 package mx.uam.ayd.proyecto.presentacion.muestraVistaMOp;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.beans.PropertyVetoException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.border.BevelBorder;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+import mx.uam.ayd.proyecto.negocio.ServicioVehiculo;
+import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Pedido;
-import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.ControlVistaAdministrador;
+import mx.uam.ayd.proyecto.presentacion.bandejaNotificaciones.ControlBandejaNotificaciones;
+import mx.uam.ayd.proyecto.presentacion.muestraPedidos.ControlPedidos;
+import mx.uam.ayd.proyecto.presentacion.muestraPedidos.VistaPedidos;
+import mx.uam.ayd.proyecto.presentacion.muestraVistaAdministrador.Desktop;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.ScrollPane;
+import java.awt.Color;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JDesktopPane;
 
 /*
- * @author SoftTech
+ * VistaMOP
+ * Es la vista correspondiente al miembro de operaciones
+ * @author Jonathan Cruz
+ * @fechaImplementación  20 de enero de 2022 
  */
 
 @SuppressWarnings("serial")
 @Component
 public class VistaMOp extends JFrame implements KeyListener{
-
+	
+	
+	static Desktop desk;
 	private JPanel contentPane;
 	
-	@Autowired
 	private ControlVistaMOp controlVistaOperaciones;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					VistaMOp frame = new VistaMOp();
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
-	 * Create the frame.
-	 */
+	
+	//Icon
 	private ImageIcon icon1;
 	private Image imagen;
 	private ImageIcon imagen1;
 	private JTextField textField;
 	private JLabel lblBuscar;
-	private JButton btnContactos;
+	private JButton btnAgenda;
 	private JButton btnProyect;
 	private JButton btnNoti;
+	
+	//JDesktopPane Desk;
+	
+	private boolean disponibilidad =false;//
 	
 	public VistaMOp() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 621, 361);
+		setBounds(100, 100, 762, 412);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		
+		/*
+		Desk = new JDesktopPane();
+		Desk.setBounds(269, 106, 476, 242);
+		Desk.setBackground(Color.WHITE);*/
 		//Logo
 		icon1 = new ImageIcon(getClass().getResource("logo.png"));  	//Agrega la imagen existente en la clase
 	    imagen = icon1.getImage(); 										//
@@ -99,37 +111,37 @@ public class VistaMOp extends JFrame implements KeyListener{
 		
 		btnProyect = new JButton("Proyectos");
 		btnProyect.setBounds(126, 28, 100, 25);
+		/*Escuchador boton proyectos*/
 		btnProyect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-			}
-		});
-		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		 btnContactos = new JButton("Contactos");
-		btnContactos.setBounds(228, 28, 100, 25);
-		btnContactos.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
 				
-				System.out.println("Se presiono el boton Contactos");
 			}
 		});
-		btnContactos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
+		btnAgenda = new JButton("Agenda");
+		btnAgenda.setBounds(228, 28, 100, 25);
+		btnAgenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controlVistaOperaciones.muestraVistaAgenda();
+			}
+		});
+		btnAgenda.setFont(new Font("Tahoma", Font.PLAIN, 12));
+
 		icon1 = new ImageIcon(getClass().getResource("notification.png"));  	//Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); 										//
 		imagen1 = new ImageIcon (imagen.getScaledInstance(25,25,10)); //Tama o de imagen ancho, alto
 		
 		btnNoti = new JButton();
-		btnNoti.setBounds(340, 24, 40, 25);
-		btnNoti.setIcon(imagen1);
-		
+		btnNoti.setBounds(340, 24, 50, 30);
+		/*Escuchador boton notificaciones*/
 		btnNoti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				System.out.println("Se presiono el boton notificaciones");
-			}
-		});//Fin del escuchador del boton Noti
+				//System.out.println("Se presiono el btn Noti");
+			}		
+		});
+		btnNoti.setIcon(imagen1);
 			
 		icon1 = new ImageIcon(getClass().getResource("lupa.png"));  	//Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); 										//
@@ -144,19 +156,9 @@ public class VistaMOp extends JFrame implements KeyListener{
 		
 		textField.addKeyListener(this);
 		
-		contentPane.setLayout(null);
-		contentPane.add(imagenLogo);
-		contentPane.add(lblMvc);
-		contentPane.add(lblNewLabel);
-		contentPane.add(btnProyect);
-		contentPane.add(btnContactos);
-		contentPane.add(btnNoti);
-		contentPane.add(textField);
-		contentPane.add(lblBuscar);
-		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(7, 106, 174, 221);
+		panel.setBounds(7, 106, 175, 221);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -330,8 +332,6 @@ public class VistaMOp extends JFrame implements KeyListener{
 		lblS.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		panelDiasSemana.add(lblS);
 		
-		
-		
 		LocalDate fechaActual = LocalDate.now();
 		int ultimoDia;
 		
@@ -368,15 +368,32 @@ public class VistaMOp extends JFrame implements KeyListener{
 				
 				String sDia = String.valueOf(dia);
 				((JButton)componentes[i]).setText(sDia);
+				((JButton)componentes[i]).setEnabled(true);
 				dia = dia+1;
 			}
 		}
 		
 		((JButton)componentes[fechaActual.getDayOfMonth()+diaUno-1]).setForeground(Color.GREEN);
+		contentPane.setLayout(null);
 		lblMes.setText(fechaActual.getMonth().toString());
-		
-	}
+		contentPane.add(panel);
+		contentPane.add(imagenLogo);
+		contentPane.add(lblMvc);
+		contentPane.add(btnProyect);
+		contentPane.add(btnAgenda);
+		contentPane.add(btnNoti);
+		contentPane.add(textField);
+		contentPane.add(lblBuscar);
+		contentPane.add(lblNewLabel);
+		//contentPane.add(Desk);
+	} //Fin de VistaAdministrador()  
 	
+	/*
+	 * @author Jonathan Cruz
+	 * Método que muestra la venta correspondiete al miembro de operaciones
+	 * @param ControlVistaMOp control
+	 * @fechaImplementación  20 de enero de 2022 
+	 */
 	public void muestra(ControlVistaMOp control) {
 		controlVistaOperaciones = control;
 		setVisible(true);
@@ -399,5 +416,5 @@ public class VistaMOp extends JFrame implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-
 }
+
