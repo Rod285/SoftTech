@@ -400,11 +400,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -413,6 +412,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -429,11 +434,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -442,6 +446,13 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
+					
 					
 				}
 			}
@@ -458,11 +469,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -471,6 +481,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -487,11 +503,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -500,6 +515,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -516,11 +537,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -529,6 +549,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -545,11 +571,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -559,6 +584,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -574,11 +604,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -588,7 +617,13 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
+
 			}
 		});
 		
@@ -603,11 +638,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -616,6 +650,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -632,11 +672,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -646,6 +685,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -661,11 +705,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -674,6 +717,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -690,11 +739,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -704,6 +752,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -719,11 +772,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -733,6 +785,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -748,11 +805,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -762,6 +818,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -777,11 +838,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -791,6 +851,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -806,11 +871,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -820,6 +884,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -835,11 +904,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -849,6 +917,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -864,11 +937,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -878,6 +950,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -893,11 +970,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -907,6 +983,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -922,11 +1003,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -936,6 +1016,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -951,11 +1036,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -965,6 +1049,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -980,11 +1069,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -994,6 +1082,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1009,11 +1102,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1023,6 +1115,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1038,11 +1135,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1052,6 +1148,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1067,11 +1168,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1081,6 +1181,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1096,11 +1201,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1110,6 +1214,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1125,11 +1234,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1139,6 +1247,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1154,11 +1267,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1168,6 +1280,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1183,11 +1300,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1197,6 +1313,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1212,11 +1333,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1226,6 +1346,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1241,11 +1366,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1255,6 +1379,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1270,11 +1399,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1284,6 +1412,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1299,11 +1432,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1313,6 +1445,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1328,11 +1465,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1342,6 +1478,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1357,11 +1498,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1370,6 +1510,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					} catch (PropertyVetoException pve) {
 						pve.printStackTrace();
 					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 					
 				}
 			}
@@ -1386,11 +1532,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1400,6 +1545,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1415,11 +1565,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1429,6 +1578,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1444,11 +1598,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1458,6 +1611,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1473,11 +1631,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1487,6 +1644,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1502,11 +1664,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1516,6 +1677,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1531,11 +1697,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1545,6 +1710,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1560,11 +1730,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1574,6 +1743,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1589,11 +1763,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 				pedidos = controlPedidos.recuperaPedidosPorFecha(fecha);
 				
-				if(pedidos.isEmpty()) {
-					System.out.println("No hay pedidos para este día");
-				}else {
+				if(!pedidos.isEmpty()) {
 					
 					Desk.removeAll();
+					repaint();
 					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
 					Desk.add(desk);	
 					
@@ -1603,6 +1776,11 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 						pve.printStackTrace();
 					}
 					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
 				}
 			}
 		});
@@ -1716,6 +1894,12 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 	public void muestra(ControlVistaAdministrador control) {
 		controlVistaAdministrador = control;
 		setVisible(true);
+	}
+	
+	public void muestraMensaje(){
+		
+		JOptionPane.showMessageDialog(null, "No hay pedidos para este día");
+		
 	}
 	
 	@Override

@@ -87,8 +87,13 @@ public class VistaPedidos extends JPanel {
 		int columna = 0, fila = 0;
 		System.out.println(informacion.size());
 		
+		for(int i=0; i<10; i++) {
+			for(int j=0; j<4; j++) {
+				tablaPedidos.setValueAt("",i,j);
+			}	
+		}
+		
 		for(int i=0; i<informacion.size(); i++) {
-			System.out.println(i + ": " + informacion.get(i) + " Columna: " + columna + " Fila: " + fila);
 			tablaPedidos.setValueAt(informacion.get(i), fila, columna);
 			columna++;
 			if(columna%4==0) {
