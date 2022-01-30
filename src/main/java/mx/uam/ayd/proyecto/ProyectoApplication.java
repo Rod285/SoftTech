@@ -335,6 +335,17 @@ public class ProyectoApplication {
 		vehiculoPrueba9.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/Maverick_320x180.jpg");
 		vehiculoRepository.save(vehiculoPrueba9);
 		
+		//10
+		Vehiculo vehiculoPrueba10 = new Vehiculo();
+		vehiculoPrueba10.setModelo("Mustang GT500 2022");
+		vehiculoPrueba10.setPrecio(5500);
+		vehiculoPrueba10.setAnio(2022);
+		vehiculoPrueba10.setTipo("Deportivo");
+		vehiculoPrueba10.setDescripcion("");
+		vehiculoPrueba10.setDisponibilidad(true);
+		vehiculoPrueba10.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/MustangGT5002022_320x180.jpg");
+		vehiculoRepository.save(vehiculoPrueba10);
+				
 		/*
 		 * Declaracion de pedioVehículo para pedido de prueba.
 		 */

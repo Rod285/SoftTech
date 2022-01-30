@@ -1,3 +1,4 @@
+
 package mx.uam.ayd.proyecto.presentacion.muestraVistaMOp;
 
 import java.awt.Image;
@@ -416,3 +417,4 @@ public class VistaMOp extends JFrame implements KeyListener{
 		
 	}
 }
+
