@@ -35,6 +35,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
+import java.awt.Color;
 
 @SuppressWarnings("serial")
 @Slf4j
@@ -48,11 +49,13 @@ public class VistaResultadosBusqueda extends JFrame{
 	private static final String LOGO = "C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaIrAPedido\\logo.png";
 
 	public VistaResultadosBusqueda() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(200, 5, 650, 725);
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSur = new JPanel();
+		panelSur.setBackground(Color.WHITE);
 		getContentPane().add(panelSur, BorderLayout.SOUTH);
 		GridBagLayout gbl_panelSur = new GridBagLayout();
 		gbl_panelSur.columnWidths = new int[] {90, 130, 210, 130, 0};
@@ -102,6 +105,7 @@ public class VistaResultadosBusqueda extends JFrame{
 		panelSur.add(regresar, gbc_regresar);
 		
 		JPanel panelNorte = new JPanel();
+		panelNorte.setBackground(Color.WHITE);
 		panelNorte.setBounds(0, 0, 650, 200);
 		getContentPane().add(panelNorte, BorderLayout.NORTH);
 		GridBagLayout gbl_panelNorte = new GridBagLayout();
@@ -152,12 +156,15 @@ public class VistaResultadosBusqueda extends JFrame{
 		panelNorte.add(nombre, gbc_nombre);
 		
 		JPanel panelCentro = new JPanel();
+		panelCentro.setBackground(Color.WHITE);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(75, 5, 500, 473);
+		scrollPane.setBackground(Color.WHITE);
 		tablaResultados = new JTable();
+		tablaResultados.setBackground(Color.WHITE);
 		tablaResultados.setCellSelectionEnabled(true);
 		tablaResultados.setRowHeight(90);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();

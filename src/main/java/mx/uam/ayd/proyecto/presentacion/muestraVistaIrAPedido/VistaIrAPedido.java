@@ -43,6 +43,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
+import java.awt.Color;
 
 @Slf4j
 @SuppressWarnings("serial")
@@ -61,11 +62,13 @@ public class VistaIrAPedido extends JFrame{
 	 * @Descripción: Constructor de la VistaIrAPedido
 	 */
 	public VistaIrAPedido() {
+		getContentPane().setBackground(Color.WHITE);
 		setBounds(200, 5, 650, 725);
 		setResizable(false);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panelSur = new JPanel();
+		panelSur.setBackground(Color.WHITE);
 		getContentPane().add(panelSur, BorderLayout.SOUTH);
 		GridBagLayout gbl_panelSur = new GridBagLayout();
 		gbl_panelSur.columnWidths = new int[] {90, 130, 210, 130, 0};
@@ -98,6 +101,7 @@ public class VistaIrAPedido extends JFrame{
 		panelSur.add(regresar, gbc_regresar);
 		
 		JPanel panelNorte = new JPanel();
+		panelNorte.setBackground(Color.WHITE);
 		panelNorte.setBounds(0, 0, 650, 200);
 		getContentPane().add(panelNorte, BorderLayout.NORTH);
 		GridBagLayout gbl_panelNorte = new GridBagLayout();
@@ -160,12 +164,15 @@ public class VistaIrAPedido extends JFrame{
 		panelNorte.add(cliente, gbc_cliente);
 		
 		JPanel panelCentro = new JPanel();
+		panelCentro.setBackground(Color.WHITE);
 		getContentPane().add(panelCentro, BorderLayout.CENTER);
 		panelCentro.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(75, 5, 500, 473);
+		scrollPane.setBackground(Color.WHITE);
 		tablaPedido = new JTable();
+		tablaPedido.setBackground(Color.WHITE);
 		tablaPedido.setCellSelectionEnabled(true);
 		tablaPedido.setRowHeight(90);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
