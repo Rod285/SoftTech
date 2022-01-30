@@ -1,67 +1,54 @@
-package mx.uam.ayd.proyecto.presentacion.muestraVistaIrAPedido;
-
 /*
+ * @Nombre: VistaResultadosBusqueda
+ * @Descripción: Esta clase lleva a cabo es la vista del sistema que muestra los resultados de buscar un vehiculo por su modelo.
  * @Autor: Mejía Velázquez José Rodrigo
- * @Descripción: Clase que se encarga de la VistaIrAPedido, la clase cuenta con un constructor que hace posible la visualización
- * de la ventana, además de un método muestra por el cual se le inyecta la información necesaria para su funcionamiento,
- * así cono un modelo de tabla utilizado para la muestra de información que se encuentra como una clase interna.
+ * @Fecha de implementación: 20/01/2022
  */
+package mx.uam.ayd.proyecto.presentacion.muestraResultadosBusqueda;
 
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableModel;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import java.awt.BorderLayout;
-
-import javax.swing.DefaultCellEditor;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-
-import java.awt.Image;
-
-import javax.swing.JLabel;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.Font;
 import java.awt.Color;
 
-@Slf4j
 @SuppressWarnings("serial")
+@Slf4j
 @Component
-public class VistaIrAPedido extends JFrame{
+public class VistaResultadosBusqueda extends JFrame{
 	
+	private ControlVistaResultadosBusqueda control;
+	private List<Vehiculo> resultadosBusqueda;
+	private JTable tablaResultados;
+	private ResultadosTableModel modelo;
 	private static final String LOGO = "C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaIrAPedido\\logo.png";
-	
-	private ControlVistaIrAPedido controlIrAPedido;
-	
-	private List<Vehiculo> listaPedido;
-	private PedidoTableModel modelo;
-	private JTable tablaPedido;
-	/*
-	 * @Autor: Mejía Velázquez José Rodrigo
-	 * @Descripción: Constructor de la VistaIrAPedido
-	 */
-	public VistaIrAPedido() {
+
+	public VistaResultadosBusqueda() {
 		getContentPane().setBackground(Color.WHITE);
 		setBounds(200, 5, 650, 725);
 		setResizable(false);
@@ -77,18 +64,41 @@ public class VistaIrAPedido extends JFrame{
 		gbl_panelSur.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		panelSur.setLayout(gbl_panelSur);
 		
-		JButton enviarPedido = new JButton("Enviar Pedido");
-		enviarPedido.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		GridBagConstraints gbc_enviarPedido = new GridBagConstraints();
-		gbc_enviarPedido.fill = GridBagConstraints.BOTH;
-		gbc_enviarPedido.insets = new Insets(0, 0, 0, 5);
-		gbc_enviarPedido.gridx = 1;
-		gbc_enviarPedido.gridy = 1;
-		panelSur.add(enviarPedido, gbc_enviarPedido);
+		JButton agregarAPedido = new JButton("Agregar a Pedido");
+		agregarAPedido.addActionListener(new ActionListener() {
+			
+			/*
+			 * Escuchador botón agregar a Pedido
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TableModel modeloTabla = tablaResultados.getModel();
+				List<Vehiculo> seleccion = new ArrayList<>();
+				
+				for(int i = 0; i < modeloTabla.getRowCount() ;i++) {
+					if((Boolean)modeloTabla.getValueAt(i, 2) == true) {
+						seleccion.add(resultadosBusqueda.get(i));
+					}
+				}
+				log.info("cantidad de vehiculos agregados a la seleccion: " + seleccion.size());
+				//falta implementar historia de usuario
+			}
+		});
+		agregarAPedido.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		agregarAPedido.setSize(100, 25);
+		GridBagConstraints gbc_agregarAPedido = new GridBagConstraints();
+		gbc_agregarAPedido.fill = GridBagConstraints.BOTH;
+		gbc_agregarAPedido.gridx = 1;
+		gbc_agregarAPedido.gridy = 1;
+		panelSur.add(agregarAPedido, gbc_agregarAPedido);
 		
 		JButton regresar = new JButton("Regresar");
 		regresar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		regresar.setSize(100, 25);
 		regresar.addActionListener(new ActionListener() {
+			/*
+			 * Escuchador botón regresar
+			 */
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -105,8 +115,8 @@ public class VistaIrAPedido extends JFrame{
 		panelNorte.setBounds(0, 0, 650, 200);
 		getContentPane().add(panelNorte, BorderLayout.NORTH);
 		GridBagLayout gbl_panelNorte = new GridBagLayout();
-		gbl_panelNorte.columnWidths = new int[] {90, 70, 60, 210, 30, 30};
-		gbl_panelNorte.rowHeights = new int[] {14, 30, 30};
+		gbl_panelNorte.columnWidths = new int[] {88, 70, 60, 210, 30, 30};
+		gbl_panelNorte.rowHeights = new int[] {14, 30};
 		gbl_panelNorte.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gbl_panelNorte.rowWeights = new double[]{0.0, 0.0};
 		panelNorte.setLayout(gbl_panelNorte);
@@ -118,7 +128,7 @@ public class VistaIrAPedido extends JFrame{
 		gbc_logo.insets = new Insets(0, 0, 5, 5);
 		gbc_logo.gridx = 0;
 		gbc_logo.gridy = 0;
-		logo.setIcon(new ImageIcon(new ImageIcon(LOGO).getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH)));
+		logo.setIcon(new ImageIcon(new ImageIcon(LOGO).getImage().getScaledInstance(55, 55, Image.SCALE_SMOOTH)));
 		panelNorte.add(logo, gbc_logo);
 		
 		JLabel siglas = new JLabel("MVC");
@@ -131,37 +141,25 @@ public class VistaIrAPedido extends JFrame{
 		gbc_siglas.gridy = 0;
 		panelNorte.add(siglas, gbc_siglas);
 		
-		JLabel noPedido = new JLabel("No. Pedido:");
-		noPedido.setFont(new Font("Tahoma", Font.BOLD, 30));
-		GridBagConstraints gbc_noPedido = new GridBagConstraints();
-		gbc_noPedido.fill = GridBagConstraints.VERTICAL;
-		gbc_noPedido.insets = new Insets(0, 0, 5, 0);
-		gbc_noPedido.gridx = 3;
-		gbc_noPedido.gridy = 0;
-		noPedido.setVisible(false);
-		panelNorte.add(noPedido, gbc_noPedido);
+		JLabel lblResultados = new JLabel("Resultados:");
+		lblResultados.setFont(new Font("Tahoma", Font.BOLD, 30));
+		GridBagConstraints gbc_lblResultados = new GridBagConstraints();
+		gbc_lblResultados.fill = GridBagConstraints.VERTICAL;
+		gbc_lblResultados.insets = new Insets(0, 0, 5, 0);
+		gbc_lblResultados.gridx = 3;
+		gbc_lblResultados.gridy = 0;
+		panelNorte.add(lblResultados, gbc_lblResultados);
 		
 		JLabel nombre = new JLabel("Montalvo Picture Cars");
 		nombre.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		nombre.setHorizontalAlignment(SwingConstants.CENTER);
 		GridBagConstraints gbc_nombre = new GridBagConstraints();
-		gbc_nombre.anchor = GridBagConstraints.WEST;
+		gbc_nombre.anchor = GridBagConstraints.NORTHWEST;
 		gbc_nombre.gridwidth = 2;
-		gbc_nombre.fill = GridBagConstraints.VERTICAL;
 		gbc_nombre.insets = new Insets(0, 8, 5, 5);
 		gbc_nombre.gridx = 0;
 		gbc_nombre.gridy = 1;
 		panelNorte.add(nombre, gbc_nombre);
-		
-		JLabel cliente = new JLabel("Cliente:");
-		cliente.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		GridBagConstraints gbc_cliente = new GridBagConstraints();
-		gbc_cliente.insets = new Insets(0, 18, 5, 0);
-		gbc_cliente.fill = GridBagConstraints.BOTH;
-		gbc_cliente.gridx = 3;
-		gbc_cliente.gridy = 1;
-		cliente.setVisible(false);
-		panelNorte.add(cliente, gbc_cliente);
 		
 		JPanel panelCentro = new JPanel();
 		panelCentro.setBackground(Color.WHITE);
@@ -171,55 +169,56 @@ public class VistaIrAPedido extends JFrame{
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(75, 5, 500, 473);
 		scrollPane.setBackground(Color.WHITE);
-		tablaPedido = new JTable();
-		tablaPedido.setBackground(Color.WHITE);
-		tablaPedido.setCellSelectionEnabled(true);
-		tablaPedido.setRowHeight(90);
+		tablaResultados = new JTable();
+		tablaResultados.setBackground(Color.WHITE);
+		tablaResultados.setCellSelectionEnabled(true);
+		tablaResultados.setRowHeight(90);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment( SwingConstants.CENTER );
-		tablaPedido.setDefaultRenderer(String.class, centerRenderer);
-		tablaPedido.setDefaultRenderer(Integer.class, centerRenderer);
-		scrollPane.setViewportView(tablaPedido);
+		tablaResultados.setDefaultRenderer(String.class, centerRenderer);
+		tablaResultados.setDefaultRenderer(Integer.class, centerRenderer);
+		scrollPane.setViewportView(tablaResultados);
 		panelCentro.add(scrollPane);
 	}
 	
 	/*
 	 * @Autor: Mejía Velázquez José Rodrigo
-	 * @Descripción: Método que muestra la ventana de la historia de usuario Ir a Pedido, se muestran los vehiculos que
-	 * se encuentran dentro de la lista de Pedido en una tabla, mostrando su fot, modelo y número de elementos, que por
-	 * default es 1
-	 * @Parametros: ControlVistaIrAPedido, List<Vehiculo> 
+	 * @Descripción: Método que invoca la inicialización de la vista de resultados de busqueda e inicializa sus
+	 * componentes más importantes
+	 * @Fecha de implementación: 20/01/2022
+	 * @Parametro de entrada: ControlVistaResultadosBusqueda controlVistaResultadosBusqueda, List<Vehiculo> resultadosBusqueda 
+	 * @Valor de retorno: void
 	 */
-	public void muestra(ControlVistaIrAPedido controlVistaIrAPedido, List<Vehiculo> listaPedido) {
-		this.controlIrAPedido = controlVistaIrAPedido;
-		this.listaPedido = listaPedido;
+	public void muestra(ControlVistaResultadosBusqueda controlVistaResultadosBusqueda, List<Vehiculo> resultadosBusqueda) {
+		this.control = controlVistaResultadosBusqueda;
+		this.resultadosBusqueda = resultadosBusqueda;
 		
-		for(Vehiculo v : this.listaPedido) {
-			log.info("Vehículo: " + v.getModelo());
-		}
-		
-		modelo = new PedidoTableModel(this.listaPedido);
-		tablaPedido.setModel(modelo);
-		
-		
+		modelo = new ResultadosTableModel(this.resultadosBusqueda);
+		tablaResultados.setModel(modelo);
+				
 		setVisible(true);
 	}
-	
+
 	/*
 	 * @Autor: Mejía Velázquez José Rodrigo
-	 * @Descripción: Clase que configura el modelo de tabla que se utiliza en la VistaIrAPedido
+	 * @Descripción: Clase privada en la cual se establece el módelo de la tabla dónde se muestran los resultados de la
+	 * búsqueda solicitada por el cliente.
+	 * @Fecha de implementación: 21/01/2022
+	 * @Parametro de entrada: NA 
+	 * @Valor de retorno: NA
 	 */
-	private class PedidoTableModel implements TableModel{
+	private class ResultadosTableModel extends AbstractTableModel{
 		
-		private List<Vehiculo> listaPedido;
+		private List<Vehiculo> resultadosBusqueda;
+		private List<Boolean> seleccion = new ArrayList<>();
 
-		public PedidoTableModel(List<Vehiculo> listaPedido) {
-			this.listaPedido = listaPedido;
+		public ResultadosTableModel(List<Vehiculo> resultadosBusqueda) {
+			this.resultadosBusqueda = resultadosBusqueda;
 		}
 		
 		@Override
 		public int getRowCount() {
-			return listaPedido.size();
+			return resultadosBusqueda.size();
 		}
 
 		@Override
@@ -236,7 +235,7 @@ public class VistaIrAPedido extends JFrame{
 						break;
 				case 1 : title = "MODELO";
 						break;
-				case 2 : title = "CANTIDAD";
+				case 2 : title = "SELECCION";
 						break;		
 			}
 			return title;
@@ -249,7 +248,7 @@ public class VistaIrAPedido extends JFrame{
 			}else if(columnIndex == 1){
 				return String.class;
 			}else {
-				return Integer.class; //Debe modificarse para la siguiente historia de usuario
+				return Boolean.class;
 			}
 		}
 
@@ -264,8 +263,9 @@ public class VistaIrAPedido extends JFrame{
 
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
-			Vehiculo v = listaPedido.get(rowIndex);
+			Vehiculo v = resultadosBusqueda.get(rowIndex);
 			
+			seleccion.add(false);
 			Object value = null;
 			
 			switch(columnIndex) {
@@ -273,8 +273,9 @@ public class VistaIrAPedido extends JFrame{
 					  break;}
 			case 1 : {value = v.getModelo();
 					  break;}
-			case 2 : {value = 1; //Debe modificarse para la siguiente historia de usuario
-					  break;}
+			case 2 : {value = seleccion.get(rowIndex);
+					  break;
+					 }
 			}
 			
 			return value;
@@ -282,7 +283,13 @@ public class VistaIrAPedido extends JFrame{
 
 		@Override
 		public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-			// TODO Auto-generated method stub
+			if(seleccion.get(rowIndex) == false) {
+				seleccion.set(rowIndex, true);
+				fireTableCellUpdated(rowIndex, 2);
+			}else {
+				seleccion.set(rowIndex, false);
+				fireTableCellUpdated(rowIndex, 2);
+			}
 			
 		}
 
@@ -294,10 +301,10 @@ public class VistaIrAPedido extends JFrame{
 
 		@Override
 		public void removeTableModelListener(TableModelListener l) {
-			// TODO Auto-generated method stub
+			// TODO Auto-generated method stub*/
 			
 		}
-		
 	}
+
 
 }

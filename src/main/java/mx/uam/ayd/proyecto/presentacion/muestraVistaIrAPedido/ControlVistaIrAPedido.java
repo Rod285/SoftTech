@@ -28,6 +28,7 @@ public class ControlVistaIrAPedido {
 	 * @Descripción: Método que inicia la historia de usuario Ir a Pedido
 	 * @Parametros: Lista<Vehiculo>
 	 */
+	
 	public void inicia(List<Vehiculo> listaPedido) {
 		this.listaPedido = listaPedido;
 		ventana.muestra(this, listaPedido);
