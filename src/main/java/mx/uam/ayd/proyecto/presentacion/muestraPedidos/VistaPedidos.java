@@ -43,7 +43,7 @@ public class VistaPedidos extends JPanel {
 	 */
 	public VistaPedidos() {
 		
-		Object[] columnas = {"ID", "Pedido", "Entrega", "Status"};
+		Object[] columnas = {"ID", "Cliente", "Entrega", "Status"};
 		Object[][] data = new Object [10][4];
 		
 		for(int i=0; i<10; i++) {

@@ -253,7 +253,7 @@ public class ProyectoApplication {
 		vehiculoPrueba1.setTipo("Deportivo");
 		vehiculoPrueba1.setDescripcion("A1");
 		vehiculoPrueba1.setDisponibilidad(true);
-		vehiculoPrueba1.setFoto("c:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\audi_320x180.jpeg");
+		vehiculoPrueba1.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/audi_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba1);
 		
 		//2
@@ -264,7 +264,7 @@ public class ProyectoApplication {
 		vehiculoPrueba2.setTipo("Clasico");
 		vehiculoPrueba2.setDescripcion("Eleanor");
 		vehiculoPrueba2.setDisponibilidad(true);
-		vehiculoPrueba2.setFoto("C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\mustang_320x180.jpeg");
+		vehiculoPrueba2.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mustang_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba2);
 		
 		//3
@@ -275,7 +275,7 @@ public class ProyectoApplication {
 		vehiculoPrueba3.setTipo("Deportivo");
 		vehiculoPrueba3.setDescripcion("");
 		vehiculoPrueba3.setDisponibilidad(true);
-		vehiculoPrueba3.setFoto("C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\camaro_320x180.jpeg");
+		vehiculoPrueba3.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/camaro_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba3);
 		
 		//4
@@ -286,7 +286,7 @@ public class ProyectoApplication {
 		vehiculoPrueba4.setTipo("Deportivo");
 		vehiculoPrueba4.setDescripcion("");
 		vehiculoPrueba4.setDisponibilidad(true);
-		vehiculoPrueba4.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mazda3_320x180.jpeg");
+		vehiculoPrueba4.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mazda3_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba4);
 		
 		//5
@@ -297,7 +297,7 @@ public class ProyectoApplication {
 		vehiculoPrueba5.setTipo("Lujo");
 		vehiculoPrueba5.setDescripcion("");
 		vehiculoPrueba5.setDisponibilidad(true);
-		vehiculoPrueba5.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mercedes_320x180.jpeg");
+		vehiculoPrueba5.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/mercedes_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba5);
 		
 		//6
@@ -308,7 +308,7 @@ public class ProyectoApplication {
 		vehiculoPrueba6.setTipo("Lujo");
 		vehiculoPrueba6.setDescripcion("");
 		vehiculoPrueba6.setDisponibilidad(true);
-		vehiculoPrueba6.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/BMW_320x180.jpeg");
+		vehiculoPrueba6.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/BMW_320x180.jpeg");
 		vehiculoRepository.save(vehiculoPrueba6);
 		
 		//7
@@ -319,7 +319,7 @@ public class ProyectoApplication {
 		vehiculoPrueba7.setTipo("Carga");
 		vehiculoPrueba7.setDescripcion("");
 		vehiculoPrueba7.setDisponibilidad(true);
-		vehiculoPrueba7.setFoto("C:\\Users\\zerat\\Documents\\IngSoft\\AnalysisYDiseno-master\\src\\main\\java\\mx\\uam\\ayd\\proyecto\\presentacion\\muestraVistaCatalogo\\VolteoInternacional_320x180.jpg");
+		vehiculoPrueba7.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/VolteoInternacional_320x180.jpg");
 		vehiculoRepository.save(vehiculoPrueba7);
 			
 		//8
@@ -330,7 +330,7 @@ public class ProyectoApplication {
 		vehiculoPrueba8.setTipo("Carga");
 		vehiculoPrueba8.setDescripcion("");
 		vehiculoPrueba8.setDisponibilidad(true);
-		vehiculoPrueba8.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/TrailerFreightliner_320x180.jpg");
+		vehiculoPrueba8.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/TrailerFreightliner_320x180.jpg");
 		vehiculoRepository.save(vehiculoPrueba8);
 				
 		//9
@@ -341,7 +341,7 @@ public class ProyectoApplication {
 		vehiculoPrueba9.setTipo("Clasico");
 		vehiculoPrueba9.setDescripcion("");
 		vehiculoPrueba9.setDisponibilidad(true);
-		vehiculoPrueba9.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/Maverick_320x180.jpg");
+		vehiculoPrueba9.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/Maverick_320x180.jpg");
 		vehiculoRepository.save(vehiculoPrueba9);
 		
 		//10
@@ -352,7 +352,7 @@ public class ProyectoApplication {
 		vehiculoPrueba10.setTipo("Deportivo");
 		vehiculoPrueba10.setDescripcion("");
 		vehiculoPrueba10.setDisponibilidad(true);
-		vehiculoPrueba10.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/MustangGT5002022_320x180.jpg");
+		vehiculoPrueba10.setFoto("/Users/omaraldaco/git/SoftTech/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/MustangGT5002022_320x180.jpg");
 		vehiculoRepository.save(vehiculoPrueba10);
 				
 		/*

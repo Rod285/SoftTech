@@ -159,7 +159,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		panel.setLayout(null);
 		
 		JPanel panelDiasMes = new JPanel();
-		panelDiasMes.setBounds(6, 47, 210, 168);
+		panelDiasMes.setBounds(6, 47, 159, 168);
 		panel.add(panelDiasMes);
 		panelDiasMes.setLayout(new GridLayout(0, 7, 0, 0));
 		
@@ -1849,13 +1849,13 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblMes = new JLabel();
-		lblMes.setBounds(6, 6, 210, 16);
+		lblMes.setBounds(6, 6, 159, 16);
 		panel.add(lblMes);
 		lblMes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMes.setText(fechaActual.getMonth().toString());
 		
 		JPanel panelDiasSemana = new JPanel();
-		panelDiasSemana.setBounds(6, 21, 210, 21);
+		panelDiasSemana.setBounds(6, 21, 159, 21);
 		panel.add(panelDiasSemana);
 		FlowLayout fl_panelDiasSemana = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		panelDiasSemana.setLayout(fl_panelDiasSemana);
@@ -1896,27 +1896,23 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(Alignment.LEADING, gl_contentPane.createSequentialGroup()
-									.addComponent(imagenLogo, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-									.addGap(3)
-									.addComponent(lblMvc, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-									.addGap(18)
-									.addComponent(btnProyect, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(2)
-									.addComponent(btnCatalogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-									.addGap(12)
-									.addComponent(btnNoti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-									.addGap(26)
-									.addComponent(textField, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
-									.addGap(4)
-									.addComponent(lblBuscar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_contentPane.createSequentialGroup()
-									.addGap(43)
-									.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))))
+							.addComponent(imagenLogo, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+							.addGap(3)
+							.addComponent(lblMvc, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnProyect, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+							.addGap(2)
+							.addComponent(btnCatalogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+							.addGap(12)
+							.addComponent(btnNoti, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+							.addGap(26)
+							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(lblBuscar, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 171, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -1947,8 +1943,8 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					.addComponent(lblNewLabel, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE)
 					.addGap(26)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE)
+						.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
@@ -1993,6 +1989,19 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		
 	}
 	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que muestra mensaje de campo vacío
+	 * @Fecha de implementación: 30/01/2022
+	 * @Valor de retorno: void
+	 */
+	
+	public void muestraMensajeCampoVacio(){
+		
+		JOptionPane.showMessageDialog(null, "El campo de búsqueda no puede estar vacío");
+		
+	}
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -2006,27 +2015,33 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 			String titulo = "Pedidos";
 			
 			String cliente = textField.getText();
-			pedidos = controlPedidos.recuperaPedidosPorCliente(cliente);
-			textField.setText("");
 			
-			if(!pedidos.isEmpty()) {
-				
-				Desk.removeAll();
-				repaint();
-				desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
-				Desk.add(desk);	
-				
-				try {
-					desk.setMaximum(true);
-				} catch (PropertyVetoException pve) {
-					pve.printStackTrace();
-				}
-				
+			if(cliente.equals("")) {
+				muestraMensajeCampoVacio();
 			}else {
+			
+				pedidos = controlPedidos.recuperaPedidosPorCliente(cliente);
+				textField.setText("");
+			
+				if(!pedidos.isEmpty()) {
 				
-				Desk.removeAll();
-				repaint();
-				muestraMensajeCliente();
+					Desk.removeAll();
+					repaint();
+					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
+					Desk.add(desk);	
+				
+					try {
+						desk.setMaximum(true);
+					} catch (PropertyVetoException pve) {
+						pve.printStackTrace();
+					}
+				
+				}else {
+				
+					Desk.removeAll();
+					repaint();
+					muestraMensajeCliente();
+				}
 			}
        	}         
  }	
