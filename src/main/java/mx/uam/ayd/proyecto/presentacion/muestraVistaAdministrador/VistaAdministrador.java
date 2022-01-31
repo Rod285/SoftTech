@@ -77,6 +77,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 	private JTextField textField;
 	private JLabel lblBuscar;
 	private JButton btnCatalogo;
+		
 	private JButton btnProyect;
 	private JButton btnNoti;
 	
@@ -109,23 +110,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		
 		JLabel lblNewLabel = new JLabel("Montalvo Picture Cars");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
-    
-		/*btnProyect = new JButton("Proyectos");
 		
-		btnProyect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Pedido p = controlPedidos.damePedido(1);
-				//System.out.println(p);
-				if(disponibilidad) {
-					controlVistaAdministrador.muestraVistaSolicitudAceptada();
-					disponibilidad = false;
-				}else {
-					controlVistaAdministrador.muestraVistaGenerarContrapropuesta();
-					disponibilidad = true;
-				}
-			}
-		});
-		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 12));*/
 		btnCatalogo = new JButton("Catálogo");
 		btnCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -133,7 +118,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				System.out.println("Se presiono el boton Catalogos");
 			}
 		});
-		btnCatalogo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCatalogo.setFont(new Font("Tahoma", Font.PLAIN, 14));
 
 		icon1 = new ImageIcon(getClass().getResource("notification.png"));  	//Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); 										//
@@ -171,13 +156,10 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(7, 106, 174, 221);
-		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JPanel panelDiasMes = new JPanel();
-    panelDiasMes.setBounds(6, 47, 162, 168);
-
+		panelDiasMes.setBounds(6, 47, 210, 168);
 		panel.add(panelDiasMes);
 		panelDiasMes.setLayout(new GridLayout(0, 7, 0, 0));
 		
@@ -1867,13 +1849,13 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JLabel lblMes = new JLabel();
-		lblMes.setBounds(6, 6, 162, 16);
+		lblMes.setBounds(6, 6, 210, 16);
 		panel.add(lblMes);
 		lblMes.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMes.setText(fechaActual.getMonth().toString());
 		
 		JPanel panelDiasSemana = new JPanel();
-		panelDiasSemana.setBounds(6, 21, 162, 21);
+		panelDiasSemana.setBounds(6, 21, 210, 21);
 		panel.add(panelDiasSemana);
 		FlowLayout fl_panelDiasSemana = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		panelDiasSemana.setLayout(fl_panelDiasSemana);
@@ -1906,50 +1888,6 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		lblS.setFont(new Font("Lucida Grande", Font.PLAIN, 9));
 		panelDiasSemana.add(lblS);
 		
-		LocalDate fechaActual = LocalDate.now();
-		int ultimoDia;
-		
-		try {
-			LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 31);
-			ultimoDia=31;
-			//System.out.println("Ultimo dia del mes: " + ultimoDia);
-		}catch(DateTimeException e){
-			try {
-				LocalDate.of(fechaActual.getYear(), fechaActual.getMonth(), 30);
-				ultimoDia=30;
-				System.out.println("Ultimo dia del mes: " + ultimoDia);
-			}catch(DateTimeException e1){
-				ultimoDia=28;
-				System.out.println("Ultimo dia del mes: " + ultimoDia);
-			}
-		}
-		
-		Date fechaAux = new Date();
-		int mes = fechaAux.getMonth();
-		int anio = fechaAux.getYear();
-		
-		Date fechaInicioMes = new Date(anio, mes, 1);
-		int diaUno = fechaInicioMes.getDay();
-		
-		java.awt.Component[] componentes = panelDiasMes.getComponents();
-		
-		int dia = 1;
-		int fin=diaUno+ultimoDia;
-		
-		for(int i=diaUno; i<fin; i++){
-			
-			if(componentes[i] instanceof JButton) {
-				
-				String sDia = String.valueOf(dia);
-				((JButton)componentes[i]).setText(sDia);
-				((JButton)componentes[i]).setEnabled(true);
-				dia = dia+1;
-			}
-		}
-		
-		((JButton)componentes[fechaActual.getDayOfMonth()+diaUno-1]).setForeground(Color.GREEN);
-		lblMes.setText(fechaActual.getMonth().toString());
-		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -1979,9 +1917,6 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 								.addGroup(gl_contentPane.createSequentialGroup()
 									.addGap(43)
 									.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)))))
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-							.addGap(87)
-							.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -2013,7 +1948,6 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 					.addGap(26)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-						//.addComponent(Desk, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 221, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
 		);
