@@ -173,6 +173,12 @@ public class ProyectoApplication {
 		cliente.setTipo("Cliente");
 		clienteRepository.save(cliente);
 		
+		Cliente cliente2 = new Cliente();
+		cliente2.setNombre("Omar");
+		cliente2.setContrasenia("prueba2");
+		cliente2.setTipo("Cliente");
+		clienteRepository.save(cliente2);
+		
 		/*
 		 * Declaracion de miembro de operaciones de prueba.
 		 */
@@ -330,9 +336,9 @@ public class ProyectoApplication {
 		
 		Pedido pedidoPrueba3 = new Pedido();
 		pedidoPrueba3.setFechaInicio("24/1/2022");
-		pedidoPrueba3.setFechaEntrega("28/1/2022");
+		pedidoPrueba3.setFechaEntrega("31/1/2022");
 		pedidoPrueba3.setEstado("Aceptado");
-		pedidoPrueba3.setCliente(cliente);
+		pedidoPrueba3.setCliente(cliente2);
 		pedidoRepository.save(pedidoPrueba3);
 		
 		vistaAdministrador.pedidos = controlPedido.recuperaPedidos();

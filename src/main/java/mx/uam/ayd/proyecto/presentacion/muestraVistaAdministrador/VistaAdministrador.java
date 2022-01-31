@@ -50,7 +50,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JDesktopPane;
 
 /*
- * @author Omar Aldaco Montalvo
+ * @Nombre: VistaAdministrador
+ * @Descripción: Muestra la información que es útil para el administrador del sistema
+ * * @Autor: Aldaco Montalvo Omar
+ * @Fecha de implementación: 30/01/2022
  */
 
 @SuppressWarnings("serial")
@@ -108,24 +111,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		JLabel lblNewLabel = new JLabel("Montalvo Picture Cars");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
-		btnProyect = new JButton("Proyectos");
-		/*Escuchador boton proyectos*/
-		btnProyect.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controlPedidos.damePedido(1);
-				//System.out.println(p);
-				if(disponibilidad) {
-					controlVistaAdministrador.muestraVistaSolicitudAceptada();
-					disponibilidad = false;
-				}else {
-					controlVistaAdministrador.muestraVistaGenerarContrapropuesta();
-					disponibilidad = true;
-				}
-			}
-		});
-		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		 btnCatalogo = new JButton("Catálogo");
+		btnCatalogo = new JButton("Catálogo");
 		btnCatalogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controlVistaAdministrador.muestraVistaCatalogo();
@@ -163,7 +149,7 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 				
 		lblBuscar = new JLabel(imagen1);
 		
-		textField = new JTextField();
+		textField = new JTextField();	
 		textField.setColumns(10);
 		
 		textField.addKeyListener(this);
@@ -1785,6 +1771,83 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 			}
 		});
 		
+		btnProyect = new JButton("Proyectos");
+		/*Escuchador boton proyectos*/
+		btnProyect.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+								
+				String titulo = "Pedidos";
+				
+				pedidos = controlPedidos.recuperaPedidos();
+				
+				if(!pedidos.isEmpty()) {
+					
+					Desk.removeAll();
+					repaint();
+					desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
+					Desk.add(desk);	
+					
+					try {
+						desk.setMaximum(true);
+					} catch (PropertyVetoException pve) {
+						pve.printStackTrace();
+					}
+					
+					for(Pedido pedidoAux:pedidos) {
+						
+						String dia = "" + pedidoAux.getFechaEntrega().charAt(0);
+						String aux = "" + pedidoAux.getFechaEntrega().charAt(1);
+						
+						if(!aux.equals("/")) {
+							dia = dia + aux;
+						}
+						
+						LocalDate fechaActual = LocalDate.now();
+						
+						int intDia = Integer.parseInt(dia);
+						
+						java.awt.Component[] componentes = panelDiasMes.getComponents();
+						
+						if(intDia-fechaActual.getDayOfMonth()<3) {
+							
+							((JButton)componentes[intDia+diaUno-1]).setForeground(Color.RED);
+						}else {
+							
+							if(intDia-fechaActual.getDayOfMonth()>3 && intDia-fechaActual.getDayOfMonth()<5) {
+								
+								((JButton)componentes[intDia+diaUno-1]).setForeground(Color.YELLOW);
+							}else {
+								
+								if(intDia-fechaActual.getDayOfMonth()>5) {
+									
+									((JButton)componentes[intDia+diaUno-1]).setForeground(Color.GREEN);
+								}
+							}
+						}
+						
+					}
+					
+				}else {
+					
+					Desk.removeAll();
+					repaint();
+					muestraMensaje();
+					
+				}
+				
+				/*controlPedidos.damePedido(1);
+				//System.out.println(p);
+				if(disponibilidad) {
+					controlVistaAdministrador.muestraVistaSolicitudAceptada();
+					disponibilidad = false;
+				}else {
+					controlVistaAdministrador.muestraVistaGenerarContrapropuesta();
+					disponibilidad = true;
+				}*/
+			}
+		});
+		btnProyect.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
 		JLabel lblMes = new JLabel();
 		lblMes.setBounds(6, 6, 210, 16);
 		panel.add(lblMes);
@@ -1891,14 +1954,42 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 		contentPane.setLayout(gl_contentPane);
 	} //Fin de VistaAdministrador()  
 	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que hace visible la vistaAdministrador
+	 * @Fecha de implementación: 30/01/2022
+	 * @Parametro de entrada: ControlVistaAdministrador control
+	 * @Valor de retorno: void
+	 */
+	
 	public void muestra(ControlVistaAdministrador control) {
 		controlVistaAdministrador = control;
 		setVisible(true);
 	}
 	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que muestra mensaje de aviso
+	 * @Fecha de implementación: 30/01/2022
+	 * @Valor de retorno: void
+	 */
+	
 	public void muestraMensaje(){
 		
 		JOptionPane.showMessageDialog(null, "No hay pedidos para este día");
+		
+	}
+	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que muestra mensaje de aviso
+	 * @Fecha de implementación: 30/01/2022
+	 * @Valor de retorno: void
+	 */
+	
+	public void muestraMensajeCliente(){
+		
+		JOptionPane.showMessageDialog(null, "No hay pedidos para este cliente");
 		
 	}
 	
@@ -1911,9 +2002,32 @@ public class VistaAdministrador extends JFrame implements KeyListener{
 	@Override /*Metodo para buscar al dar ENTER*/
 	public void keyPressed(KeyEvent e) {
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) { 
-			String id = textField.getText();
-			System.out.println(id);	
+			
+			String titulo = "Pedidos";
+			
+			String cliente = textField.getText();
+			pedidos = controlPedidos.recuperaPedidosPorCliente(cliente);
 			textField.setText("");
+			
+			if(!pedidos.isEmpty()) {
+				
+				Desk.removeAll();
+				repaint();
+				desk = new Desktop(titulo, controlVistaAdministrador.muestraVistaPedidos(pedidos));
+				Desk.add(desk);	
+				
+				try {
+					desk.setMaximum(true);
+				} catch (PropertyVetoException pve) {
+					pve.printStackTrace();
+				}
+				
+			}else {
+				
+				Desk.removeAll();
+				repaint();
+				muestraMensajeCliente();
+			}
        	}         
  }	
 

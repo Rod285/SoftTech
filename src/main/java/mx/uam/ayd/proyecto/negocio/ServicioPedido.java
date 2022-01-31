@@ -24,7 +24,10 @@ import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 import mx.uam.ayd.proyecto.negocio.modelo.Vehiculo;
 
 /*
- * @author Omar Aldaco Montalvo
+ * @Nombre: ServicioPedido
+ * @Descripción: Contiene los métodos que utiliza el ControlPedidos y realiza la comunicación con el PedidoRepository
+ * * @Autor: Aldaco Montalvo Omar
+ * @Fecha de implementación: 30/01/2022
  */
 
 
@@ -188,6 +191,14 @@ public class ServicioPedido {
 
 	}
 	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que recupera todos los pedidos
+	 * @Fecha de implementación: 30/01/2022
+	 * @Parametro de entrada: 
+	 * @Valor de retorno: List <Pedido> pedidos
+	 */
+	
 	public List<Pedido> recuperaPedidos(){
 		
 		List <Pedido> pedidos = pedidoRepository.findAll();
@@ -195,10 +206,43 @@ public class ServicioPedido {
 		return pedidos;
 	}
 	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que recupera los pedidos por fecha
+	 * @Fecha de implementación: 30/01/2022
+	 * @Parametro de entrada: String fecha
+	 * @Valor de retorno: List <Pedido> pedidos
+	 */
+	
 	public List<Pedido> recuperaPedidoPorFecha(String fechaEntrega){
 		List<Pedido> pedidos = pedidoRepository.findByFechaEntrega(fechaEntrega);
 		System.out.println(pedidos);
 		return pedidos;
+	}
+	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que recupera los pedidos por cliente
+	 * @Fecha de implementación: 30/01/2022
+	 * @Parametro de entrada: String cliente
+	 * @Valor de retorno: List <Pedido> pedidos
+	 */
+	
+	public List<Pedido> recuperaPedidoPorCliente(String cliente){
+		
+		List<Pedido> pedidos = pedidoRepository.findAll();
+		List<Pedido> recuperados = new ArrayList<Pedido>();
+		
+		for(Pedido pedidoAux:pedidos) {
+			
+			if(pedidoAux.getCliente().getNombre().equals(cliente)) {
+				//System.out.println("Pedido recuperado: " + pedidoAux);
+				recuperados.add(pedidoAux);
+			}
+		}
+		
+		//System.out.println("Pedidos de cliente " + cliente + ": " + recuperados);
+		return recuperados;
 	}
 } 
 

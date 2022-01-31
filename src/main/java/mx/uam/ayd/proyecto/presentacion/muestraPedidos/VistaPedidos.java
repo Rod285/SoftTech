@@ -1,5 +1,12 @@
 package mx.uam.ayd.proyecto.presentacion.muestraPedidos;
 
+/*
+ * @Nombre: VistaPediso
+ * @Descripción: Muestra toda la información relacionada a los pedidos
+ * * @Autor: Aldaco Montalvo Omar
+ * @Fecha de implementación: 30/01/2022
+ */
+
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -81,6 +88,14 @@ public class VistaPedidos extends JPanel {
 		setLayout(groupLayout);
 
 	}// Fin del metodo 
+	
+	/*
+	 * @Autor: Aldaco Montalvo Omar
+	 * @Descripción: Método que hace visible la VistaPedidos
+	 * @Fecha de implementación: 30/01/2022
+	 * @Parametro de entrada: ControlPedidos control, List<String> informacion
+	 * @Valor de retorno: void
+	 */
 	
 	public VistaPedidos muestra(ControlPedidos control, List<String> informacion) {
 		
