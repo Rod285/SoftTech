@@ -8,22 +8,23 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.Builder;
 import lombok.Data;
 
 @Entity
-@Data
+//@Data
 public class MiembroOperaciones extends Usuario{
-	
-	/*@OneToMany(targetEntity = Contacto.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+
+	@OneToMany(targetEntity = Contacto.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idContacto")
-	private final List<Contacto> contactos = new ArrayList<>();*/
+	private final List<Contacto> contactos = new ArrayList<>();
 	
-	@OneToMany(targetEntity = Notificacion.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	/*@OneToMany(targetEntity = Notificacion.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "idNotificacionO")
-	private List<Notificacion> notificaciones = new ArrayList<>();
+	private List<Notificacion> notificaciones = new ArrayList<>();*/
 	
-	private ArrayList<String> autosSolicitados;
+	//private ArrayList<String> autosSolicitados;
 	
 }

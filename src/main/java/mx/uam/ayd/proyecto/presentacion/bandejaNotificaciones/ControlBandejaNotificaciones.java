@@ -16,7 +16,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
 import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 
 /**
- * 
+ * ControlBandejaNotificaciones
  * Módulo de control para la vista notificaciones del administrador
  * 
  * @author Jonathan Cruz Ramirez
@@ -27,7 +27,7 @@ import mx.uam.ayd.proyecto.negocio.modelo.Usuario;
 public class ControlBandejaNotificaciones {
 	
 	@Autowired
-	ServicioNotificacion servicioNotificacion;
+	private ServicioNotificacion servicioNotificacion;
 	
 	@Autowired
 	private VistaBandejaNotificaciones vistaNotificaciones;

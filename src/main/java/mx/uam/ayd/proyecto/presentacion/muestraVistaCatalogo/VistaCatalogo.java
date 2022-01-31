@@ -25,8 +25,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 
 /*
- * @author Fernanda Marcelin Leyva
- * @Updated José Rodrigo Mejía Velázquez 7/12/2021
+ * VistaCatalogo
+ * @Descripcion: Vista de la HU Vista Catálogo
+ * @author Mejía Velázquez José Rodrigo
+ * @Fecha de implementación: 17/01/2022
  */
 
 @SuppressWarnings("serial")
@@ -77,21 +79,53 @@ public class VistaCatalogo extends JFrame {
 		setContentPane(contentPane);
 
 		JLabel lblCatalogo = new JLabel("Catálogo");
-		lblCatalogo.setBounds(282, 15, 355, 85);
-		lblCatalogo.setFont(new Font("Tahoma", Font.BOLD, 70));
+		lblCatalogo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCatalogo.setBounds(380, 1, 180, 85);
+		lblCatalogo.setFont(new Font("Tahoma", Font.BOLD, 30));
 
 		textFieldSearch = new JTextField();
-		textFieldSearch.setBounds(721, 50, 164, 33);
+		textFieldSearch.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textFieldSearch.setBounds(700, 50, 180, 25);
 		textFieldSearch.setColumns(10);
+		textFieldSearch.setToolTipText("Ingrese el modelo del vehículo que desea y presione Enter");
+		textFieldSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String modeloVehiculo = textFieldSearch.getText();
+				boolean bandera = validaModeloNoVacio(modeloVehiculo);
+				if(bandera == false) {
+					muestraDialogoModeloEnBlanco();
+				}else {
+					control.iniciaBusqueda(modeloVehiculo);
+				}
+			}
+
+			/*
+			 * @Autor: Mejía Velázquez José Rodrigo
+			 * @Descripción: Método que valida que el Campo de busqueda no se encuentra vacío cuando el usuario
+			 * presiona Enter, si el campo no está vacío regresa true, de lo contrario regresa false.
+			 * @Fecha de implementación: 24/01/2022
+			 * @Paramentro de entrada: String modeloVehiculo
+			 * @Valor de retorno: Boolean
+			 */
+			private boolean validaModeloNoVacio(String modeloVehiculo) {
+				if(!modeloVehiculo.equals("")) {
+					return true;
+				}else {
+					return false;
+				}
+			}
+		});
 
 		JLabel lblSearch = new JLabel("Buscar:");
-		lblSearch.setBounds(812, 20, 70, 20);
-		lblSearch.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblSearch.setBounds(701, 19, 70, 20);
+		lblSearch.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		btnIrAPedido = new JButton("Ir a pedido");
 		btnIrAPedido.setEnabled(false);
-		btnIrAPedido.setBounds(705, 90, 180, 33);
-		btnIrAPedido.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnIrAPedido.setBounds(700, 90, 125, 25);
+		btnIrAPedido.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnIrAPedido.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -105,38 +139,39 @@ public class VistaCatalogo extends JFrame {
 		// PARA IMAGEN LOGO
 		icon1 = new ImageIcon(getClass().getResource("logo.png")); // Agrega la imagen existente en la clase
 		imagen = icon1.getImage(); //
-		imagen1 = new ImageIcon(imagen.getScaledInstance(70, 70, 10)); // Tama o de imagen ancho, alto
+		imagen1 = new ImageIcon(imagen.getScaledInstance(55, 55, Image.SCALE_SMOOTH)); // Tama o de imagen ancho, alto
 		JLabel lblLogo = new JLabel();
-		lblLogo.setBounds(35, 15, 75, 75);
+		lblLogo.setBounds(33, 19, 50, 50);
 		lblLogo.setIcon(imagen1);
 
 		lblMVC = new JLabel("MVC");
-		lblMVC.setBounds(120, 20, 115, 61);
-		lblMVC.setFont(new Font("Tahoma", Font.BOLD, 50));
+		lblMVC.setBounds(93, 31, 77, 33);
+		lblMVC.setFont(new Font("Tahoma", Font.BOLD, 20));
 
 		lblMarca = new JLabel("Montalvo Picture Cars");
-		lblMarca.setBounds(35, 90, 213, 25);
-		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblMarca.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMarca.setBounds(0, 64, 120, 25);
+		lblMarca.setFont(new Font("Tahoma", Font.PLAIN, 9));
 
 		lblClasicos = new JLabel("Clásicos");
 		lblClasicos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblClasicos.setBounds(170, 140, 120, 25);
-		lblClasicos.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblClasicos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		lblLuxury = new JLabel("Luxury");
 		lblLuxury.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLuxury.setBounds(630, 140, 120, 25);
-		lblLuxury.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblLuxury.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		lblCarga = new JLabel("Carga");
 		lblCarga.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCarga.setBounds(170, 420, 120, 25);
-		lblCarga.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblCarga.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		lblDeportivos = new JLabel("Deportivos");
 		lblDeportivos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDeportivos.setBounds(620, 420, 140, 25);
-		lblDeportivos.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblDeportivos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
 		// PARA IMAGEN CATALOGO CLASICOS
 		imgClasico = new JLabel("", JLabel.CENTER);
@@ -181,25 +216,21 @@ public class VistaCatalogo extends JFrame {
 
 		getContentPane().add(panelClasico);
 		getContentPane().add(imgClasico);
-		panelClasico.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		getContentPane().add(panelLuxury);
 		getContentPane().add(imgLuxury);
-		panelLuxury.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		getContentPane().add(panelCarga);
 		getContentPane().add(imgCarga);
-		panelCarga.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		getContentPane().add(panelDeportivo);
 		getContentPane().add(imgDeportivo);
-		panelDeportivo.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
 		textClasico = new JTextField();
 		textClasico.setHorizontalAlignment(SwingConstants.CENTER);
 		textClasico.setFont(new Font("Verdana", Font.BOLD, 12));
 		textClasico.setEditable(false);
-		textClasico.setBounds(70, 170, 320, 20);
+		textClasico.setBounds(70, 165, 320, 25);
 		getContentPane().add(textClasico);
 		textClasico.setColumns(10);
 
@@ -207,7 +238,7 @@ public class VistaCatalogo extends JFrame {
 		textLuxury.setEditable(false);
 		textLuxury.setHorizontalAlignment(SwingConstants.CENTER);
 		textLuxury.setFont(new Font("Verdana", Font.BOLD, 12));
-		textLuxury.setBounds(530, 170, 320, 20);
+		textLuxury.setBounds(530, 165, 320, 25);
 		getContentPane().add(textLuxury);
 		textLuxury.setColumns(10);
 
@@ -215,7 +246,7 @@ public class VistaCatalogo extends JFrame {
 		textDeportivo.setHorizontalAlignment(SwingConstants.CENTER);
 		textDeportivo.setEditable(false);
 		textDeportivo.setFont(new Font("Verdana", Font.BOLD, 12));
-		textDeportivo.setBounds(530, 450, 320, 20);
+		textDeportivo.setBounds(530, 445, 320, 25);
 		getContentPane().add(textDeportivo);
 		textDeportivo.setColumns(10);
 
@@ -223,7 +254,7 @@ public class VistaCatalogo extends JFrame {
 		textCarga.setFont(new Font("Verdana", Font.BOLD, 12));
 		textCarga.setHorizontalAlignment(SwingConstants.CENTER);
 		textCarga.setEditable(false);
-		textCarga.setBounds(70, 450, 320, 20);
+		textCarga.setBounds(70, 445, 320, 25);
 		getContentPane().add(textCarga);
 		textCarga.setColumns(10);
 		
@@ -283,6 +314,8 @@ public class VistaCatalogo extends JFrame {
 		 * Botón para agregar el vehículo mostrado actualmente de la categoría Clásicos a la lista de Pedidos
 		 */
 		agregaClasico = new JButton("Agregar a Pedido");
+		agregaClasico.setBounds(75, 5, 130, 25);
+		agregaClasico.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		agregaClasico.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -291,6 +324,8 @@ public class VistaCatalogo extends JFrame {
 		});
 
 		especClasico = new JButton("Especificaciones");
+		especClasico.setBounds(255, 5, 130, 25);
+		especClasico.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		/*
 		 * Botón para desplazar hacia el vehiculo anterior dentro de la categoría Luxury
@@ -316,6 +351,9 @@ public class VistaCatalogo extends JFrame {
 		 * Botón para agregar el vehículo mostrado actualmente de la categoría Luxury a la lista de Pedidos
 		 */
 		agregarLuxury = new JButton("Agregar a Pedido");
+		agregarLuxury.setLocation(75, 5);
+		agregarLuxury.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		agregarLuxury.setSize(130, 25);
 		agregarLuxury.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -324,6 +362,9 @@ public class VistaCatalogo extends JFrame {
 		});
 
 		especLuxury = new JButton("Especificaciones");
+		especLuxury.setLocation(255, 5);
+		especLuxury.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		especLuxury.setSize(130, 25);
 				
 		
 		
@@ -351,6 +392,8 @@ public class VistaCatalogo extends JFrame {
 		 * Botón para agregar el vehículo mostrado actualmente de la categoría Carga a la lista de Pedidos
 		 */
 		agregaCarga = new JButton("Agregar a Pedido");
+		agregaCarga.setBounds(75, 5, 130, 25);
+		agregaCarga.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		agregaCarga.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -359,6 +402,8 @@ public class VistaCatalogo extends JFrame {
 		});
 
 		especCarga = new JButton("Especificaciones");
+		especCarga.setBounds(255, 5, 130, 25);
+		especCarga.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		/*
 		 * Botón para desplazar hacia el vehiculo anterior dentro de la categoría Deportivos
@@ -384,6 +429,8 @@ public class VistaCatalogo extends JFrame {
 		 * Botón para agregar el vehículo mostrado actualmente de la categoría Deportivos a la lista de Pedidos
 		 */
 		agregaDeportivo = new JButton("Agregar a Pedido");
+		agregaDeportivo.setBounds(75, 5, 130, 25);
+		agregaDeportivo.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		agregaDeportivo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -392,13 +439,19 @@ public class VistaCatalogo extends JFrame {
 		});
 
 		especDeportivo = new JButton("Especificaciones");
+		especDeportivo.setBounds(255, 5, 130, 25);
+		especDeportivo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		panelClasico.setLayout(null);
 		
 		panelClasico.add(agregaClasico);
 		panelClasico.add(especClasico);
+		panelLuxury.setLayout(null);
 		panelLuxury.add(agregarLuxury);
 		panelLuxury.add(especLuxury);
+		panelCarga.setLayout(null);
 		panelCarga.add(agregaCarga);
 		panelCarga.add(especCarga);
+		panelDeportivo.setLayout(null);
 		panelDeportivo.add(agregaDeportivo);
 		panelDeportivo.add(especDeportivo);
 	}
@@ -498,4 +551,25 @@ public class VistaCatalogo extends JFrame {
 		btnIrAPedido.setText("Ir a Pedido (" + listaPedido.size() + ")");	
 	}
 
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que informa la usuario que el modelo de vehículo que buscó no se encontró
+	 * @Fecha de implementación: 21/01/2022
+	 * @Parametro de entrada: void
+	 * @Valor de retorno: void
+	 */
+	public void muestraDialogoVehiculoNoEncontrado() {
+		JOptionPane.showMessageDialog(null, "El vehículo que busca no se encuentra, por favor intente con otro modelo");
+	}
+
+	/*
+	 * @Autor: Mejía Velázquez José Rodrigo
+	 * @Descripción: Método que informa la usuario que el campo de búsquedano debé estar en blanco
+	 * @Fecha de implementación: 24/01/2022
+	 * @Parametro de entrada: void
+	 * @Valor de retorno: void
+	 */
+	private void muestraDialogoModeloEnBlanco() {
+		JOptionPane.showMessageDialog(null, "Para realizar la búsqueda, el modelo no debe estar vacío");
+	}
 }

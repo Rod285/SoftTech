@@ -15,6 +15,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import lombok.Builder;
 import mx.uam.ayd.proyecto.datos.AdministradorRepository;
 import mx.uam.ayd.proyecto.datos.ClienteRepository;
+import mx.uam.ayd.proyecto.datos.ContactoRepository;
 import mx.uam.ayd.proyecto.datos.GrupoRepository;
 import mx.uam.ayd.proyecto.datos.NotificacionRepository;
 import mx.uam.ayd.proyecto.datos.OperacionesRepository;
@@ -22,6 +23,7 @@ import mx.uam.ayd.proyecto.datos.PedidoRepository;
 import mx.uam.ayd.proyecto.datos.VehiculoRepository;
 import mx.uam.ayd.proyecto.negocio.modelo.Administrador;
 import mx.uam.ayd.proyecto.negocio.modelo.Cliente;
+import mx.uam.ayd.proyecto.negocio.modelo.Contacto;
 import mx.uam.ayd.proyecto.negocio.modelo.Grupo;
 import mx.uam.ayd.proyecto.negocio.modelo.MiembroOperaciones;
 import mx.uam.ayd.proyecto.negocio.modelo.Notificacion;
@@ -63,6 +65,9 @@ public class ProyectoApplication {
 	
 	@Autowired
 	NotificacionRepository notificacionRepository;
+	
+	@Autowired
+	ContactoRepository contactoRepository;
 	
 	@Autowired
 	VehiculoRepository vehiculoRepository;
@@ -189,6 +194,28 @@ public class ProyectoApplication {
 		oper.setTipo("Operaciones");
 		operacionesRepository.save(oper);
 		
+		MiembroOperaciones oper2 = new MiembroOperaciones();
+		oper2.setNombre("operaciones2");
+		oper2.setContrasenia("operaciones2");
+		oper2.setTipo("Operaciones");
+		operacionesRepository.save(oper2);
+		
+		/*
+		 * Declaración contactos de prueba
+		 */
+		Contacto contacto1 = new Contacto();
+		contacto1.setNombre("Marco");
+		contacto1.setApellido("Rodriguez");		
+		contacto1.setTelefono("5545859156");
+		contacto1.setMiembroOp(oper);
+		contactoRepository.save(contacto1);
+		
+		Contacto contacto2 = new Contacto();
+		contacto2.setNombre("Pedro");
+		contacto2.setApellido("Días");
+		contacto2.setTelefono("5698387496");
+		contacto2.setMiembroOp(oper);
+		contactoRepository.save(contacto2);
 		/*
 		 * Declaracion de notificaciones de prueba.
 		 */
@@ -317,6 +344,17 @@ public class ProyectoApplication {
 		vehiculoPrueba9.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/Maverick_320x180.jpg");
 		vehiculoRepository.save(vehiculoPrueba9);
 		
+		//10
+		Vehiculo vehiculoPrueba10 = new Vehiculo();
+		vehiculoPrueba10.setModelo("Mustang GT500 2022");
+		vehiculoPrueba10.setPrecio(5500);
+		vehiculoPrueba10.setAnio(2022);
+		vehiculoPrueba10.setTipo("Deportivo");
+		vehiculoPrueba10.setDescripcion("");
+		vehiculoPrueba10.setDisponibilidad(true);
+		vehiculoPrueba10.setFoto("c:/Users/zerat/Documents/IngSoft/AnalysisYDiseno-master/src/main/java/mx/uam/ayd/proyecto/presentacion/muestraVistaCatalogo/MustangGT5002022_320x180.jpg");
+		vehiculoRepository.save(vehiculoPrueba10);
+				
 		/*
 		 * Declaracion de pedioVehículo para pedido de prueba.
 		 */
