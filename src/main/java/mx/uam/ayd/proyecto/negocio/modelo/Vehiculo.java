@@ -33,12 +33,4 @@ public class Vehiculo {
 	private String descripcion;
 	private boolean disponibilidad;
 	private String foto;
-	
-	/*
-	@ManyToOne
-	@JoinColumn(name = "idVehiculo")
-	private Pedido pedido;
-	*/
-	@OneToMany(mappedBy = "vehiculo")
-    Set<PedidoVehiculo> pedido_vehiculos;
 }
