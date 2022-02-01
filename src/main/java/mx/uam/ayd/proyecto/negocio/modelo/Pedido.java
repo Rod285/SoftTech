@@ -26,6 +26,9 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Pedido {
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -50,6 +53,10 @@ public class Pedido {
 	private final List<Vehiculo> vehiculos = new ArrayList<>();
 		
 	private ArrayList<Pedido> ordenPedido;
+	
+	public Pedido(long id) {
+		this.id = id;
+	}
 	
 
 }
