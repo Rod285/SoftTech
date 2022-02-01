@@ -82,11 +82,13 @@ public class ControlVistaCatalogo {
 	 * @Parametros: List<Vehiculo>, int
 	 */
 	public void agregarAPedido(List<Vehiculo> listaVehiculos, int indiceVehiculo) {
-		
-		listaPedido = servicioPedido.agregarAPedido(listaVehiculos, indiceVehiculo);
-		if(listaPedido == null) {
+		List<Vehiculo> listaPedidoActualizada;
+				
+		listaPedidoActualizada = servicioPedido.agregarAPedido(listaVehiculos, indiceVehiculo);
+		if(listaPedidoActualizada == null) {
 			vistaCatalogo.dialogoVehiculoEnListaDePedido();
 		}else {
+			listaPedido = listaPedidoActualizada;
 			vistaCatalogo.actualizaBotonIrAPedido(listaPedido);
 		}
 	}
